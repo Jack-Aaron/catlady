@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
+  Container,
+  Row,
+  Col,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -13,9 +16,9 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
-  Jumbotron
 } from 'reactstrap';
 import './App.css';
+import Mypets from './components/Mypets';
 
 const App = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +33,7 @@ const App = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/">My Pets</NavLink>
+              <NavLink href="./components/Mypets">My Pets</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/">Sign Up</NavLink>
@@ -58,12 +61,14 @@ const App = (props) => {
           </NavbarText>
         </Collapse>
       </Navbar>
-      <Jumbotron className="App">
-        <h1>Catlady</h1>
-      </Jumbotron>
+      <Mypets />
+      <Container>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+      </Container>
     </div>
-
-
   );
 }
 
