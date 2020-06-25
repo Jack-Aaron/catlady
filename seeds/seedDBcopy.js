@@ -11,12 +11,14 @@ mongoose.connect(connStr, (err) => {
 
 // create a user a new user
 const testUser = new db.User({
-  username: "jmar777",
-  password: "Password",
+  username: "BrianLFarmer",
+  password: "SuperPassWord",
 });
 
-testUser.save((err) => {
-  if (err) {
-    throw err;
-  }
-});
+db.User.remove({}).then(
+  testUser.save((err) => {
+    if (err) {
+      throw err;
+    }
+  })
+);
