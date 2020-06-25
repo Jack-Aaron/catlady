@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Container,
@@ -26,49 +27,50 @@ const App = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar className='lato' color="light" light expand="md">
-        <NavbarBrand className='aladin' href="/">catlady</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="./components/Mypets">My Pets</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Sign Up</NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
+    <Router>
+      <div>
+        <Navbar className='lato' color="light" light expand="md">
+          <NavbarBrand className='aladin' href="/">catlady</NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} to='/Mypets'>My Pets</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/Signup">Sign Up</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
               </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
                 </DropdownItem>
-                <DropdownItem>
-                  Option 2
+                  <DropdownItem>
+                    Option 2
                 </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
                 </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-          <NavbarText>
-            <NavLink href="/">Logout</NavLink>
-          </NavbarText>
-        </Collapse>
-      </Navbar>
-      <Mypets />
-      <Container>
-        <Row>
-          <Col>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+            <NavbarText>
+              <NavLink tag={Link} to='/Logout'>Logout</NavLink>
+            </NavbarText>
+          </Collapse>
+        </Navbar>
+        <Container>
+          <Row>
+            <Col>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Router>
   );
 }
 
