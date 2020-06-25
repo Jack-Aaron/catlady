@@ -30,7 +30,6 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato&display=swap');
-
 .aladin {
   font-family: 'Aladin', cursive;
   font-size: xx-large;
@@ -39,6 +38,7 @@
 .lato {
   font-family: 'Lato', sans-serif
 }
+
 
 @keyframes App-logo-spin {
   from {
