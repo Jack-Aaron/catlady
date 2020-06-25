@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Lato', sans-serif;
 }
 
 .App-logo {
@@ -28,16 +29,16 @@
   color: #61dafb;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato&display=swap');
 .aladin {
   font-family: 'Aladin', cursive;
   font-size: xx-large;
 }
 
 .lato {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato&display=swap');
 
 @keyframes App-logo-spin {
   from {
