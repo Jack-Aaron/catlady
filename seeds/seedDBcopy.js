@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
   db = require("../models");
 
-const connStr = "mongodb://localhost:27017/mongoose-bcrypt-test";
+const connStr = "mongodb://localhost/catlady";
 mongoose.connect(connStr, (err) => {
   if (err) {
     throw err;
@@ -16,9 +16,13 @@ const testUser = new db.User({
 });
 
 db.User.remove({}).then(
-  testUser.save((err) => {
-    if (err) {
-      throw err;
-    }
-  })
+  testUser
+    .save()
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    })
 );
