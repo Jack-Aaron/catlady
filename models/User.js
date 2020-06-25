@@ -1,4 +1,4 @@
-(bcrypt = require("bcrypt")), (SALT_WORK_FACTOR = 10);
+bcrypt = require("bcryptjs")
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
