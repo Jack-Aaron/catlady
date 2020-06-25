@@ -1,17 +1,11 @@
-bcrypt = require("bcryptjs")
-
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose"),
+  Schema = mongoose.Schema,
+  bcrypt = require("bcrypt"),
+  SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  passowrd: {
-    type: String,
-    required: true,
-  },
+  username: { type: String, required: true, index: { unique: true } },
+  password: { type: String, required: true },
 });
 
 UserSchema.pre("save", function (next) {
@@ -49,8 +43,6 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     cb(null, isMatch);
   });
 };
-
-module.exports = mongoose.model("User", UserSchema);
 
 const User = mongoose.model("User", UserSchema);
 
