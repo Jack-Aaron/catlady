@@ -1,32 +1,28 @@
-const mongoose = require("mongoose");
-const db = require("../models");
+const mongoose = require("mongoose"),
+  db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+const connStr = "mongodb://localhost/catlady";
+mongoose.connect(connStr, (err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("Successfully connected to MongoDB");
+});
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/catlady");
+// create a user a new user
+const testUser = new db.User({
+  username: "BrianLFarmer",
+  password: "SuperPassWord",
+});
 
-const UserSeed = [
-  {
-    username: "Brian",
-    password: "asfasf",
-  },
-  {
-    username: "Jonathan",
-    password: "asfasf",
-  },
-  {
-    username: "Emily",
-    password: "asfasf",
-  },
-];
-
-db.User.remove({})
-  .then(() => db.User.collection.insertMany(UserSeed))
-  .then((data) => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+db.User.remove({}).then(
+  testUser
+    .save()
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    })
+);
