@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+ feature-navbar
 import {
   Collapse,
   Navbar,
@@ -23,6 +24,7 @@ const App = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
+ feature-navbar
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">catlady</NavbarBrand>
@@ -62,6 +64,8 @@ const App = (props) => {
         <h1>Catlady</h1>
       </Jumbotron>
     </div>
+
+
   );
 }
 
