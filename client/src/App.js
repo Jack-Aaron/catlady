@@ -7,7 +7,6 @@ import SignUp from "./pages/SignUp/SignUp";
 import Dashboard from './pages/Dashboard';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer';
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
 import { FinalCalculation } from './components/FinalCalculation';
