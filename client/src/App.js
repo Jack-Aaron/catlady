@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
-import Login from './components/Login/login'
+import SignUp from "./pages/SignUp/SignUp";
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
 // import { render } from 'react-dom';
@@ -15,7 +15,7 @@ const App = (props) => {
         <Navigation />
         <Wrapper>
           <Route exact path="/"
-          component={Login}
+          component={SignUp}
           />
           <Route exact path="/mypets"
           // component={}
