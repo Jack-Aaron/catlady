@@ -5,7 +5,7 @@ export const FinalCalculation = (props) => {
   let highEndCalories = 0;
   let name = "Frank";
   let inputFood = "Merrick Something or other";
-  let petType = "dog";
+  let petType = "cat";
   let caloriesPerPackage = "500";
   let ozPerPackage = 10;
   let mealNumber = 3;
