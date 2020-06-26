@@ -1,16 +1,13 @@
 
 import React, { useState } from 'react';
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     NavbarText
 } from 'reactstrap';
-// import { NavLink as RRNavLink, Router } from 'react-router-dom';
+import { Link as NavLink } from 'react-router-dom';
 import './style.css';
 // import { render } from 'react-dom';
 
@@ -22,20 +19,18 @@ const Navigation = (props) => {
         <div>
             <Navbar style={{ backgroundColor: '#B5838D' }} className='lato' light expand="md">
                 <NavbarBrand className='aladin' href="/" style={{ color: '#FFCDB2' }}>catlady</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">My Pets</NavLink>
+                            <NavLink to='/dashboard' className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>My Pets</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/">Sign Up</NavLink>
+                            <NavLink to="/" className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>Sign Up</NavLink>
                         </NavItem>
                     </Nav>
                     <NavbarText>
                         <NavLink href="/">Logout</NavLink>
+                        {/* logout will go here */}
                     </NavbarText>
-                </Collapse>
             </Navbar>
         </div>
     )
