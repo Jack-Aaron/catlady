@@ -17,8 +17,11 @@ const PetCard = (props) => {
     return (
         <div>
             <a href='/'>
-                <Card className='petCard justify-content-center' style={{
+
+                <Card className='petCard' style={{
                     backgroundColor: '#FFB4A2',
+                    filter: 'grayscale(50%)'
+
                 }}>
                     <CardImg top width="100%" src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" alt="Card image cap" style={{
                         maxHeight: '200px'

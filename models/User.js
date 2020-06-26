@@ -9,9 +9,9 @@ const UserSchema = new Schema({
   pets: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Pet"
-    }
-  ]
+      ref: "Pet",
+    },
+  ],
 });
 
 UserSchema.pre("save", function (next) {
