@@ -17,7 +17,6 @@ const testUser = new db.User({
 
 });
 
-
 db.User.remove({}).then(
   testUser
   .save()
@@ -29,7 +28,8 @@ db.User.remove({}).then(
     process.exit(1);
     })
     );
-    
+
+    //Create new Pet
     const testPet = new db.Pet({
       petName: "Marigold",
       petType: "Dog",
@@ -48,6 +48,7 @@ db.Pet.remove({}).then(
     })
 );
     
+// Create new food
     const testPetFood = new db.PetFood({
       name:  "Merrick Grain Free 96% Real Chicken",
       caloriesPerPackage : 441,
