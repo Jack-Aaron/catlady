@@ -12,11 +12,11 @@ function Login() {
 
       function handleFormSubmit(event) {
         event.preventDefault();
-        if (formObject.username && formObject.password) {
+        if (formObject.username && formObject.password) { 
           API.saveUser({
             username: formObject.username,
             password: formObject.password
-          })
+          }).then(setFormObject({}))
             .catch(err => console.log(err));
         }
       };
@@ -48,7 +48,7 @@ function Login() {
                             </div>
                             <button 
                             disabled={!(formObject.username && formObject.password)}
-                            onSubmit={handleFormSubmit}
+                            onClick={handleFormSubmit}
                             type="submit" 
                             className="btn btn-default">Sign Up</button>
                         </form>
