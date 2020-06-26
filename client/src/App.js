@@ -1,70 +1,31 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-  Jumbotron
-} from 'reactstrap';
+import Navigation from './components/Navbar';
+import Wrapper from './components/Wrapper';
+// import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
+// import { render } from 'react-dom';
 
 const App = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
-    <div>
-      <Navbar className='lato' color="light" light expand="md">
-        <NavbarBrand className='aladin' href="/">catlady</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/">My Pets</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Sign Up</NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-          <NavbarText>
-            <NavLink href="/">Logout</NavLink>
-          </NavbarText>
-        </Collapse>
-      </Navbar>
-      <Jumbotron className="App">
-        <h1>Catlady</h1>
-      </Jumbotron>
-    </div>
-
-
-  );
+    <Router>
+      <div>
+        <Navigation />
+        <Wrapper>
+          <Route exact path="/"
+          // component={}
+          />
+          <Route exact path="/mypets"
+          // component={}
+          />
+          {/* <Route exact path="/discover" component={Discover} />
+        <Route exact path="/search" component={Search} /> */}
+        </Wrapper>
+      </div>
+    </Router>
+  )
 }
+
 
 export default App;
