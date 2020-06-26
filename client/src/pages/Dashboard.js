@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-    Container,
     Row,
     Col,
 } from 'reactstrap';
 import Header from '../components/Header';
+import Container from '../components/Container';
 import PetCard from '../components/PetCard';
 import AddBtn from '../components/AddBtn';
 
@@ -13,14 +13,14 @@ function Dashboard() {
         <div>
             <Header />
             <Container>
-                <Row>
-                    <Col>
+                <Row className='justify-content-center'>
+                    <Col xs='auto'>
                         <PetCard />
                     </Col>
-                    <Col>
+                    <Col xs='auto'>
                         <PetCard />
                     </Col>
-                    <Col>
+                    <Col xs='auto'>
                         <PetCard />
                     </Col>
                 </Row>

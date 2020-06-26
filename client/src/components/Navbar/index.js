@@ -21,7 +21,7 @@ const Navigation = (props) => {
     return (
         <div>
             <Navbar style={{ backgroundColor: '#B5838D' }} className='lato' light expand="md">
-                <NavbarBrand className='aladin' href="/">catlady</NavbarBrand>
+                <NavbarBrand className='aladin' href="/" style={{ color: '#FFCDB2' }}>catlady</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>

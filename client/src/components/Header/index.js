@@ -10,7 +10,10 @@ const Header = (props) => {
 
     return (
         <div>
-            <Jumbotron style={{ backgroundColor: '#E5989B' }}>
+            <Jumbotron style={{
+                backgroundColor: '#E5989B',
+                textAlign: 'center'
+            }}>
                 <h1 className="display-3">My Pets</h1>
                 <p className="lead">Choose one of your Pets by clicking one below to check out or modify their diet.</p>
             </Jumbotron>
