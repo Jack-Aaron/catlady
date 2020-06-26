@@ -3,6 +3,7 @@ const session = require("express-session");
 const passport = require("./config/passport");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 
