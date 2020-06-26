@@ -5,7 +5,7 @@ import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
-// import { render } from 'react-dom';
+import { FinalCalculation } from './components/FinalCalculation';
 
 const App = (props) => {
   return (
@@ -16,6 +16,7 @@ const App = (props) => {
           <Route exact path="/"
           // component={}
           />
+          <FinalCalculation></FinalCalculation>
           <Route exact path="/mypets"
           // component={}
           />
