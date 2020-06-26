@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
+import Login from './components/Login/login'
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
 // import { render } from 'react-dom';
@@ -14,7 +15,7 @@ const App = (props) => {
         <Navigation />
         <Wrapper>
           <Route exact path="/"
-          // component={}
+          component={Login}
           />
           <Route exact path="/mypets"
           // component={}
