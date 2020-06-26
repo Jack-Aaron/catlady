@@ -13,7 +13,7 @@ const AddBtn = (props) => {
             <hr className="my-2" />
             <p>Click Add Pet to begin managing the nutrition for your pet!</p>
             <p className="lead">
-                <Button color="primary">Add Pet</Button>
+                <Button style={{ backgroundColor: '#B5838D' }}>Add Pet</Button>
             </p>
         </div>
     )
