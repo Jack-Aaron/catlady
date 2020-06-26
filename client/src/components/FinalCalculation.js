@@ -1,13 +1,13 @@
 import React from "react";
 export const FinalCalculation = (props) => {
-  let weight = 20;
+  let weight = 10;
   let lowEndCalories = 0;
   let highEndCalories = 0;
-  let name = "Frank";
-  let inputFood = "Merrick Something or other";
+  let name = "Linus";
+  let inputFood = "Holistic Select Ocean Fish & Tuna Pate Recipe Grain-Free Canned Cat & Kitten Food";
   let petType = "cat";
-  let caloriesPerPackage = "500";
-  let ozPerPackage = 10;
+  let caloriesPerPackage = 496;
+  let ozPerPackage = 13;
   let mealNumber = 3;
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
@@ -34,7 +34,7 @@ export const FinalCalculation = (props) => {
       <p>
   Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
       </p>
-  <p>Using {inputFood} they will need between {totalLowEndAmount} and {totalHighEndAmount} oz per day to maintain their current weight.</p>
+  <p>Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.</p>
   <p>That is between {parseFloat(totalLowEndAmount/mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount/mealNumber).toFixed(2)} oz per meal.</p>
     </div>
   );
