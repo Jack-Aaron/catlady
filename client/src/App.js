@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './pages/Dashboard';
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
+import SignUp from "./pages/SignUp/SignUp";
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
 import { FinalCalculation } from './components/FinalCalculation';
@@ -14,7 +15,7 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/' component={SignUp} />
           <Route exact path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/discover" component={Discover} />
         <Route exact path="/search" component={Search} /> */}
