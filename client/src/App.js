@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from './pages/Dashboard';
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
+import Footer from './components/Footer';
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import './App.css';
 // import { render } from 'react-dom';
@@ -19,6 +20,7 @@ const App = (props) => {
           {/* <Route exact path="/discover" component={Discover} />
         <Route exact path="/search" component={Search} /> */}
         </Wrapper>
+        <Footer />
       </div>
     </Router>
   )
