@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Navbar,
     NavbarBrand,
@@ -12,9 +12,9 @@ import './style.css';
 // import { render } from 'react-dom';
 
 const Navigation = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
 
-    const toggle = () => setIsOpen(!isOpen);
+    // // const toggle = () => setIsOpen(!isOpen);
     return (
         <div>
             <Navbar style={{ backgroundColor: '#B5838D' }} className='lato' light expand="md">
