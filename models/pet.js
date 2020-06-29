@@ -3,7 +3,8 @@ const mongoose = require("mongoose"),
   petSchema = new Schema({
     petName: { type: String, required: true },
     petType: { type: String, required: true },
-    weight: { type: Number, required: true },
+    currentWeight: { type: Number, required: true },
+    idealWeight: { type: Number, required: true }
   });
 
 const Pet = mongoose.model("Pet", petSchema);
