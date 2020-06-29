@@ -23,12 +23,13 @@ function Dashboard() {
         <div>
             <Header />
             <Container>
-                <Row className='justify-content-center'>
+                <Row className='justify-content-around'>
                     {petsState.map(pet => {
                         return (
-                            <Col xs='auto'>
+                            <Col xs='auto' style={{ paddingBottom: 15 }}>
                                 <PetCard
                                     name={pet.name}
+                                    imgsrc={pet.imgsrc}
                                     type={pet.type}
                                     description={pet.description}
                                 />

@@ -13,13 +13,103 @@ router
   .get((req, res) => res.json([
     {
       name: 'Fluffy',
+      imgsrc: 'cat.png',
       currentWeight: 12,
       idealWeight: 8,
-      type: 'Rabbit',
+      type: 'Cat',
       description: 'adopted and loved by all'
     },
     {
       name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
+      currentWeight: 12,
+      idealWeight: 8,
+      type: 'Dog',
+      description: 'found in the street'
+    },
+    {
+      name: 'Fido',
+      imgsrc: 'dog.png',
       currentWeight: 12,
       idealWeight: 8,
       type: 'Dog',
@@ -27,6 +117,7 @@ router
     },
     {
       name: 'Garf',
+      imgsrc: 'cat.png',
       currentWeight: 12,
       idealWeight: 8,
       type: 'Cat',

@@ -9,10 +9,13 @@ const PetCard = (props) => {
             <a href='/'>
                 <Card className='petCard' style={{
                     backgroundColor: '#FFB4A2',
+                    border: '3px solid #E5989B',
+                    borderRadius: '10px',
                     filter: 'grayscale(50%)'
                 }}>
-                    <Card.Img top width="100%" src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" alt="Card image cap" style={{
-                        maxHeight: '200px'
+                    <Card.Img src={props.imgsrc} className='petImg' alt="Card image cap" style={{
+                        maxHeight: '300px',
+                        maxWidth: '200px'
                     }} />
                     <Card.Body>
                         <Card.Title>{props.name}</Card.Title>
