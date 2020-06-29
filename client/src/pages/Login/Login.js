@@ -14,7 +14,7 @@ function SignUp() {
     function handleFormSubmit(event) {
         event.preventDefault();
         if (formObject.username && formObject.password) {
-            API.saveUser({
+            API.login({
                 username: formObject.username,
                 password: formObject.password
             }).then(setFormObject({}))
