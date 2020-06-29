@@ -1,13 +1,8 @@
 
 import React, { useState } from 'react';
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavbarText
-} from 'reactstrap';
 import { Link as NavLink } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import './style.css';
 // import { render } from 'react-dom';
 
@@ -17,20 +12,19 @@ const Navigation = (props) => {
     const toggle = () => setIsOpen(!isOpen);
     return (
         <div>
-            <Navbar style={{ backgroundColor: '#B5838D' }} className='lato' light expand="md">
-                <NavbarBrand className='aladin' href="/" style={{ color: '#FFCDB2' }}>catlady</NavbarBrand>
-                    <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink to='/dashboard' className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>My Pets</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/" className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>Sign Up</NavLink>
-                        </NavItem>
-                    </Nav>
-                    <NavbarText>
-                        <NavLink href="/">Logout</NavLink>
-                        {/* logout will go here */}
-                    </NavbarText>
+            <Navbar style={{ backgroundColor: '#B5838D' }}>
+                <Navbar.Brand className='aladin' href="/" style={{ color: '#FFCDB2' }}>catlady</Navbar.Brand>
+                <Nav className="ml-auto">
+                    <Nav.Link to='/dashboard'
+                        className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>
+                        My Pets</Nav.Link>
+                    <Nav.Link to="/"
+                        className={window.location.pathname === '/discover' ? 'nav-link active' : 'nav-link'}>
+                        Sign Up</Nav.Link>
+                    <Nav.Link to="/"
+                        className='ml-auto'>Logout</Nav.Link>
+                    {/* logout will go here */}
+                </Nav>
             </Navbar>
         </div>
     )
