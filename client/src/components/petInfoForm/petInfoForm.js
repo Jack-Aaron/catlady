@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 export default function PetInfoForm() {
   const [petState, setPetState] = useState({
     petName: "",
+    petType: "",
     currentWeight: 0,
     idealWeight: 0,
   });
@@ -23,6 +24,18 @@ export default function PetInfoForm() {
           }
         />
       </Form.Group>
+      <Form.Group controlId="petType">
+        <Form.Label>Pet Type: </Form.Label>
+        <Form.Control
+          as="select"
+          onChange={(event) =>
+            setPetState({ ...petState, petType: event.target.value })
+          }
+        >
+          <option>Cat</option>
+          <option>Dog</option>
+        </Form.Control>
+      </Form.Group>
 
       <Form.Group controlId="currentWeight">
         <Form.Label>Current Weight: </Form.Label>
@@ -39,7 +52,7 @@ export default function PetInfoForm() {
         <Form.Control
           type="number"
           onChange={(event) =>
-            setPetState({ ...petState, idealWeight : event.target.value })
+            setPetState({ ...petState, idealWeight: event.target.value })
           }
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
