@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import Login_Signup from "../../components/Login_Signup/Login_Signup";
-import './SignUp.css'
+import './Login.css'
 
 function SignUp() {
     const [formObject, setFormObject] = useState({})
@@ -25,14 +25,14 @@ function SignUp() {
     return (
         <div className="container">
             <Login_Signup
-                formname={"Sign Up Form"}
+                formname={"Login Form"}
                 handleChange={handleChange}
                 handleFormSubmit={handleFormSubmit}
-                buttonText={"Sign Up"}
+                buttonText={"Login"}
                 formUser={formObject.username}
                 formPass={formObject.password}
             >
-                <p>Or Login <a href="/">Here</a></p>
+                <p>Or Sign Up <a href="/signup">Here</a></p>
             </Login_Signup>
         </div>
     )

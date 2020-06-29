@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
 import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/Login/Login";
 import Dashboard from './pages/Dashboard';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +18,8 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' component={SignUp} />
+          <Route exact path='/' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
           <Route exact path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/discover" component={Discover} />
         <Route exact path="/search" component={Search} /> */}
