@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-    Row,
-    Col,
-} from 'reactstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import PetCard from '../components/PetCard';
