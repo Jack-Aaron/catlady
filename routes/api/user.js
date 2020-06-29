@@ -13,7 +13,7 @@ router.route("/login").post(passport.authenticate("local"), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
   res.json({
     username: req.user.username,
-    id: req.user.id,
+    _id: req.user.id,
   });
 });
 
