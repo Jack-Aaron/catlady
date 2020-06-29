@@ -5,7 +5,8 @@ import Login_Signup from "../../components/Login_Signup/Login_Signup";
 import './Login.css'
 
 function SignUp() {
-    const [formObject, setFormObject] = useState({})
+    const initalForm ={username: "", password: ""}
+    const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/dashboard" } };
@@ -22,7 +23,7 @@ function SignUp() {
             API.login({
                 username: formObject.username,
                 password: formObject.password
-            }).then(setFormObject({}))
+            }).then(setFormObject(initalForm))
                 .then(res => history.replace(from))
                 .catch(err => console.log(err));
         }
@@ -37,6 +38,8 @@ function SignUp() {
                 buttonText={"Login"}
                 formUser={formObject.username}
                 formPass={formObject.password}
+                uValue={formObject.username || ""}
+                pValue={formObject.password || ""}
             >
                 <p>Or Sign Up <a href="/signup">Here</a></p>
             </Login_Signup>

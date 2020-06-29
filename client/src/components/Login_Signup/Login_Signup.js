@@ -14,7 +14,8 @@ function Login_Signup(props) {
                                 name="username"
                                 type="email"
                                 className="form-control"
-                                placeholder="Email (required)" />
+                                placeholder="Email (required)"
+                                value={props.uValue} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Password</label>
@@ -23,7 +24,8 @@ function Login_Signup(props) {
                                 name="password"
                                 type="password"
                                 className="form-control"
-                                placeholder="Password" />
+                                placeholder="Password" 
+                                value={props.pValue} />
                         </div>
                         <button
                             disabled={!(props.formUser && props.formPass)}
