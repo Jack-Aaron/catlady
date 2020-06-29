@@ -14,8 +14,9 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/signup' component={SignUp} />
+          <Route exact path="/" component={Dashboard} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path='/signup' component={SignUp} />
         </Wrapper>
         <Footer />
       </div>

@@ -1,6 +1,6 @@
 // const { model } = require("mongoose");
 
-// Defining methods for the booksController
+// Defining methods for the userController
 module.exports = {
   findAll: function (req, res, model) {
     model
