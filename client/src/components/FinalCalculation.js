@@ -34,7 +34,7 @@ export const FinalCalculation = (props) => {
       <p>
   Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
       </p>
-  <p>Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed} oz per day to maintain their current weight.</p>
+  <p>Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.</p>
   <p>That is between {parseFloat(totalLowEndAmount/mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount/mealNumber).toFixed(2)} oz per meal.</p>
     </div>
   );
