@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useHistory, useLocation} from "react-router-dom"
 import API from "../../utils/API";
-import Login_Signup from "../../components/Login_Signup/Login_Signup";
+import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
 import './Login.css'
 
 function SignUp() {
@@ -31,7 +31,7 @@ function SignUp() {
 
     return (
         <div className="container">
-            <Login_Signup
+            <LoginSignupForm
                 formname={"Login Form"}
                 handleChange={handleChange}
                 handleFormSubmit={handleFormSubmit}
@@ -42,7 +42,7 @@ function SignUp() {
                 pValue={formObject.password || ""}
             >
                 <p>Or Sign Up <a href="/signup">Here</a></p>
-            </Login_Signup>
+            </LoginSignupForm>
         </div>
     )
 }

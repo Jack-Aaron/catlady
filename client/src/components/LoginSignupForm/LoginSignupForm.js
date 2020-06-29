@@ -1,6 +1,6 @@
 import React from "react"
 
-function Login_Signup(props) {
+function LoginSignupForm(props) {
     return (
         <div className="row justify-content-center mt-5">
             <div className="col-md-6 col-md-offset-3">
@@ -41,4 +41,4 @@ function Login_Signup(props) {
     )
 }
 
-export default Login_Signup
+export default LoginSignupForm
