@@ -8,6 +8,7 @@ export default {
 
   getPets: function () {
     return axios.get('/api/user/pets');
+  },
   
   login: function(UserData) {
     return axios.post("/api/user/login", UserData)

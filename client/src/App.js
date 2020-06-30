@@ -22,7 +22,7 @@ const App = (props) => {
         <Wrapper>
           <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
           <Route exact path='/signup' component={SignUp} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard" render={(props) => (<Dashboard setUserData = {setUserData}/>)} />
           <Route exact path='/signup' component={SignUp} />
         </Wrapper>
         <Footer />
