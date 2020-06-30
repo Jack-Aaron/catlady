@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-    Row,
-    Col,
-    Card,
-    CardTitle,
-    Button
-} from 'reactstrap';
-// import { NavLink as RRNavLink, Router } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Container from '../Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import './style.css';
-// import { render } from 'react-dom';
 
 const AddBtn = (props) => {
 
@@ -24,7 +19,7 @@ const AddBtn = (props) => {
                             margin:'0 auto',
                             marginTop:'5em'
                         }} body>
-                            <CardTitle>Begin managing the nutrition for another pet!</CardTitle>
+                            <Card.Title>Begin managing the nutrition for another pet!</Card.Title>
                             <Button style={{ backgroundColor: '#B5838D' }}>Add Pet</Button>
                         </Card>
                     </Col>

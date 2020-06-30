@@ -2,7 +2,7 @@ const router = require("express").Router();
 const userRoutes = require("./user");
 const petRoutes = require("./pets")
 
-// Pet routes
+// routes
 router.use("/user", userRoutes);
 router.use("/pet", petRoutes);
 router.use("/petfood", petRoutes);
