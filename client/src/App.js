@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
@@ -22,7 +22,7 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
+          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData} userData = {userData}/>)} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path="/newPet" component={NewPet} />
           <Route exact path="/dashboard" render={(props) => (<Dashboard setUserData = {setUserData}/>)} />
