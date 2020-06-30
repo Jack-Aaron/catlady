@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
 import './Login.css'
 
-function SignUp() {
+function SignUp(props) {
     const initalForm ={username: "", password: ""}
     const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
@@ -23,7 +23,10 @@ function SignUp() {
             API.login({
                 username: formObject.username,
                 password: formObject.password
-            }).then(setFormObject(initalForm))
+            }).then(res => {
+                props.setUserData(res.data);
+                setFormObject(initalForm)
+            })
                 .then(res => history.replace(from))
                 .catch(err => console.log(err))
         }

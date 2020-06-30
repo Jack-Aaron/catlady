@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import { NavLink as RRNavLink, Router } from 'react-router-dom';
 import Navigation from './components/Navbar';
@@ -13,12 +13,17 @@ import './App.css';
 import { FinalCalculation } from './components/FinalCalculation';
 
 const App = (props) => {
+  const [userData, setUserData] = useState({
+    username: "",
+    id: "",
+  })
+
   return (
     <Router>
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' component={Login} />
+          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/discover" component={Discover} />
