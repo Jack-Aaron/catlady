@@ -24,9 +24,8 @@ const App = (props) => {
         <Wrapper>
           <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
           <Route exact path='/signup' component={SignUp} />
-          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/newPet" component={NewPet} />
-          <Route exact path='/signup' component={SignUp} />
+          <Route exact path="/dashboard" render={(props) => (<Dashboard setUserData = {setUserData}/>)} />
         </Wrapper>
         <Footer />
       </div>

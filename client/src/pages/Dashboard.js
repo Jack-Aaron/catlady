@@ -7,11 +7,14 @@ import Container from '../components/Container';
 import PetCard from '../components/PetCard';
 import AddBtn from '../components/AddBtn';
 
-function Dashboard() {
+function Dashboard(props) {
 
-    const [petsState, setPetsState] = useState([
 
-    ]);
+    const [petsState, setPetsState] = useState([]);
+    const [userData, setUserData] = useState({
+        username: "",
+        id: "",
+    })
 
     useEffect(() => {
         API.getPets()
@@ -21,18 +24,16 @@ function Dashboard() {
                 
             })
     }, []
+
     );
-
-    const [userData, setUserData] = useState({
-        username: "",
-        id: "",
-    })
-
     useEffect(() => { getUserData() }, [])
 
     function getUserData() {
         API.getUser()
-            .then(res => setUserData(res.data))
+            .then(res => {
+                setUserData(res.data);
+                props.setUserData(res.data);
+            })
     }
 
     return (
