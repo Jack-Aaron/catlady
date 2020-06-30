@@ -23,7 +23,7 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
+          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData} userData = {userData}/>)} />
           <Route exact path='/signup' component={SignUp} />
           <Route exact path="/newPet" component={NewPet} />
           <Route exact path="/dashboard" render={(props) => (<Dashboard setUserData = {setUserData}/>)} />
