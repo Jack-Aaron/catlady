@@ -9,12 +9,16 @@ import AddBtn from '../components/AddBtn';
 
 function Dashboard() {
 
-    const [petsState, setPetsState] = useState([]);
+    const [petsState, setPetsState] = useState([
+
+    ]);
 
     useEffect(() => {
         API.getPets()
             .then((res) => {
+                console.log(res.data)
                 setPetsState(res.data);
+                
             })
     }, []
     );

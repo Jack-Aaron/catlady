@@ -16,6 +16,12 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findByUserId: function (req, res, model) {
+    model
+      .findById(req.user.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   create: function (req, res, model) {
     model
       .create(req.body)

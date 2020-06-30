@@ -9,6 +9,9 @@ export default {
   getPets: function () {
     return axios.get("/api/user/pets");
   },
+  savePet: function (PetData){
+    return axios.post("/api/user/pets", PetData);
+  },
   login: function (UserData) {
     return axios.post("/api/user/login", UserData);
   },
