@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
@@ -10,7 +10,7 @@ import PetFoodForm from './pages/PetFoodForm/PetFoodForm';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
+// import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
 
 const App = (props) => {
   const [userData, setUserData] = useState({
