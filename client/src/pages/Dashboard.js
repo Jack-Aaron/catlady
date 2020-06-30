@@ -22,13 +22,7 @@ function Dashboard() {
     id: "",
   });
 
-  useEffect(() => {
-    getUserData();
-  }, []);
-
-  function getUserData() {
-    API.getUser().then((res) => setUserData(res.data));
-  }
+ 
   const hasPets = petsState.map((pet) => (
     <Col xs="auto" style={{ paddingBottom: 15 }}>
       <PetCard

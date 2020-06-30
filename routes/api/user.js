@@ -17,6 +17,7 @@ router
 
 router.route("/login").post(passport.authenticate("local"), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
+  console.log(req.cookies)
   res.json({
     username: req.user.username,
     _id: req.user.id,
