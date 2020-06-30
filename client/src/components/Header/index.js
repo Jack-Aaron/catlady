@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-import {
-    Jumbotron
-} from 'reactstrap';
-// import { NavLink as RRNavLink, Router } from 'react-router-dom';
+import React from 'react';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import './style.css';
-// import { render } from 'react-dom';
 
 const Header = (props) => {
 
@@ -20,6 +16,5 @@ const Header = (props) => {
         </div>
     )
 }
-
 
 export default Header;
