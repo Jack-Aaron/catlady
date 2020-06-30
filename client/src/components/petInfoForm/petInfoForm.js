@@ -1,28 +1,40 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import API from "../../utils/API"
 
 export default function PetInfoForm() {
   const [petState, setPetState] = useState({
     petName: "",
     petType: "",
     currentWeight: 0,
-    idealWeight: 0,
+    idealWeight: 0
   });
 
   const handleSubmit = () => {
     // setPetState(event.target.value);
     console.log("This is a test of the form: " + JSON.stringify(petState));
+    savePet();
   };
+
+  function savePet(){
+      API.savePet({
+        petName: petState.petName,
+        petType: petState.petType,
+        currentWeight: petState.currentWeight,
+        idealWeight: petState.idealWeight,
+       })
+
+  }
   return (
     <Form onClick={handleSubmit}>
       <Form.Group controlId="petName">
         <Form.Label>Pet Name: </Form.Label>
         <Form.Control
           type="text"
-          onChange={(event) =>
+      
+        />    onChange={(event) =>
             setPetState({ ...petState, petName: event.target.value })
           }
-        />
       </Form.Group>
       <Form.Group controlId="petType">
         <Form.Label>Pet Type: </Form.Label>
