@@ -10,13 +10,13 @@ import AddBtn from '../components/AddBtn';
 import API from '../utils/API';
 
 function Dashboard() {
-    const [userData, setUserData] = useState ({
+    const [userData, setUserData] = useState({
         username: "",
         id: "",
     })
-    
-    useEffect(() => { getUserData() }, [] )
-    
+
+    useEffect(() => { getUserData() }, [])
+
     function getUserData() {
         API.getUser()
             .then(res => setUserData(res.data))
