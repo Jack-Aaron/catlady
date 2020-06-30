@@ -5,7 +5,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import './style.css';
 
 const Navigation = (props) => {
-
     return (
         <div>
             <Navbar style={{ backgroundColor: '#B5838D' }}>

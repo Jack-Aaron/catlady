@@ -7,15 +7,15 @@ export default {
   },
 
   getPets: function () {
-    return axios.get('/api/user/pets');
+    return axios.get("/api/user/pets");
   },
-  
-  login: function(UserData) {
-    return axios.post("/api/user/login", UserData)
+  savePet: function (PetData){
+    return axios.post("/api/user/pets", PetData);
   },
-  
+  login: function (UserData) {
+    return axios.post("/api/user/login", UserData);
+  },
   getUser: function () {
-    return axios.get("api/user/currentuser")
-
-  }
+    return axios.get("api/user/currentuser");
+  },
 };

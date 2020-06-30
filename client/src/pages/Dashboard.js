@@ -9,6 +9,7 @@ import AddBtn from '../components/AddBtn';
 
 function Dashboard(props) {
 
+
     const [petsState, setPetsState] = useState([]);
     const [userData, setUserData] = useState({
         username: "",
@@ -18,7 +19,9 @@ function Dashboard(props) {
     useEffect(() => {
         API.getPets()
             .then((res) => {
+                console.log(res.data)
                 setPetsState(res.data);
+                
             })
     }, []
 

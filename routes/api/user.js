@@ -3,39 +3,19 @@ const UserController = require("../../controller/userController");
 const db = require("../../models");
 const passport = require("../../config/passport");
 
+
 // Matches with "/api/user/"
 router
   .route("/")
   .get((req, res) => UserController.findAll(req, res, db.User))
   .post((req, res) => UserController.create(req, res, db.User));
 
-router.route("/pets").get((req, res) => res.json([
-    {
-      name: "Fluffy",
-      imgsrc: "cat.png",
-      currentWeight: 12,
-      idealWeight: 8,
-      type: "Cat",
-      description: "adopted and loved by all",
-    },
-    {
-      name: "Fido",
-      imgsrc: "dog.png",
-      currentWeight: 12,
-      idealWeight: 8,
-      type: "Dog",
-      description: "found in the street",
-    },
-    {
-      name: "Fido",
-      imgsrc: "dog.png",
-      currentWeight: 12,
-      idealWeight: 8,
-      type: "Dog",
-      description: "found in the street",
-    },
-  ])
-);
+
+router
+  .route("/pets")
+  .get((req, res) => UserController.findByUserId(req, res, db.Pet))
+  .post((req, res) => UserController.create(req, res, db.Pet));
+
 
 // .post((req, res) => UserController.create(req, res, db.User));
 router.route("/login").post(passport.authenticate("local"), (req, res) => {
