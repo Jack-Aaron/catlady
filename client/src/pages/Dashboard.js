@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Row,
     Col,
@@ -10,13 +10,17 @@ import AddBtn from '../components/AddBtn';
 import API from '../utils/API';
 
 function Dashboard() {
-
+    const [userData, setUserData] = useState ({
+        username: "",
+        id: "",
+    })
+    
+    useEffect(() => { getUserData() }, [] )
+    
     function getUserData() {
         API.getUser()
-            .then(res => console.log(res))
+            .then(res => setUserData(res.data))
     }
-
-    getUserData()
 
     return (
         <div>
