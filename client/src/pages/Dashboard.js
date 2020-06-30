@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API from '../../src/utils/API.js';
+import API from '../utils/API';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Header from '../components/Header';
@@ -18,6 +18,18 @@ function Dashboard() {
             })
     }, []
     );
+
+    const [userData, setUserData] = useState({
+        username: "",
+        id: "",
+    })
+
+    useEffect(() => { getUserData() }, [])
+
+    function getUserData() {
+        API.getUser()
+            .then(res => setUserData(res.data))
+    }
 
     return (
         <div>

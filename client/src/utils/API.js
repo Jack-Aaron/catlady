@@ -5,7 +5,16 @@ export default {
   saveUser: function (UserData) {
     return axios.post("/api/user", UserData);
   },
+
   getPets: function () {
     return axios.get('/api/user/pets');
+  
+  login: function(UserData) {
+    return axios.post("/api/user/login", UserData)
+  },
+  
+  getUser: function () {
+    return axios.get("api/user/currentuser")
+
   }
 };
