@@ -1,17 +1,24 @@
-
 import React, { useEffect, useState } from 'react';
-import {
-    Row,
-    Col,
-} from 'reactstrap';
-
+import API from '../utils/API';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import PetCard from '../components/PetCard';
 import AddBtn from '../components/AddBtn';
-import API from '../utils/API';
 
 function Dashboard() {
+
+    const [petsState, setPetsState] = useState([]);
+
+    useEffect(() => {
+        API.getPets()
+            .then((res) => {
+                setPetsState(res.data);
+            })
+    }, []
+    );
+
     const [userData, setUserData] = useState({
         username: "",
         id: "",
@@ -28,16 +35,20 @@ function Dashboard() {
         <div>
             <Header />
             <Container>
-                <Row className='justify-content-center'>
-                    <Col xs='auto'>
-                        <PetCard />
-                    </Col>
-                    <Col xs='auto'>
-                        <PetCard />
-                    </Col>
-                    <Col xs='auto'>
-                        <PetCard />
-                    </Col>
+                <Row className='justify-content-around'>
+                    {petsState.map(pet => {
+                        return (
+                            <Col xs='auto' style={{ paddingBottom: 15 }}>
+                                <PetCard
+                                    name={pet.name}
+                                    imgsrc={pet.imgsrc}
+                                    type={pet.type}
+                                    description={pet.description}
+                                />
+                            </Col>
+                        )
+                    }
+                    )}
                 </Row>
                 <Row>
                     <Col>

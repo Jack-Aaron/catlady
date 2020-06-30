@@ -1,6 +1,6 @@
-a, a:active, a:visited {
-    text-decoration: none;
-    color: inherit;
+a, a:visited {
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 .petCard {
@@ -13,5 +13,11 @@ a, a:active, a:visited {
     text-decoration: none;
     transform: scale(1.025, 1.025);
     box-shadow: 0 0 5px 5px  #E5989B;
+    filter: grayscale(20%) !important;
+}
+
+.petCard:active {
+    transform: scale(1.015, 1.015);
+    box-shadow: 0 0 8px 8px  #c58385;
     filter: none !important;
 }

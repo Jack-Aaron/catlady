@@ -20,11 +20,10 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-feature/login_signup
           <Route exact path='/' render={(props) => (<Login setUserData = {setUserData}/>)} />
-
           <Route exact path='/signup' component={SignUp} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path='/signup' component={SignUp} />
         </Wrapper>
         <Footer />
       </div>
