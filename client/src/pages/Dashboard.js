@@ -8,8 +8,6 @@ import PetCard from '../components/PetCard';
 import AddBtn from '../components/AddBtn';
 
 function Dashboard(props) {
-
-
     const [petsState, setPetsState] = useState([]);
     const [userData, setUserData] = useState({
         username: "",
@@ -21,27 +19,24 @@ function Dashboard(props) {
             .then((res) => {
                 console.log(res.data)
                 setPetsState(res.data);
-                
+
             })
-    }, []
+    }, []);
 
-    );
-    useEffect(() => { getUserData() }, [])
-
-    function getUserData() {
+    useEffect(() => {
         API.getUser()
-            .then(res => {
-                setUserData(res.data);
-                props.setUserData(res.data);
-            })
-    }
+        .then(res => {
+            setUserData(res.data);
+            props.setUserData(res.data);
+        })
+    }, []);
 
     return (
         <div>
             <Header />
             <Container>
                 <Row className='justify-content-around'>
-                    {petsState.map(pet => {
+                    {/* {petsState.map(pet => {
                         return (
                             <Col xs='auto' style={{ paddingBottom: 15 }}>
                                 <PetCard
@@ -53,7 +48,7 @@ function Dashboard(props) {
                             </Col>
                         )
                     }
-                    )}
+                    )} */}
                 </Row>
                 <Row>
                     <Col>
