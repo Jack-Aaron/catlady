@@ -7,8 +7,17 @@ import Header from '../components/Header';
 import Container from '../components/Container';
 import PetCard from '../components/PetCard';
 import AddBtn from '../components/AddBtn';
+import API from '../utils/API';
 
 function Dashboard() {
+
+    function getUserData() {
+        API.getUser()
+            .then(res => console.log(res))
+    }
+
+    getUserData()
+
     return (
         <div>
             <Header />

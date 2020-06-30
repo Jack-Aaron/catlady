@@ -25,7 +25,7 @@ function SignUp() {
                 password: formObject.password
             }).then(setFormObject(initalForm))
                 .then(res => history.replace(from))
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
         }
     };
 
