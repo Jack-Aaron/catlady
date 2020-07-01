@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
 import NewPet from './components/newPet/newPet';
@@ -27,16 +27,31 @@ const App = (props) => {
       <div>
         <Navigation />
         <Wrapper>
-          <Route exact path='/' render={(props) => (<Login setUserData = {setUserData} userData = {userData}/>)} />
+          <Route exact path='/' render={(props) => (<Login setUserData={setUserData} userData={userData} />)} />
           <Route exact path='/signup' component={SignUp} />
-          <Route exact path="/newPet" component={NewPet} />
-          <Route exact path="/dashboard" render={(props) => (<Dashboard setUserData = {setUserData}/>)} />
-          <Route exact path="/petfood" render={(props) => (<PetFoodForm setUserData = {setUserData}/>)} />
+
+          <Route exact path="/dashboard" render={(props) => (
+            userData.username === "" ? <Redirect to='/' /> :
+              <Dashboard setUserData={setUserData} />
+          )}
+          />
+          <Route exact path="/newPet" render={(props) => (
+            userData.username === "" ? <Redirect to='/' /> :
+            <NewPet setUserData={setUserData} />
+          )}
+          />
+          <Route exact path="/petfood" render={(props) => (
+            userData.username === "" ? <Redirect to='/' /> :
+            <PetFoodForm setUserData={setUserData} />
+          )}
+          />
+
         </Wrapper>
         <Footer />
       </div>
     </Router>
   )
+
 }
 
 export default App;
