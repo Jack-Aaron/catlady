@@ -7,7 +7,7 @@ const PetCard = (props) => {
     return (
         <div>
             <a href='/'>
-                <Card className='petCard' style={{
+                <Card className='petCard' id={props.id} style={{
                     backgroundColor: '#FFB4A2',
                     border: '3px solid #E5989B',
                     borderRadius: '10px',
@@ -20,7 +20,6 @@ const PetCard = (props) => {
                     <Card.Body>
                         <Card.Title>{props.name}</Card.Title>
                         <Card.Subtitle>{props.type}</Card.Subtitle>
-                        <Card.Text>{props.description}</Card.Text>
                     </Card.Body>
                 </Card>
             </a>
