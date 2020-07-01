@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import './style.css';
 
 const AddBtn = (props) => {
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/newPet" } };
 
     return (
         <div>
@@ -20,9 +23,9 @@ const AddBtn = (props) => {
                             marginTop:'5em'
                         }} body>
                             <Card.Title>Begin managing the nutrition for another pet!</Card.Title>
-                            <a className = "button" href = "/newPet">
-                            <Button style={{ backgroundColor: '#B5838D' }}>Add Pet </Button>
-                            </a>
+                         
+                            <Button style={{ backgroundColor: '#B5838D' }} onClick={() => history.replace(from)}>Add Pet </Button>
+                
                         </Card>
                     </Col>
                 </Row>
