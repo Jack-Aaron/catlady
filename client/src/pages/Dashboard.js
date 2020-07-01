@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import PetCard from "../components/PetCard";
 import AddBtn from "../components/AddBtn";
+import Cat from '../assets/cat.png';
+import Dog from '../assets/dog.png';
 
 
 function Dashboard(props) {
@@ -20,7 +22,7 @@ function Dashboard(props) {
     API.getPets().then((res) => {
       console.log(res.data);
       setPetsState(res.data);
-    });
+    })
   }, []);
 
   useEffect(() => {
@@ -33,16 +35,6 @@ function Dashboard(props) {
 
 
 
-  const hasPets = petsState.map((pet) => (
-    <Col xs="auto" style={{ paddingBottom: 15 }}>
-      <PetCard
-        name={pet.name}
-        imgsrc={pet.imgsrc}
-        type={pet.type}
-        description={pet.description}
-      />
-    </Col>
-  ));
   const noPets = <div> No Pets Found</div>;
 
   return (
@@ -50,7 +42,19 @@ function Dashboard(props) {
       <Header />
       <Container>
         <Row className="justify-content-around">
-          {petsState.length !== 0 ? hasPets : noPets}
+          {
+
+            petsState.length !== 0 ?
+
+              petsState.map((pet) => (
+                < Col xs="auto" style={{ paddingBottom: 15 }}>
+                  <PetCard
+                    name={pet.petName}
+                    type={pet.petType}
+                    imgsrc={pet.petType === 'Cat' ? Cat : Dog}
+                  />
+                </Col >
+              )) : noPets}
         </Row>
         <Row>
           <Col>
