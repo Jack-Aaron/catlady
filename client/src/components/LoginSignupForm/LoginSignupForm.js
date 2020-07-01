@@ -24,14 +24,15 @@ function LoginSignupForm(props) {
                                 name="password"
                                 type="password"
                                 className="form-control"
-                                placeholder="Password" 
+                                placeholder="Password"
                                 value={props.pValue} />
                         </div>
                         <button
                             disabled={!(props.formUser && props.formPass)}
                             onClick={props.handleFormSubmit}
                             type="submit"
-                            className="btn btn-default">{props.buttonText}</button>
+                            className="btn btn-default">{props.buttonText}
+                        </button>
                     </form>
                     <br />
                     {props.children}
