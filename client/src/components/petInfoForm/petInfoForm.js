@@ -76,6 +76,7 @@ export default function PetInfoForm() {
             setPetState({ ...petState, petType: event.target.value })
           }
         >
+          <option> </option>
           <option>Cat</option>
           <option>Dog</option>
         </Form.Control>
@@ -104,7 +105,13 @@ export default function PetInfoForm() {
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
       </Form.Group>
-      <Button type="button"onClick={() => history.replace(from)}> Submit</Button>
+
+      <Button 
+      disabled = {!(petState.petType && petState.petName && petState.currentWeight && petState.idealWeight)}
+      type="button" 
+      onClick={() => history.replace(from)}
+      > Submit</Button>
+
     
     </Form>
       </Col>
