@@ -27,6 +27,12 @@ router.route("/login").post(passport.authenticate("local"), (req, res) => {
   });
 });
 
+// app.get('/logout', function(req, res){ req.logout();res.redirect('/');});
+router.route("/logout").get((req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
 // route for retrieving info of current signed in user and for isAuth component
 router.route("/currentuser").get((req, res) => {
   if (!req.user) {
