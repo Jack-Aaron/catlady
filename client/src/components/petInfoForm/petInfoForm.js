@@ -3,6 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import {useHistory, useLocation} from "react-router-dom";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 export default function PetInfoForm() {
   let history = useHistory();
@@ -53,6 +56,8 @@ export default function PetInfoForm() {
     console.log(userData);
   }
   return (
+    <Row>
+      <Col>
     <Form onClick={handleSubmit}>
       <Form.Group controlId="petName">
         <Form.Label>Pet Name: </Form.Label>
@@ -100,13 +105,17 @@ export default function PetInfoForm() {
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
       </Form.Group>
-  
+
       <Button 
       disabled = {!(petState.petType && petState.petName && petState.currentWeight && petState.idealWeight)}
       type="button" 
       onClick={() => history.replace(from)}
       > Submit</Button>
+
     
     </Form>
+      </Col>
+    </Row>
+
   );
 }
