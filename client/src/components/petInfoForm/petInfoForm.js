@@ -90,8 +90,9 @@ export default function PetInfoForm() {
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
       </Form.Group>
-
+      <a className = "button" href = "/petfood">
       <Button type="button">Submit</Button>
+      </a>
     </Form>
   );
 }
