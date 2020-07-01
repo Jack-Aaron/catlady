@@ -6,6 +6,9 @@ import "./style.css";
 import {useHistory, useLocation} from "react-router-dom";
 
 const Navigation = (props) => {
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/logout" } };
 
   return (
     <div>
