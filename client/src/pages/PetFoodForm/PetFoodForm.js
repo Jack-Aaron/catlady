@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
 import Col from 'react-bootstrap/Col';
@@ -7,32 +8,47 @@ import Row from 'react-bootstrap/Row';
 function PetFoodForm(props) {
     const initalForm = {
         name: "",
-        caloriesPerPackage: "",
-        ozPerPackage: "",
-        ingredientsRating: "",
-        nutritionRating: ""
+        calPer: "",
+        ozPer: "",
+        ing: "",
+        nut: ""
     }
-    const [formObject, setFormObject] = useState(initalForm)
-    const [userData, setUserData] = useState({
-        username: "",
-        id: "",
-    })
+    const [form, setForm] = useState(initalForm)
+
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/dashboard" } };
+
 
     useEffect(() => {
         API.getUser()
             .then(res => {
-                setUserData(res.data);
                 props.setUserData(res.data);
             })
     }, []);
 
     function handleChange(event) {
         const { name, value } = event.target;
-        setFormObject({ ...formObject, [name]: value })
+        setForm({ ...form, [name]: value })
     };
 
     function handleFormSubmit(event) {
-        event.preventDefalt();
+        event.preventDefault();
+        console.log(event)
+        if (form.name && form.calPer && form.ozPer && form.ing && form.nut) {
+            API.savePetFood({
+                name: form.name,
+                caloriesPerPackage: form.calPer,
+                ozPerPackage: form.ozPer,
+                ingredientsRating: form.ing,
+                nutritionRating: form.nut
+            })
+                .then(res => {
+                    setForm(initalForm)
+                    history.replace(from)
+                })
+                .catch(err => console.log(err))
+        }
     };
 
     return (
@@ -45,33 +61,38 @@ function PetFoodForm(props) {
                             onChange={handleChange}
                             name="name"
                             type="text"
-                            placeholder="Food Brand" />
+                            placeholder="Food Brand"
+                            value={form.name || ""} />
                         <Input
                             onChange={handleChange}
-                            name="caloriesPerPackage"
+                            name="calPer"
                             type="text"
-                            placeholder="Cal Per Package" />
+                            placeholder="Cal Per Package"
+                            value={form.calPer || ""} />
                         <Input
                             onChange={handleChange}
-                            name="ozPerPackage"
+                            name="ozPer"
                             type="text"
-                            placeholder="Oz Per Package" />
+                            placeholder="Oz Per Package"
+                            value={form.ozPer || ""} />
                         <Input
                             onChange={handleChange}
-                            name="ingredientsRating"
+                            name="ing"
                             type="text"
-                            placeholder="Ingredient Rating" />
+                            placeholder="Ingredient Rating"
+                            value={form.ing || ""} />
                         <Input
                             onChange={handleChange}
-                            name="nutritionRating"
+                            name="nut"
                             type="text"
-                            placeholder="Nutrition Rating" />
+                            placeholder="Nutrition Rating"
+                            value={form.nut || ""} />
                     </div>
-
                     <button
                         onClick={handleFormSubmit}
                         type="submit"
-                        className="btn btn-default">Submit</button>
+                        className="btn btn-default">Submit
+                    </button>
                 </form>
             </Col>
         </Row>

@@ -3,24 +3,25 @@ const UserController = require("../../controller/userController");
 const db = require("../../models");
 const passport = require("../../config/passport");
 
-
 // Matches with "/api/user/"
 router
   .route("/")
   .get((req, res) => UserController.findAll(req, res, db.User))
   .post((req, res) => UserController.create(req, res, db.User));
 
-
 router
   .route("/pets")
   .get((req, res) => UserController.findAll(req, res, db.Pet))
   .post((req, res) => UserController.create(req, res, db.Pet));
 
+router
+  .route("/petfood")
+  .post((req, res) => UserController.create(req, res, db.PetFood));
 
 // .post((req, res) => UserController.create(req, res, db.User));
 router.route("/login").post(passport.authenticate("local"), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
-  console.log(req.cookies)
+  console.log(req.cookies);
   res.json({
     username: req.user.username,
     _id: req.user.id,
