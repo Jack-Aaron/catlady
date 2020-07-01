@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import API from "../../utils/API";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export default function PetInfoForm() {
   const [userData, setUserData] = useState({
@@ -44,6 +46,8 @@ export default function PetInfoForm() {
     console.log(userData);
   }
   return (
+    <Row>
+      <Col>
     <Form onClick={handleSubmit}>
       <Form.Group controlId="petName">
         <Form.Label>Pet Name: </Form.Label>
@@ -90,9 +94,11 @@ export default function PetInfoForm() {
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
       </Form.Group>
-      <a className = "button" href = "/petfood">
-      <Button type="button">Submit</Button>
-      </a>
-    </Form>
+
+          <Button type="button">Submit</Button>
+        </Form>
+      </Col>
+    </Row>
+
   );
 }
