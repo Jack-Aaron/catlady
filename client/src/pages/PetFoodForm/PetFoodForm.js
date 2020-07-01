@@ -5,7 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 function PetFoodForm(props) {
-    const [formObject, setFormObject] = useState({})
+    const initalForm = {
+        name: "",
+        caloriesPerPackage: "",
+        ozPerPackage: "",
+        ingredientsRating: "",
+        nutritionRating: ""
+    }
+    const [formObject, setFormObject] = useState(initalForm)
     const [userData, setUserData] = useState({
         username: "",
         id: "",
@@ -23,9 +30,9 @@ function PetFoodForm(props) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
     };
+
     function handleFormSubmit(event) {
-        const { name, value } = event.target;
-        setFormObject({ ...formObject, [name]: value })
+        event.preventDefalt();
     };
 
     return (
