@@ -20,7 +20,9 @@ const AddBtn = (props) => {
                             marginTop:'5em'
                         }} body>
                             <Card.Title>Begin managing the nutrition for another pet!</Card.Title>
-                            <Button style={{ backgroundColor: '#B5838D' }}>Add Pet</Button>
+                            <a className = "button" href = "/newPet">
+                            <Button style={{ backgroundColor: '#B5838D' }}>Add Pet </Button>
+                            </a>
                         </Card>
                     </Col>
                 </Row>
