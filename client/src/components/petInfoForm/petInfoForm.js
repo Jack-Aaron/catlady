@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
+import {useHistory, useLocation} from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+
 export default function PetInfoForm() {
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/petfood" } };
+
+
+
   const [userData, setUserData] = useState({
     username: "",
     id: "",
@@ -27,6 +36,7 @@ export default function PetInfoForm() {
 
   useEffect(() => {
     API.getUser().then((res) => setUserData(res.data));
+    console.log(userData);
   }, []);
 
   const handleSubmit = () => {
@@ -94,9 +104,9 @@ export default function PetInfoForm() {
         />
         <Form.Text className="text-muted">Please enter in lb</Form.Text>
       </Form.Group>
-
-          <Button type="button">Submit</Button>
-        </Form>
+      <Button type="button"onClick={() => history.replace(from)}> Submit</Button>
+    
+    </Form>
       </Col>
     </Row>
 

@@ -10,14 +10,18 @@ import PetFoodForm from './pages/PetFoodForm/PetFoodForm';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-// import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
+import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
+import { Link, useHistory } from "react-router-dom";
+
 
 const App = (props) => {
+  const history = useHistory();
   const [userData, setUserData] = useState({
     username: "",
     id: "",
   })
 
+  
   return (
     <Router>
       <div>
