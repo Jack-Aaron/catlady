@@ -9,7 +9,12 @@ import AddBtn from "../components/AddBtn";
 
 
 function Dashboard(props) {
-    const [petsState, setPetsState] = useState([]);
+
+  const [petsState, setPetsState] = useState([]);
+  const [userData, setUserData] = useState({
+    username: "",
+    id: "",
+  });
 
   useEffect(() => {
     API.getPets().then((res) => {
@@ -18,12 +23,16 @@ function Dashboard(props) {
     });
   }, []);
 
-  const [userData, setUserData] = useState({
-    username: "",
-    id: "",
-  });
+  useEffect(() => {
+    API.getUser()
+      .then(res => {
+        setUserData(res.data);
+        props.setUserData(res.data);
+      })
+  }, []);
 
- 
+
+
   const hasPets = petsState.map((pet) => (
     <Col xs="auto" style={{ paddingBottom: 15 }}>
       <PetCard
