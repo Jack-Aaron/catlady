@@ -11,34 +11,20 @@ export const FinalCalculation = ({ petState, form }) => {
   let weight = petState.currentWeight;
   let caloriesPerPackage = form.calPer;
   let ozPerPackage = form.ozPer;
-
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
-  console.log(form);
+  
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
     console.log("Weight: " + weight);
     highEndCalories = weight * 35;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
-    console.log(
-      "CaloriesPerPackage: " +
-        caloriesPerPackage +
-        " ozPerPackage: " +
-        caloriesPerOz +
-        "Lowend: " +
-        lowEndCalories +
-        "Calories Per oz: " +
-        caloriesPerOz
-    );
-    console.log("TotalLowEndAmount: " + totalLowEndAmount);
+
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     highEndCalories = weight * 30;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
-    console.log(
-      "Lowend: " + lowEndCalories + "Calories Per oz: " + caloriesPerOz
-    );
   }
 
   return (
