@@ -1,20 +1,26 @@
 import React from "react";
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import API from "../../utils/API";
 import "./style.css";
-import {useHistory, useLocation} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-const Navigation = (props) => {
-    let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/login" } };
+const Navigation = ({ setUserData }) => {
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/login" } };
 
-    function logout (event) {
-      API.logout()
-      .then(res => history.replace(from))
-    }
+  function logout() {
+    API.logout()
+      .then(res => {
+        setUserData({
+          username: "",
+          id: "",
+        })
+        history.replace(from)
+      })
+  }
 
   return (
     <div>
@@ -22,7 +28,7 @@ const Navigation = (props) => {
         <Navbar.Brand
           as={Link}
           className="aladin"
-          href="/"
+          to="/"
           style={{ color: "#FFCDB2" }}
         >
           catlady
@@ -61,12 +67,11 @@ const Navigation = (props) => {
           >
             Sign Up
           </Nav.Link>
-          <Nav.Link 
-          onClick={logout} 
-          className="ml-auto">
+          <Nav.Link
+            onClick={logout}
+            className="ml-auto">
             Logout
           </Nav.Link>
-          {/* logout will go here */}
         </Nav>
       </Navbar>
     </div>

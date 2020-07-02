@@ -11,9 +11,8 @@ router
 
 router
   .route("/pets")
-  .get((req, res) => UserController.findAll(req, res, db.Pet))
+  .get((req, res) => UserController.findByUserId(req, res, db.Pet))
   .post((req, res) => UserController.create(req, res, db.Pet));
-
 
 router
   .route("/petfood")

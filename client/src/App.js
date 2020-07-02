@@ -46,14 +46,10 @@ const App = (props) => {
 
   const [form, setForm] = useState(initalForm);
 
-  useEffect(() => {
-    API.getUser().then((res) => setUserData(res.data));
-  }, []);
-
   return (
     <Router>
       <div>
-        <Navigation />
+        <Navigation setUserData={setUserData} />
         <Wrapper>
           <Route
             exact
@@ -86,7 +82,7 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                <Dashboard setUserData={setUserData} />
+                <Dashboard userData={userData} />
               )
             }
           />

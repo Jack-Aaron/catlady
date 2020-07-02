@@ -11,28 +11,14 @@ import Dog from '../assets/dog.png';
 
 
 function Dashboard(props) {
-
   const [petsState, setPetsState] = useState([]);
-  const [userData, setUserData] = useState({
-    username: "",
-    id: "",
-  });
+  
 
   useEffect(() => {
     API.getPets().then((res) => {
-      console.log(res.data);
       setPetsState(res.data);
     })
   }, []);
-
-  useEffect(() => {
-    API.getUser()
-      .then(res => {
-        setUserData(res.data);
-        props.setUserData(res.data);
-      })
-  }, []);
-
 
 
   const noPets = <div> No Pets Found</div>;
@@ -47,13 +33,13 @@ function Dashboard(props) {
             petsState.length !== 0 ?
 
               petsState.map((pet) => (
-                < Col xs="auto" style={{ paddingBottom: 15 }}>
+                < Col key={pet._id} xs="auto" style={{ paddingBottom: 15 }}>
                   <PetCard
                     name={pet.petName}
                     type={pet.petType}
                     imgsrc={pet.petType === 'Cat' ? Cat : Dog}
                     id={pet._id}
-                  /> {console.log(pet.id)}
+                  />
                 </Col >
               )) : noPets}
         </Row>
