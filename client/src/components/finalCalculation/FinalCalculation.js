@@ -1,5 +1,5 @@
 import React from "react";
-export const FinalCalculation = (props) => {
+export const FinalCalculation = ({petState, form}) => {
   let weight = 10;
   let lowEndCalories = 0;
   let highEndCalories = 0;

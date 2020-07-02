@@ -4,27 +4,13 @@ import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
 import Form from "react-bootstrap/Form";
 
-function PetFoodForm(props) {
-    const initalForm = {
-        name: "",
-        calPer: "",
-        ozPer: "",
-        ing: "",
-        nut: ""
-    }
-    const [form, setForm] = useState(initalForm)
+function PetFoodForm({form, setForm}) {
+   
 
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
+    let { from } = location.state || { from: { pathname: "/finalcalculation" } };
 
-
-    useEffect(() => {
-        API.getUser()
-            .then(res => {
-                props.setUserData(res.data);
-            })
-    }, []);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -34,7 +20,7 @@ function PetFoodForm(props) {
     function handleFormSubmit(event) {
         event.preventDefault();
         console.log(event)
-        if (form.name && form.calPer && form.ozPer && form.ing && form.nut) {
+        if (form.name && form.calPer && form.ozPer) {
             API.savePetFood({
                 name: form.name,
                 caloriesPerPackage: form.calPer,
@@ -43,7 +29,8 @@ function PetFoodForm(props) {
                 nutritionRating: form.nut
             })
                 .then(res => {
-                    setForm(initalForm)
+                    console.log(form)
+                    // setForm(initalForm)
                     history.replace(from)
                 })
                 .catch(err => console.log(err))
