@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-export default function PetInfoForm() {
+export default function PetInfoForm( {setPetState, petState}) {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/petfood" } };
@@ -17,13 +17,6 @@ export default function PetInfoForm() {
     id: "",
   });
 
-  const [petState, setPetState] = useState({
-    petName: "",
-    petType: "",
-    currentWeight: 0,
-    idealWeight: 0,
-    userId: userData.id,
-  });
 
   useEffect(() => {
     API.getPets().then((res) => {
