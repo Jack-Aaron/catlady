@@ -14,6 +14,7 @@ router
   .get((req, res) => UserController.findAll(req, res, db.Pet))
   .post((req, res) => UserController.create(req, res, db.Pet));
 
+
 router
   .route("/petfood")
   .post((req, res) => UserController.create(req, res, db.PetFood));

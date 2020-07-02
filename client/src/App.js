@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
+import { FinalCalculation } from "./components/finalCalculation/FinalCalculation";
 // import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
 
 const App = (props) => {
@@ -128,7 +129,7 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                <PetFoodForm
+                <FinalCalculation
                   petState={petState}
                   form={form}
                 />
