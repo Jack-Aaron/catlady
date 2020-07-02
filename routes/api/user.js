@@ -31,14 +31,17 @@ router.route("/login").post(passport.authenticate("local"), (req, res) => {
 // app.get('/logout', function(req, res){ req.logout();res.redirect('/');});
 router.route("/logout").get((req, res) => {
   req.logout();
-  res.redirect('/');
+  res.json({});
 });
 
 // route for retrieving info of current signed in user and for isAuth component
 router.route("/currentuser").get((req, res) => {
   if (!req.user) {
     // The user is not logged in, send back an empty object
-    res.json("Sorry Not logged In");
+    res.json({
+      username: "",
+      id: "",
+    });
   } else {
     // Otherwise send back the user's email and id
     // Sending back a password, even a hashed password, isn't a good idea
