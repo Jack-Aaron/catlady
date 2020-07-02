@@ -9,11 +9,11 @@ export const FinalCalculation = ({ petState, form }) => {
   let lowEndCalories = 0;
   let highEndCalories = 0;
   let weight = petState.currentWeight;
-  let caloriesPerPackage = form.caloriesPerPackage;
-  let ozPerPackage = form.ozPerPackage;
+  let caloriesPerPackage = form.calPer;
+  let ozPerPackage = form.ozPer;
 
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
-
+  console.log(form);
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
     console.log("Weight: " + weight);
@@ -56,7 +56,7 @@ export const FinalCalculation = ({ petState, form }) => {
       </p>
       <p>
         That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)}
-        and {parseFloat(totalHighEndAmount / mealNumber)} oz per meal.
+        and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
       </p>
     </div>
   );
