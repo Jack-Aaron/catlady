@@ -34,8 +34,15 @@ const App = (props) => {
     idealWeight: 0,
     userId: userData.id,
   });
+  //For food form
+  const initalForm = {
+    name: "",
+    calPer: "",
+    ozPer: "",
+    ing: "",
+    nut: "",
+  };
 
-  
   const [form, setForm] = useState(initalForm);
 
   useEffect(() => {
