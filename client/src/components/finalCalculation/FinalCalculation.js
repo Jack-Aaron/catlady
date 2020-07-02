@@ -1,4 +1,8 @@
 import React, { useEffect } from "react";
+import Form from "react-bootstrap/Form";
+
+
+
 export const FinalCalculation = ({ petState, form }) => {
   let name = petState.petName;
   let inputFood = form.name;
@@ -12,14 +16,13 @@ export const FinalCalculation = ({ petState, form }) => {
   let caloriesPerPackage = form.calPer;
   let ozPerPackage = form.ozPer;
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
-  
+
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
     console.log("Weight: " + weight);
     highEndCalories = weight * 35;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
-
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
@@ -31,19 +34,29 @@ export const FinalCalculation = ({ petState, form }) => {
     <div>
       <h1>{name}</h1>
       <p>
-        Your {petType} will need between {lowEndCalories} and {highEndCalories}{" "}
+        Your {petType} will need between {lowEndCalories} and {highEndCalories}
         calories per day.
       </p>
       <p>
-        Using {inputFood} they will need between{" "}
-        {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
+        Using {inputFood} they will need between
+        {parseFloat(totalLowEndAmount).toFixed(2)} and
         {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their
         current weight.
       </p>
       <p>
         That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)}
-        and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
+        and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
+        meal.
       </p>
+
+      <Form.Group>
+     
+        <Form.Control as="select">
+          <option>Default select</option>
+        </Form.Control>
+        <br />
+
+      </Form.Group>
     </div>
   );
 };
