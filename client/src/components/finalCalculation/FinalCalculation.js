@@ -45,6 +45,7 @@ export const FinalCalculation = ({ petState, form }) => {
     });
   }, []);
   console.log (state);
+  
 
   return (
     <div>
