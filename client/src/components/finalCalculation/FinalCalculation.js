@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 
-
-
 export const FinalCalculation = ({ petState, form }) => {
   let name = petState.petName;
   let inputFood = form.name;
@@ -40,12 +38,11 @@ export const FinalCalculation = ({ petState, form }) => {
       console.log(food);
       setState({
         ...state,
-        results: food.data
+        results: food.data,
       });
     });
   }, []);
-  console.log (state);
-  
+  console.log(state);
 
   return (
     <div>
@@ -67,12 +64,14 @@ export const FinalCalculation = ({ petState, form }) => {
       </p>
 
       <Form.Group>
-     
         <Form.Control as="select">
-          <option>Default select</option>
+          {state.results.length > 0
+            ? state.results.map((food, index) => {
+            return <option>{food.name}</option>;
+              })
+            : "No Foods Found"}
         </Form.Control>
         <br />
-
       </Form.Group>
     </div>
   );
