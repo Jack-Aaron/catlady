@@ -91,6 +91,7 @@ function PetFoodForm(props) {
                                 value={form.nut || ""} />
                         </div>
                         <button
+                            disabled = {!(form.name && form.calPer && form.ozPer)}
                             onClick={handleFormSubmit}
                             type="submit"
                             className="btn btn-dark">Submit
