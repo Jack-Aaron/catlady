@@ -11,7 +11,7 @@ const Navigation = (props) => {
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/login" } };
 
-    function logout () {
+    function logout (event) {
       API.logout()
       .then(res => history.replace(from))
     }

@@ -34,7 +34,6 @@ export default function PetInfoForm() {
 
   useEffect(() => {
     API.getUser().then((res) => setUserData(res.data));
-    console.log(userData);
   }, []);
 
   const handleSubmit = () => {

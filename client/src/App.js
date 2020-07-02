@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, useHistory} from "react-router-dom";
+import API from "./utils/API";
 import Navigation from './components/Navbar';
 import Wrapper from './components/Wrapper';
 import NewPet from './components/newPet/newPet';
@@ -21,6 +22,10 @@ const App = (props) => {
     username: "",
     id: "",
   })
+
+  useEffect(() => {
+    API.getUser().then((res) => setUserData(res.data));
+  }, []);
 
 
   return (
