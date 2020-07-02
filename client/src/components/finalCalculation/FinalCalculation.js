@@ -1,16 +1,16 @@
 import React from "react";
 export const FinalCalculation = ({petState, form}) => {
-  let weight = 10;
-  let lowEndCalories = 0;
-  let highEndCalories = 0;
-  let name = "Linus";
-  let inputFood = "Holistic Select Ocean Fish & Tuna Pate Recipe Grain-Free Canned Cat & Kitten Food";
-  let petType = "cat";
-  let caloriesPerPackage = 496;
-  let ozPerPackage = 13;
+  let name = petState.petName;
+  let weight = petState.currentWeight;
+  let petType = petState.petType;
+  let inputFood = form.name;
+  let caloriesPerPackage = form.caloriesPerPackage;
+  let ozPerPackage = form.ozPerPackage;
   let mealNumber = 3;
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
+  let lowEndCalories = 0;
+  let highEndCalories = 0;
 
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
 
