@@ -17,7 +17,8 @@ router
 
 router
   .route("/petfood")
-  .post((req, res) => UserController.create(req, res, db.PetFood));
+  .post((req, res) => UserController.create(req, res, db.PetFood))
+  .get((req, res) => UserController.findAll(req, res, db.PetFood));
 
 // .post((req, res) => UserController.create(req, res, db.User));
 router.route("/login").post(passport.authenticate("local"), (req, res) => {

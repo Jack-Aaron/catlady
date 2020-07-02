@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
+import API from "../../utils/API";
 
 
 
@@ -29,6 +30,21 @@ export const FinalCalculation = ({ petState, form }) => {
     highEndCalories = weight * 30;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
   }
+
+  const [state, setState] = useState({
+    results: [],
+  });
+
+  useEffect(() => {
+    API.getPetFood().then((food) => {
+      console.log(food);
+      setState({
+        ...state,
+        results: food.data
+      });
+    });
+  }, []);
+  console.log (state);
 
   return (
     <div>
