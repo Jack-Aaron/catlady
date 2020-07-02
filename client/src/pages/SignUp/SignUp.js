@@ -9,7 +9,7 @@ function SignUp() {
     const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
+    let { from } = location.state || { from: { pathname: "/login" } };
 
     function handleChange(event) {
         const { name, value } = event.target;

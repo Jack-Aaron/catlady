@@ -4,12 +4,12 @@ import API from "../../utils/API";
 import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
 import './Login.css'
 
-function SignUp(props) {
+function Login(props) {
     const initalForm ={username: "", password: ""}
     const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/dashboard" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
 
     function handleChange(event) {
@@ -50,4 +50,4 @@ function SignUp(props) {
     )
 }
 
-export default SignUp
+export default Login

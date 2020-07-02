@@ -2,7 +2,7 @@ import React from "react"
 
 function LoginSignupForm(props) {
     return (
-        <div className="row justify-content-center mt-5">
+        <div className="row justify-content-center pt-5">
             <div className="col-md-6 col-md-offset-3">
                 <div className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
                     <h2>{props.formname}</h2>
@@ -31,7 +31,7 @@ function LoginSignupForm(props) {
                             disabled={!(props.formUser && props.formPass)}
                             onClick={props.handleFormSubmit}
                             type="submit"
-                            className="btn btn-default">{props.buttonText}
+                            className="btn btn-dark">{props.buttonText}
                         </button>
                     </form>
                     <br />

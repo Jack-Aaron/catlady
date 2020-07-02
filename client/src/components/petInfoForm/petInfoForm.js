@@ -12,8 +12,6 @@ export default function PetInfoForm() {
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/petfood" } };
 
-
-
   const [userData, setUserData] = useState({
     username: "",
     id: "",
