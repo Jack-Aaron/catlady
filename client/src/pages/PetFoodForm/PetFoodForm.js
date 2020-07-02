@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Form from "react-bootstrap/Form";
 
 function PetFoodForm(props) {
     const initalForm = {
@@ -52,50 +51,54 @@ function PetFoodForm(props) {
     };
 
     return (
-        <Row className="justify-content-center">
-            <Col lg={6}>
-                <h2>Enter a Pet Food</h2>
-                <form className="login">
-                    <div className="form-group">
-                        <Input
-                            onChange={handleChange}
-                            name="name"
-                            type="text"
-                            placeholder="Food Brand"
-                            value={form.name || ""} />
-                        <Input
-                            onChange={handleChange}
-                            name="calPer"
-                            type="text"
-                            placeholder="Cal Per Package"
-                            value={form.calPer || ""} />
-                        <Input
-                            onChange={handleChange}
-                            name="ozPer"
-                            type="text"
-                            placeholder="Oz Per Package"
-                            value={form.ozPer || ""} />
-                        <Input
-                            onChange={handleChange}
-                            name="ing"
-                            type="text"
-                            placeholder="Ingredient Rating"
-                            value={form.ing || ""} />
-                        <Input
-                            onChange={handleChange}
-                            name="nut"
-                            type="text"
-                            placeholder="Nutrition Rating"
-                            value={form.nut || ""} />
-                    </div>
-                    <button
-                        onClick={handleFormSubmit}
-                        type="submit"
-                        className="btn btn-default">Submit
+        <div className="row justify-content-center pt-5">
+            <div className="col-md-6 col-md-offset-3">
+                <div className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
+                    <h2>Enter a Pet Food</h2>
+                    <form className="login">
+                        <div className="form-group">
+                            <Form.Label>Pet Food Name: </Form.Label>
+                            <Input
+                                onChange={handleChange}
+                                name="name"
+                                type="text"
+                                value={form.name || ""} />
+                            <Form.Label>Cal Per Package: </Form.Label>
+                            <Input
+                                onChange={handleChange}
+                                name="calPer"
+                                type="text"
+                                value={form.calPer || ""} />
+                            <Form.Label>Oz Per Package: </Form.Label>
+                            <Input
+                                onChange={handleChange}
+                                name="ozPer"
+                                type="text"
+                                value={form.ozPer || ""} />
+                            <Form.Label>Ingredient Rating: </Form.Label>
+                            <Input
+                                onChange={handleChange}
+                                name="ing"
+                                type="text"
+                                placeholder="(Optional)"
+                                value={form.ing || ""} />
+                            <Form.Label>Nutrition Rating: </Form.Label>
+                            <Input
+                                onChange={handleChange}
+                                name="nut"
+                                type="text"
+                                placeholder="(Optional)"
+                                value={form.nut || ""} />
+                        </div>
+                        <button
+                            onClick={handleFormSubmit}
+                            type="submit"
+                            className="btn btn-dark">Submit
                     </button>
-                </form>
-            </Col>
-        </Row>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 
