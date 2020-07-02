@@ -18,7 +18,6 @@ export const FinalCalculation = ({ petState, form }) => {
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
-    console.log("Weight: " + weight);
     highEndCalories = weight * 35;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
@@ -35,14 +34,13 @@ export const FinalCalculation = ({ petState, form }) => {
 
   useEffect(() => {
     API.getPetFood().then((food) => {
-      console.log(food);
       setState({
         ...state,
         results: food.data,
       });
     });
   }, []);
-  console.log(state);
+
 
   return (
     <div>

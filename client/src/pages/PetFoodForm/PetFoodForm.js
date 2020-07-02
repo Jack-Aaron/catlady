@@ -19,7 +19,6 @@ function PetFoodForm({form, setForm}) {
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        console.log(event)
         if (form.name && form.calPer && form.ozPer) {
             API.savePetFood({
                 name: form.name,
@@ -29,7 +28,7 @@ function PetFoodForm({form, setForm}) {
                 nutritionRating: form.nut
             })
                 .then(res => {
-                    console.log(form)
+                  
                     // setForm(initalForm)
                     history.replace(from)
                 })

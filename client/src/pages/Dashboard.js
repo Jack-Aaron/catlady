@@ -20,7 +20,6 @@ function Dashboard(props) {
 
   useEffect(() => {
     API.getPets().then((res) => {
-      console.log(res.data);
       setPetsState(res.data);
     })
   }, []);
@@ -53,7 +52,7 @@ function Dashboard(props) {
                     type={pet.petType}
                     imgsrc={pet.petType === 'Cat' ? Cat : Dog}
                     id={pet._id}
-                  /> {console.log(pet.id)}
+                  />
                 </Col >
               )) : noPets}
         </Row>

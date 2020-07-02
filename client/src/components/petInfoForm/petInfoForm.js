@@ -17,10 +17,8 @@ export default function PetInfoForm( {setPetState, petState}) {
     id: "",
   });
 
-
   useEffect(() => {
     API.getPets().then((res) => {
-      console.log(res.data);
       setPetState(res.data);
     });
   }, []);
@@ -30,8 +28,6 @@ export default function PetInfoForm( {setPetState, petState}) {
   }, []);
 
   const handleSubmit = () => {
-    // setPetState(event.target.value);
-    console.log("This is a test of the form: " + JSON.stringify(petState));
     savePet();
   };
 
@@ -43,7 +39,6 @@ export default function PetInfoForm( {setPetState, petState}) {
       idealWeight: petState.idealWeight,
       userId: userData.id,
     });
-    console.log(userData);
   }
   return (
     <Row>
