@@ -23,4 +23,7 @@ export default {
   savePetFood: function (PetFoodData){
     return axios.post("/api/user/petfood", PetFoodData);
   },
+  getPetFood: function (){
+    return axios.get("/api/user/petfood");
+  },
 };
