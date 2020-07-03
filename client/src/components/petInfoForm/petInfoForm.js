@@ -30,7 +30,6 @@ export default function PetInfoForm({ setPetState, petState }) {
     savePet();
   };
 
-
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setPetState({ ...petState, [name]: value });
@@ -54,8 +53,8 @@ export default function PetInfoForm({ setPetState, petState }) {
             <Form.Label>Pet Name: </Form.Label>
             <Form.Control
               type="text"
-              name = "petName"
-              value = {petState.petName}
+              name="petName"
+              value={petState.petName}
               onChange={handleOnChange}
             />
           </Form.Group>
@@ -63,9 +62,9 @@ export default function PetInfoForm({ setPetState, petState }) {
             <Form.Label>Pet Type: </Form.Label>
             <Form.Control
               as="select"
-              onChange={(event) =>
-                setPetState({ ...petState, petType: event.target.value })
-              }
+              name="petType"
+              value={petState.petType}
+              onChange={handleOnChange}
             >
               <option> </option>
               <option>Cat</option>
@@ -77,13 +76,9 @@ export default function PetInfoForm({ setPetState, petState }) {
             <Form.Label>Current Weight: </Form.Label>
             <Form.Control
               type="number"
-              onChange={(event) =>
-                setPetState({
-                  ...petState,
-                  currentWeight: event.target.value,
-                  userId: userData.id,
-                })
-              }
+              name="currentWeight"
+              value={petState.currentWeight}
+              onChange={handleOnChange}
             />
             <Form.Text className="text-muted">Please enter in lb</Form.Text>
           </Form.Group>
@@ -91,12 +86,9 @@ export default function PetInfoForm({ setPetState, petState }) {
             <Form.Label>Ideal Weight: </Form.Label>
             <Form.Control
               type="number"
-              onChange={(event) =>
-                setPetState({
-                  ...petState,
-                  idealWeight: event.target.value,
-                })
-              }
+              name="currentWeight"
+              value={petState.idealWeight}
+              onChange={handleOnChange}
             />
             <Form.Text className="text-muted">Please enter in lb</Form.Text>
           </Form.Group>
