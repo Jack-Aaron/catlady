@@ -96,9 +96,9 @@ const App = (props) => {
                 <Redirect to="/login" />
               ) : (
                 <PetInfoForm
-                  petState={petState}
-                  setPetState={setPetState}
-                  userData= {userData}
+                userData={userData}
+                form={form}
+                setForm={setForm}
                 />
               )
             }
