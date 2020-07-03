@@ -15,6 +15,10 @@ router
   .post((req, res) => UserController.create(req, res, db.Pet));
 
 router
+  .route("/pets/:name")
+  .patch((req, res) => UserController.updatePet(req, res, db.Pet));
+
+router
   .route("/petfood")
   .post((req, res) => UserController.create(req, res, db.PetFood))
   .get((req, res) => UserController.findAll(req, res, db.PetFood));

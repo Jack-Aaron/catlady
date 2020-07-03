@@ -20,6 +20,11 @@ export default {
   savePet: function (PetData){
     return axios.post("/api/user/pets", PetData);
   },
+
+  updatePet: function (petName, foodId){
+    return axios.patch("/api/user/pets/"+ petName, foodId);
+  },
+
   savePetFood: function (PetFoodData){
     return axios.post("/api/user/petfood", PetFoodData);
   },
