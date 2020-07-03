@@ -33,6 +33,7 @@ const App = (props) => {
     petType: "",
     currentWeight: 0,
     idealWeight: 0,
+    mealsPerDay: 0,
     userId: userData.id,
   });
   //For food form

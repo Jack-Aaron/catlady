@@ -17,16 +17,11 @@ export default function PetInfoForm({ setPetState, petState }) {
   });
 
   useEffect(() => {
-    API.getPets().then((res) => {
-      setPetState(res.data);
-    });
-  }, []);
-
-  useEffect(() => {
     API.getUser().then((res) => setUserData(res.data));
   }, []);
 
   const handleSubmit = () => {
+    console.log(petState);
     savePet();
   };
 
@@ -42,6 +37,7 @@ export default function PetInfoForm({ setPetState, petState }) {
       petType: petState.petType,
       currentWeight: petState.currentWeight,
       idealWeight: petState.idealWeight,
+      mealsperDay: petState.mealsperDay,
       userId: userData.id,
     });
   }
@@ -91,6 +87,16 @@ export default function PetInfoForm({ setPetState, petState }) {
               onChange={handleOnChange}
             />
             <Form.Text className="text-muted">Please enter in lb</Form.Text>
+          </Form.Group>
+          <Form.Group controlId="mealsPerDay">
+            <Form.Label>Meals per day: </Form.Label>
+            <Form.Control
+              type="number"
+              name="mealsPerDay"
+              value={petState.mealsperDay}
+              onChange={handleOnChange}
+            />
+            <Form.Text className="text-muted">How many times a day do you feed this pet?</Form.Text>
           </Form.Group>
 
           <Button

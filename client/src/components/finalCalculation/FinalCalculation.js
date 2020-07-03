@@ -5,30 +5,37 @@ import API from "../../utils/API";
 export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
   let name = petState.petName;
   let inputFood = form.name;
-  let mealNumber = 3;
+  let mealNumber = petState.mealsPerDay;
   let petType = petState.petType;
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
   let lowEndCalories = 0;
   let highEndCalories = 0;
+  let packagesPerMonthLow = 0;
+  let packagesPerMonthHigh = 0;
   let weight = petState.currentWeight;
   let caloriesPerPackage = form.calPer;
   let ozPerPackage = form.ozPer;
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
-
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
     highEndCalories = weight * 35;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
+    calculatePackagesPerMonth();
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     highEndCalories = weight * 30;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
+    calculatePackagesPerMonth();
   }
 
+  function calculatePackagesPerMonth(){
+    packagesPerMonthLow = (lowEndCalories/caloriesPerPackage) * 30;
+    packagesPerMonthHigh = (highEndCalories/caloriesPerPackage) * 30;
+  }
   const [state, setState] = useState({
     results: [],
   });
@@ -60,6 +67,9 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
       </p>
       <p>
         That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
+      </p>
+      <p>
+        In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}. 
       </p>
 
       <Form.Group>
