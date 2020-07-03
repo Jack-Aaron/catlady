@@ -36,6 +36,7 @@ const App = (props) => {
     petType: "",
     currentWeight: 0,
     idealWeight: 0,
+    mealsPerDay: 0,
     userId: userData.id,
   });
   //For food form
@@ -85,7 +86,7 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                <Dashboard userData={userData} />
+                <Dashboard userData={userData}/>
               )
             }
           />
@@ -98,9 +99,9 @@ const App = (props) => {
                 <Redirect to="/login" />
               ) : (
                 <PetInfoForm
-                  petState={petState}
-                  setPetState={setPetState}
-                  userData= {userData}
+                userData={userData}
+                form={form}
+                setForm={setForm}
                 />
               )
             }
@@ -133,6 +134,8 @@ const App = (props) => {
                 <FinalCalculation
                   petState={petState}
                   form={form}
+                  setPetState = {setPetState}
+                  setForm = {setForm}
                 />
               )
             }
