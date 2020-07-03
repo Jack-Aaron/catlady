@@ -128,6 +128,8 @@ const App = (props) => {
                 <FinalCalculation
                   petState={petState}
                   form={form}
+                  setPetState = {setPetState}
+                  setForm = {setForm}
                 />
               )
             }

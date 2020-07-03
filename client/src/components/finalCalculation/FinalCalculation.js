@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 
-export const FinalCalculation = ({ petState, form }) => {
+export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
   let name = petState.petName;
   let inputFood = form.name;
   let mealNumber = 3;
@@ -15,6 +15,7 @@ export const FinalCalculation = ({ petState, form }) => {
   let caloriesPerPackage = form.calPer;
   let ozPerPackage = form.ozPer;
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
+
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
@@ -41,28 +42,31 @@ export const FinalCalculation = ({ petState, form }) => {
     });
   }, []);
 
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setPetState({ ...petState, [name]: value });
+    console.log(value);
+  };
+
 
   return (
     <div>
       <h1>{name}</h1>
       <p>
-        Your {petType} will need between {lowEndCalories} and {highEndCalories}
-        calories per day.
+        Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
       </p>
       <p>
-        Using {inputFood} they will need between
-        {parseFloat(totalLowEndAmount).toFixed(2)} and
-        {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their
-        current weight.
+        Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.
       </p>
       <p>
-        That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)}
-        and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
-        meal.
+        That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
       </p>
 
       <Form.Group>
-        <Form.Control as="select">
+        <Form.Control as="select"
+         name="name"
+         value={form.name}
+         onChange={handleOnChange}>
           {state.results.length > 0
             ? state.results.map((food, index) => {
             return <option>{food.name}</option>;

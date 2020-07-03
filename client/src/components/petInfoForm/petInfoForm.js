@@ -86,7 +86,7 @@ export default function PetInfoForm({ setPetState, petState }) {
             <Form.Label>Ideal Weight: </Form.Label>
             <Form.Control
               type="number"
-              name="currentWeight"
+              name="idealWeight"
               value={petState.idealWeight}
               onChange={handleOnChange}
             />
