@@ -23,10 +23,13 @@ import { FinalCalculation } from "./components/finalCalculation/FinalCalculation
 const App = (props) => {
   const history = useHistory();
 
+  const [foodState, setFoodState] = useState("")
+
   const [userData, setUserData] = useState({
     username: "",
     id: "",
   });
+  
   //For Pet Form
   const [petState, setPetState] = useState({
     petName: "",
@@ -114,6 +117,7 @@ const App = (props) => {
                   form={form}
                   setForm={setForm}
                   petState={petState}
+                  setFoodState= {setFoodState}
                 />
               )
             }

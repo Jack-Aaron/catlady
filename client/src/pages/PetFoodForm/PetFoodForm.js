@@ -4,15 +4,13 @@ import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
 import Form from "react-bootstrap/Form";
 
-function PetFoodForm({form, setForm, petState}) {
-    const [foodState, setFoodState] = useState("")
-
+function PetFoodForm({form, setForm, petState, setFoodState}) {
     let name = petState.petName;
 
 
     let history = useHistory();
     let location = useLocation();
-    // let { from } = location.state || { from: { pathname: "/finalcalculation" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
 
     function handleChange(event) {
@@ -30,25 +28,15 @@ function PetFoodForm({form, setForm, petState}) {
                 ingredientsRating: form.ing,
                 nutritionRating: form.nut
             })
-                .then(res => getFoodid())
+                .then(res => API.getFoodId(form.name))
+                .then(res => {
+                    setFoodState(res.data._id);
+                    history.replace(from)
+                })
                 .catch(err => console.log(err))
         }
     };
-
-    function getFoodid() {
-        API.getFoodId(form.name)
-        .then(res => setFoodState(res.data._id))
-        .then(console.log(foodState))
-    }
-
-    // function  updatepet() {
-    //     console.log(foodState.id)
-    //     API.updatePet(name, {
-    //         petfoodId: foodState.id
-    //       })
-    //       .then(res=>console.log(res))
-    // }
-    
+  
     return (
         <div className="row justify-content-center pt-5">
             <div className="col-md-6 col-md-offset-3">
