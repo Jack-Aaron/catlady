@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
-import {useHistory, useLocation} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-export default function PetInfoForm( {setPetState, petState}) {
+export default function PetInfoForm({ form, setForm }) {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/petfood" } };
@@ -17,88 +17,84 @@ export default function PetInfoForm( {setPetState, petState}) {
     id: "",
   });
 
-  useEffect(() => {
-    API.getPets().then((res) => {
-      setPetState(res.data);
-    });
-  }, []);
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value })
+  };
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (form.petName && form.petType && form.currentWeight && form.idealWeight) {
+        API.savePet({
+          petName: form.petName,
+          petType: form.petType,
+          currentWeight: form.currentWeight,
+          idealWeight: form.idealWeight,
+          userId: userData.id,
+        })
+            .then(res => {
+                history.replace(from)
+            })
+            .catch(err => console.log(err))
+    }
+};
 
   useEffect(() => {
     API.getUser().then((res) => setUserData(res.data));
   }, []);
 
-  const handleSubmit = () => {
-    savePet();
-  };
-
-  function savePet() {
-    API.savePet({
-      petName: petState.petName,
-      petType: petState.petType,
-      currentWeight: petState.currentWeight,
-      idealWeight: petState.idealWeight,
-      userId: userData.id,
-    });
-  }
   return (
     <Row>
       <Col>
-    <Form onClick={handleSubmit}>
-      <Form.Group controlId="petName">
-        <Form.Label>Pet Name: </Form.Label>
-        <Form.Control
-          type="text"
-          onChange={(event) =>
-            setPetState({ ...petState, petName: event.target.value })
-          }
-        />
-      </Form.Group>
-      <Form.Group controlId="petType">
-        <Form.Label>Pet Type: </Form.Label>
-        <Form.Control
-          as="select"
-          onChange={(event) =>
-            setPetState({ ...petState, petType: event.target.value })
-          }
-        >
-          <option> </option>
-          <option>Cat</option>
-          <option>Dog</option>
-        </Form.Control>
-      </Form.Group>
+        <Form>
+          <Form.Group controlId="petName">
+            <Form.Label>Pet Name: </Form.Label>
+            <Form.Control
+              name="petName"
+              type="text"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="petType">
+            <Form.Label>Pet Type: </Form.Label>
+            <Form.Control
+              name="petType"
+              as="select"
+              onChange={handleChange}
+            >
+              <option> </option>
+              <option>Cat</option>
+              <option>Dog</option>
+            </Form.Control>
+          </Form.Group>
 
-      <Form.Group controlId="currentWeight">
-        <Form.Label>Current Weight: </Form.Label>
-        <Form.Control
-          type="number"
-          onChange={(event) =>
-            setPetState({ ...petState, currentWeight: event.target.value, userId: userData.id })
-          }
-        />
-        <Form.Text className="text-muted">Please enter in lb</Form.Text>
-      </Form.Group>
-      <Form.Group controlId="IdealWeight">
-        <Form.Label>Ideal Weight: </Form.Label>
-        <Form.Control
-          type="number"
-          onChange={(event) =>
-            setPetState({
-              ...petState,
-              idealWeight: event.target.value
-            })
-          }
-        />
-        <Form.Text className="text-muted">Please enter in lb</Form.Text>
-      </Form.Group>
+          <Form.Group controlId="currentWeight">
+            <Form.Label>Current Weight: </Form.Label>
+            <Form.Control
+              name="currentWeight"
+              type="number"
+              onChange={handleChange}
+            />
+            <Form.Text className="text-muted">Please enter in lb</Form.Text>
+          </Form.Group>
+          <Form.Group controlId="IdealWeight">
+            <Form.Label>Ideal Weight: </Form.Label>
+            <Form.Control
+              name="idealWeight"
+              type="number"
+              onChange={handleChange}
+            />
+            <Form.Text className="text-muted">Please enter in lb</Form.Text>
+          </Form.Group>
 
-      <Button 
-      disabled = {!(petState.petType && petState.petName && petState.currentWeight && petState.idealWeight)}
-      type="button" 
-      onClick={() => history.replace(from)}
-      > Submit</Button>
+          <Button
+            disabled={!(form.petType && form.petName && form.currentWeight && form.idealWeight)}
+            type="button"
+            onClick={handleFormSubmit}
+          > Submit</Button>
 
-    
-    </Form>
+
+        </Form>
       </Col>
     </Row>
 
