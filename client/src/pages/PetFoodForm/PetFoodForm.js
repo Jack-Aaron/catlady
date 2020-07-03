@@ -4,8 +4,11 @@ import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
 import Form from "react-bootstrap/Form";
 
-function PetFoodForm({form, setForm}) {
-   
+function PetFoodForm({form, setForm, petState}) {
+    const [foodState, setFoodState] = useState( { id:"" } )
+
+    let name = petState.petName;
+
 
     let history = useHistory();
     let location = useLocation();
@@ -27,15 +30,20 @@ function PetFoodForm({form, setForm}) {
                 ingredientsRating: form.ing,
                 nutritionRating: form.nut
             })
-                .then(res => {
-                  
-                    // setForm(initalForm)
-                    history.replace(from)
-                })
+                .then(res => assignFood())
                 .catch(err => console.log(err))
         }
     };
 
+    function assignFood() {
+        API.getFoodId(form.name)
+        .then(res => { 
+            setFoodState({ id: res.data._id });
+            API.updatePet(name, foodState.id)
+            .then(res=>console.log(res))
+        })
+    }
+    
     return (
         <div className="row justify-content-center pt-5">
             <div className="col-md-6 col-md-offset-3">

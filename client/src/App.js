@@ -113,6 +113,7 @@ const App = (props) => {
                 <PetFoodForm
                   form={form}
                   setForm={setForm}
+                  petState={petState}
                 />
               )
             }

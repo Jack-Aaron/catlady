@@ -20,6 +20,10 @@ router
   .get((req, res) => UserController.findAll(req, res, db.PetFood));
 
 router
+  .route("/petfood/:name")
+  .get((req, res) => UserController.findOne(req, res, db.PetFood));
+
+router
   .route("/login")
   .post(passport.authenticate("local-login"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea

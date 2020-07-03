@@ -7,6 +7,12 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findOne: function (req, res, model) {
+    model
+      .findOne({ name: req.params.name })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   findById: function (req, res, model) {
     model
       .findById(req.params.id)
