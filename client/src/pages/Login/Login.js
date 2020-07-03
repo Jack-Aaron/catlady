@@ -28,7 +28,9 @@ function Login(props) {
                 setFormObject(initalForm)
             })
                 .then(res => history.replace(from))
-                .catch(err => console.log(err))
+                .catch(err => {
+                    setFormObject({...formObject, err: err.response.status})
+                })
         }
     };
 
@@ -45,6 +47,8 @@ function Login(props) {
                 pValue={formObject.password || ""}
             >
                 <p>Or Sign Up <a href="/signup">Here</a></p>
+                {formObject.err === 401 ? <div className="alert-danger">Error: Username or password is incorrect</div> : null}
+                {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
             </LoginSignupForm>
         </div>
     )

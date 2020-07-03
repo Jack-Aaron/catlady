@@ -24,7 +24,9 @@ function SignUp() {
                 password: formObject.password
             }).then(setFormObject(initalForm))
                 .then(res => history.replace(from))
-                .catch(err => console.log(err));
+                .catch(err => {
+                    setFormObject({...formObject, err: err.response.status})
+                });
         }
     };
 
@@ -41,6 +43,8 @@ function SignUp() {
                 pValue={formObject.password || ""}
             >
                 <p>Or Login <a href="/">Here</a></p>
+                {formObject.err === 422 ? <div className="alert-danger">Error: Username already exists</div> : null}
+                {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
             </LoginSignupForm>
         </div>
     )
