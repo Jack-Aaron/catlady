@@ -82,7 +82,7 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                <Dashboard userData={userData} />
+                <Dashboard userData={userData}/>
               )
             }
           />
