@@ -9,10 +9,14 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false, { message: "Incorrect username." });
+        return done(null, false, {
+          message: "Incorrect username or password.",
+        });
       }
       if (!user.comparePassword(password)) {
-        return done(null, false, { message: "Incorrect password." });
+        return done(null, false, {
+          message: "Incorrect username or password.",
+        });
       }
       return done(null, user);
     });
