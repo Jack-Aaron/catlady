@@ -19,13 +19,15 @@ router
   .post((req, res) => UserController.create(req, res, db.PetFood))
   .get((req, res) => UserController.findAll(req, res, db.PetFood));
 
-router.route("/login").post(passport.authenticate("local"), (req, res) => {
-  // Sending back a password, even a hashed password, isn't a good idea
-  res.json({
-    username: req.user.username,
-    _id: req.user.id,
+router
+  .route("/login")
+  .post(passport.authenticate("local-login"), (req, res) => {
+    // Sending back a password, even a hashed password, isn't a good idea
+    res.json({
+      username: req.user.username,
+      _id: req.user.id,
+    });
   });
-});
 
 router.route("/logout").get((req, res) => {
   req.logout();
