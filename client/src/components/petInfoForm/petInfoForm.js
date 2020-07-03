@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 
 
 export default function PetInfoForm({ form, setForm }) {
+
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/petfood" } };
@@ -30,6 +31,7 @@ export default function PetInfoForm({ form, setForm }) {
           petType: form.petType,
           currentWeight: form.currentWeight,
           idealWeight: form.idealWeight,
+          mealsPerDay: form.mealsPerDay,
           userId: userData.id,
         })
             .then(res => {
@@ -86,17 +88,24 @@ export default function PetInfoForm({ form, setForm }) {
             />
             <Form.Text className="text-muted">Please enter in lb</Form.Text>
           </Form.Group>
-
+      <Form.Group controlId="mealsPerDay">
+            <Form.Label>Meals per day: </Form.Label>
+            <Form.Control
+              name="mealsPerDay"
+              type="number"
+              onChange={handleChange}
+            />
+            <Form.Text className="text-muted">How many times a day do you feed this pet?</Form.Text>
+          </Form.Group>
+    
           <Button
             disabled={!(form.petType && form.petName && form.currentWeight && form.idealWeight)}
             type="button"
             onClick={handleFormSubmit}
           > Submit</Button>
 
-
         </Form>
       </Col>
     </Row>
-
   );
 }

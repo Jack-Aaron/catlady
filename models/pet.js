@@ -7,6 +7,7 @@ const mongoose = require("mongoose"),
     petType: { type: String, required: true },
     currentWeight: { type: Number, required: true },
     idealWeight: { type: Number, required: true },
+    mealsPerDay: { type: Number, required: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   });
 
