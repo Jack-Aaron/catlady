@@ -13,8 +13,8 @@ export const FinalCalculation = ({ currentPet }) => {
   let petType = currentPet.petType;
   let weight = currentPet.currentWeight;
   let inputFood = selectedFood.name;
-  let ozPerPackage = selectedFood.ozPer;
-  let caloriesPerPackage = selectedFood.calPer;
+  let ozPerPackage = selectedFood.ozPerPackage;
+  let caloriesPerPackage = selectedFood.caloriesPerPackage;
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
   let lowEndCalories = 0;
@@ -89,6 +89,7 @@ export const FinalCalculation = ({ currentPet }) => {
             <Form.Control as="select"
               onChange={handleOnChange}
             >
+                  <option value="0">Choose...</option>
               {state.results.length > 0
                 ? state.results.map((food, index) => {
                   return <option key={index} value={food._id}>{food.name}</option>;
