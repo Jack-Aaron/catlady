@@ -18,7 +18,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
 import { FinalCalculation } from "./components/finalCalculation/FinalCalculation";
-// import { FinalCalculation } from './components/finalCalculation/FinalCalculation';
 
 const App = (props) => {
   const history = useHistory();
@@ -39,14 +38,9 @@ const App = (props) => {
     mealsPerDay: 0,
     userId: userData.id,
   });
+
   //For food form
-  const initalForm = {
-    name: "",
-    calPer: "",
-    ozPer: "",
-    ing: "",
-    nut: "",
-  };
+  const initalForm = {};
 
   const [form, setForm] = useState(initalForm);
 
@@ -99,7 +93,6 @@ const App = (props) => {
                 <Redirect to="/login" />
               ) : (
                 <PetInfoForm
-                userData={userData}
                 form={form}
                 setForm={setForm}
                 />
