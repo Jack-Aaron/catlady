@@ -6,7 +6,7 @@ export const FinalCalculation = ({ currentPet }) => {
   const [state, setState] = useState({
     results: [],
   });
-  const [selectedFood, setSelectedFood] = useState({})
+  const [selectedFood, setSelectedFood] = useState([])
 
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
@@ -56,13 +56,13 @@ export const FinalCalculation = ({ currentPet }) => {
     const foodId = event.target.value
 
     API.getCurrentFood(foodId)
-        .then(res => {
-          setSelectedFood(res.data)
-        })
-        .catch(err => console.log(err))
+      .then(res => {
+        setSelectedFood(res.data)
+      })
+      .catch(err => console.log(err))
   };
 
-  const noFood = <><h1>Select a Food to See Feeding Recomendation</h1></>
+  const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
 
   return (
     <div className="row justify-content-center pt-5">
@@ -72,20 +72,23 @@ export const FinalCalculation = ({ currentPet }) => {
           <p>
             Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
       </p>
-          <p>
-            Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.
+          {selectedFood.length === 0 ? noFood :
+            <>
+              <p>
+                Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.
       </p>
-          <p>
-            That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
+              <p>
+                That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
       </p>
-          <p>
-            In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}.
+              <p>
+                In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}.
       </p>
-
+            </>
+          }
           <Form.Group>
             <Form.Control as="select"
               onChange={handleOnChange}
-              >
+            >
               {state.results.length > 0
                 ? state.results.map((food, index) => {
                   return <option key={index} value={food._id}>{food.name}</option>;
