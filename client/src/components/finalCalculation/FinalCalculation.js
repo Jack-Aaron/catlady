@@ -32,9 +32,9 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
     calculatePackagesPerMonth();
   }
 
-  function calculatePackagesPerMonth(){
-    packagesPerMonthLow = (lowEndCalories/caloriesPerPackage) * 30;
-    packagesPerMonthHigh = (highEndCalories/caloriesPerPackage) * 30;
+  function calculatePackagesPerMonth() {
+    packagesPerMonthLow = (lowEndCalories / caloriesPerPackage) * 30;
+    packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
   const [state, setState] = useState({
     results: [],
@@ -55,36 +55,41 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
     console.log(value);
   };
 
+  const noFood = <><h1>Select a Food to See Feeding Recomendation</h1></>
 
   return (
-    <div>
-      <h1>{name}</h1>
-      <p>
-        Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
+    <div className="row justify-content-center pt-5">
+      <div className="col-md-6 col-md-offset-3">
+        <div className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
+          <h1>{name}</h1>
+          <p>
+            Your {petType} will need between {lowEndCalories} and {highEndCalories} calories per day.
       </p>
-      <p>
-        Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.
+          <p>
+            Using {inputFood} they will need between {parseFloat(totalLowEndAmount).toFixed(2)} and {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to maintain their current weight.
       </p>
-      <p>
-        That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
+          <p>
+            That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
       </p>
-      <p>
-        In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}. 
+          <p>
+            In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}.
       </p>
 
-      <Form.Group>
-        <Form.Control as="select"
-         name="name"
-         value={form.name}
-         onChange={handleOnChange}>
-          {state.results.length > 0
-            ? state.results.map((food, index) => {
-            return <option>{food.name}</option>;
-              })
-            : "No Foods Found"}
-        </Form.Control>
-        <br />
-      </Form.Group>
+          <Form.Group>
+            <Form.Control as="select"
+              name="name"
+              value={form.name}
+              onChange={handleOnChange}>
+              {state.results.length > 0
+                ? state.results.map((food, index) => {
+                  return <option>{food.name}</option>;
+                })
+                : "No Foods Found"}
+            </Form.Control>
+            <br />
+          </Form.Group>
+        </div>
+      </div>
     </div>
   );
 };
