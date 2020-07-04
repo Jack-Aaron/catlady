@@ -2,20 +2,25 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 
-export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
-  let name = petState.petName;
-  let inputFood = form.name;
-  let mealNumber = petState.mealsPerDay;
-  let petType = petState.petType;
+export const FinalCalculation = ({ currentPet }) => {
+  const [state, setState] = useState({
+    results: [],
+  });
+  const [selectedFood, setSelectedFood] = useState({})
+
+  let name = currentPet.petName;
+  let mealNumber = currentPet.mealsPerDay;
+  let petType = currentPet.petType;
+  let weight = currentPet.currentWeight;
+  let inputFood = selectedFood.name;
+  let ozPerPackage = selectedFood.ozPer;
+  let caloriesPerPackage = selectedFood.calPer;
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
   let lowEndCalories = 0;
   let highEndCalories = 0;
   let packagesPerMonthLow = 0;
   let packagesPerMonthHigh = 0;
-  let weight = petState.currentWeight;
-  let caloriesPerPackage = form.calPer;
-  let ozPerPackage = form.ozPer;
   let caloriesPerOz = caloriesPerPackage / ozPerPackage;
 
   if (petType === "Cat") {
@@ -36,9 +41,7 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
     packagesPerMonthLow = (lowEndCalories / caloriesPerPackage) * 30;
     packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
-  const [state, setState] = useState({
-    results: [],
-  });
+
 
   useEffect(() => {
     API.getPetFood().then((food) => {
@@ -50,9 +53,13 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
   }, []);
 
   const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setPetState({ ...petState, [name]: value });
-    console.log(value);
+    const foodId = event.target.value
+
+    API.getCurrentFood(foodId)
+        .then(res => {
+          setSelectedFood(res.data)
+        })
+        .catch(err => console.log(err))
   };
 
   const noFood = <><h1>Select a Food to See Feeding Recomendation</h1></>
@@ -77,12 +84,11 @@ export const FinalCalculation = ({ petState, form, setPetState, setForm }) => {
 
           <Form.Group>
             <Form.Control as="select"
-              name="name"
-              value={form.name}
-              onChange={handleOnChange}>
+              onChange={handleOnChange}
+              >
               {state.results.length > 0
                 ? state.results.map((food, index) => {
-                  return <option>{food.name}</option>;
+                  return <option key={index} value={food._id}>{food.name}</option>;
                 })
                 : "No Foods Found"}
             </Form.Control>
