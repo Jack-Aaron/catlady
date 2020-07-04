@@ -28,6 +28,8 @@ const App = (props) => {
     username: "",
     id: "",
   });
+
+  const [currentPet, setCurrentPet] = useState({})
   
   //For Pet Form
   const [petState, setPetState] = useState({
@@ -80,7 +82,10 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                <Dashboard userData={userData}/>
+                <Dashboard 
+                userData={userData}
+                currentPet={currentPet}
+                setCurrentPet={setCurrentPet}/>
               )
             }
           />

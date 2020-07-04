@@ -2,15 +2,22 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import API from "../../utils/API";
+import { useHistory, useLocation } from "react-router-dom"
 import './style.css';
 
 const PetCard = (props) => {
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/finalcalculation" } };
 
     function handleClick(event) {
         let petId = event.target.name
 
         API.getCurrentPet(petId)
-        .then(res => console.log(res.data))
+        .then(res => {
+            props.setCurrentPet(res.data)
+            history.replace(from)
+        })
     }
 
     return (
