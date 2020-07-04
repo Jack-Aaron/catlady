@@ -5,11 +5,10 @@ import { Input } from '../../components/Form/Form';
 import Form from "react-bootstrap/Form";
 
 function PetFoodForm({form, setForm}) {
-   
-
+    
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/finalcalculation" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
 
     function handleChange(event) {
@@ -27,15 +26,11 @@ function PetFoodForm({form, setForm}) {
                 ingredientsRating: form.ing,
                 nutritionRating: form.nut
             })
-                .then(res => {
-                  
-                    // setForm(initalForm)
-                    history.replace(from)
-                })
-                .catch(err => console.log(err))
+            .then(res => history.replace(from))   
+            .catch(err => console.log(err))
         }
     };
-
+  
     return (
         <div className="row justify-content-center pt-5">
             <div className="col-md-6 col-md-offset-3">
@@ -47,40 +42,35 @@ function PetFoodForm({form, setForm}) {
                             <Input
                                 onChange={handleChange}
                                 name="name"
-                                type="text"
-                                value={form.name || ""} />
+                                type="text"/>
                             <Form.Label>Cal Per Package: </Form.Label>
                             <Input
                                 onChange={handleChange}
                                 name="calPer"
-                                type="text"
-                                value={form.calPer || ""} />
+                                type="text" />
                             <Form.Label>Oz Per Package: </Form.Label>
                             <Input
                                 onChange={handleChange}
                                 name="ozPer"
-                                type="text"
-                                value={form.ozPer || ""} />
+                                type="text"/>
                             <Form.Label>Ingredient Rating: </Form.Label>
                             <Input
                                 onChange={handleChange}
                                 name="ing"
                                 type="text"
-                                placeholder="(Optional)"
-                                value={form.ing || ""} />
+                                placeholder="(Optional)"/>
                             <Form.Label>Nutrition Rating: </Form.Label>
                             <Input
                                 onChange={handleChange}
                                 name="nut"
                                 type="text"
-                                placeholder="(Optional)"
-                                value={form.nut || ""} />
+                                placeholder="(Optional)"/>
                         </div>
                         <button
                             disabled = {!(form.name && form.calPer && form.ozPer)}
                             onClick={handleFormSubmit}
                             type="submit"
-                            className="btn btn-dark">Submit
+                            className="btn btn-primary">Submit
                     </button>
                     </form>
                 </div>

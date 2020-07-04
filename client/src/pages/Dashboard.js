@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import PetCard from "../components/PetCard";
 import AddBtn from "../components/AddBtn";
+import AddBtnFood from "../components/AddBtnFood";
 import Cat from '../assets/cat.png';
 import Dog from '../assets/dog.png';
 
@@ -30,7 +31,6 @@ function Dashboard(props) {
       <Container>
         <Row className="justify-content-around">
           {
-
             petsState.length !== 0 ?
 
               petsState.map((pet) => (
@@ -47,6 +47,9 @@ function Dashboard(props) {
         <Row>
           <Col>
             <AddBtn />
+          </Col>
+          <Col>
+            <AddBtnFood />
           </Col>
         </Row>
       </Container>
