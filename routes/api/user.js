@@ -20,7 +20,7 @@ router
 
 router
   .route("/pets/:id")
-  .get((req, res) => UserController.findByPetId(req, res, db.Pet));
+  .get((req, res) => UserController.findOne(req, res, db.Pet));
 
 router
   .route("/petfood")
@@ -28,7 +28,7 @@ router
   .get((req, res) => UserController.findAll(req, res, db.PetFood));
 
 router
-  .route("/petfood/:name")
+  .route("/petfood/:id")
   .get((req, res) => UserController.findOne(req, res, db.PetFood));
 
 router

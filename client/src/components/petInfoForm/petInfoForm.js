@@ -3,9 +3,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import { useHistory, useLocation } from "react-router-dom";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
 
 export default function PetInfoForm({ form, setForm }) {
 

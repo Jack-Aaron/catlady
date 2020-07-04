@@ -84,7 +84,6 @@ const App = (props) => {
               ) : (
                 <Dashboard 
                 userData={userData}
-                currentPet={currentPet}
                 setCurrentPet={setCurrentPet}/>
               )
             }
@@ -130,10 +129,8 @@ const App = (props) => {
                 <Redirect to="/login" />
               ) : (
                 <FinalCalculation
-                  petState={petState}
-                  form={form}
-                  setPetState = {setPetState}
-                  setForm = {setForm}
+                  currentPet={currentPet}
+                  
                 />
               )
             }

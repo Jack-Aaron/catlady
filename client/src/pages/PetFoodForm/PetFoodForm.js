@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory, useLocation } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';

@@ -9,7 +9,7 @@ module.exports = {
   },
   findOne: function (req, res, model) {
     model
-      .findOne({ name: req.params.name })
+      .findOne({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -25,24 +25,12 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByPetId: function (req, res, model) {
-    model
-      .find({ _id: req.params.id })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
   create: function (req, res, model) {
     model
       .create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  // updatePet: function (req, res, model) {
-  //   model
-  //     .findOneAndUpdate({ name: req.params.name }, { petFoodId: req.body })
-  //     .then((dbModel) => res.json(dbModel))
-  //     .catch((err) => res.status(422).json(err));
-  // },
   remove: function (req, res, model) {
     model
       .findById({ _id: req.params.id })

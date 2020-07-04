@@ -29,12 +29,8 @@ export default {
   getPetFood: function () {
     return axios.get("/api/user/petfood");
   },
-  getFoodId: function (foodName) {
-    return axios.get("/api/user/petfood/" + foodName);
+  getCurrentFood: function (foodId) {
+    return axios.get("/api/user/petfood/" + foodId);
   },
 };
 
-
-// updatePet: function (petName, foodId){
-//   return axios.patch("/api/user/pets/"+ petName, foodId);
-// },
