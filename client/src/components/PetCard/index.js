@@ -1,21 +1,29 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Link from 'react-router-dom/Link';
+import Button from 'react-bootstrap/Button';
+import API from "../../utils/API";
+import { useHistory, useLocation } from "react-router-dom"
 import './style.css';
 
 const PetCard = (props) => {
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/finalcalculation" } };
+
+    function handleClick(event) {
+        let petId = event.target.name
+
+        API.getCurrentPet(petId)
+        .then(res => {
+            props.setCurrentPet(res.data)
+            history.replace(from)
+        })
+    }
 
     return (
         <div>
             <Card
-                as={Link}
                 id={props.id}
-                to={'/' + props.id}
-                className={
-                    window.location.pathname === '/' + props.id
-                        ? "nav-link active petCard"
-                        : "nav-link petCard"
-                }
                 style={{
                     backgroundColor: '#FFB4A2',
                     border: '3px solid #E5989B',
@@ -30,6 +38,10 @@ const PetCard = (props) => {
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Subtitle>{props.type}</Card.Subtitle>
                 </Card.Body>
+                <Button
+                    name={props.id}
+                    onClick={handleClick}>Select Pet
+                </Button>
             </Card>
         </div >
     )

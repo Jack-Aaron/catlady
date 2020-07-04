@@ -17,14 +17,12 @@ export default {
   getPets: function () {
     return axios.get("/api/user/pets");
   },
+  getCurrentPet: function (petId) {
+    return axios.get("/api/user/pets/"+ petId);
+  },
   savePet: function (PetData){
     return axios.post("/api/user/pets", PetData);
   },
-
-  updatePet: function (petName, foodId){
-    return axios.patch("/api/user/pets/"+ petName, foodId);
-  },
-
   savePetFood: function (PetFoodData){
     return axios.post("/api/user/petfood", PetFoodData);
   },
@@ -35,3 +33,8 @@ export default {
     return axios.get("/api/user/petfood/" + foodName);
   },
 };
+
+
+// updatePet: function (petName, foodId){
+//   return axios.patch("/api/user/pets/"+ petName, foodId);
+// },

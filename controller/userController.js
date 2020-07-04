@@ -22,7 +22,12 @@ module.exports = {
   findByUserId: function (req, res, model) {
     model
       .find({ userId: req.user._id })
-      // .find({ userId: req.body })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByPetId: function (req, res, model) {
+    model
+      .find({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -32,13 +37,12 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  updatePet: function (req, res, model) {
-    console.log(req.body.petFoodId);
-    // model
-    //   .findOneAndUpdate({ name: req.params.name }, { petFoodId: req.body })
-    //   .then((dbModel) => res.json(dbModel))
-    //   .catch((err) => res.status(422).json(err));
-  },
+  // updatePet: function (req, res, model) {
+  //   model
+  //     .findOneAndUpdate({ name: req.params.name }, { petFoodId: req.body })
+  //     .then((dbModel) => res.json(dbModel))
+  //     .catch((err) => res.status(422).json(err));
+  // },
   remove: function (req, res, model) {
     model
       .findById({ _id: req.params.id })

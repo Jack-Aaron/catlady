@@ -40,6 +40,8 @@ function Dashboard(props) {
                     type={pet.petType}
                     imgsrc={pet.petType === 'Cat' ? Cat : Dog}
                     id={pet._id}
+                    currentPet={props.currentPet}
+                    setCurrentPet={props.setCurrentPet}
                   />
                 </Col >
               )) : noPets}
