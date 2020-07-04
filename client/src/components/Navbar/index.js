@@ -47,17 +47,6 @@ const Navigation = ({ setUserData }) => {
           </Nav.Link>
           <Nav.Link
             as={Link}
-            to="/petfood"
-            className={
-              window.location.pathname === "/petfood"
-                ? "nav-link active"
-                : "nav-link"
-            }
-          >
-            Pet Foods
-          </Nav.Link>
-          <Nav.Link
-            as={Link}
             to="/signup"
             className={
               window.location.pathname === "/signup"
