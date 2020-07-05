@@ -15,7 +15,6 @@ const AddBtnFood = ({route, title}) => {
 
     return (
         <div>
-            <hr />
             <Container>
                 <Row className='justify-content-center text-center'>
                     <Col>

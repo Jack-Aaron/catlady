@@ -15,7 +15,6 @@ const AddBtn = (props) => {
 
     return (
         <div>
-            <hr />
             <Container>
                 <Row className='justify-content-center text-center'>
                     <Col>
