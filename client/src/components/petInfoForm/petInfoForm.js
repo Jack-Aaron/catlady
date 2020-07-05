@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
 import Form from "react-bootstrap/Form";
+import Row from 'react-bootstrap/Row';
 import API from "../../utils/API";
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -43,9 +46,9 @@ export default function PetInfoForm({ form, setForm }) {
   };
 
   return (
-    <div className="row justify-content-center pt-5">
-      <div className="col-md-6 col-md-offset-3">
-        <div className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
+    <Row className="row justify-content-center pt-5">
+      <Col className="col-md-6 col-md-offset-3">
+        <Card className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
           <Form>
             <Form.Group controlId="petName">
               <Form.Label>Pet Name: </Form.Label>
@@ -103,8 +106,8 @@ export default function PetInfoForm({ form, setForm }) {
             > Submit</Button>
 
           </Form>
-        </div>
-      </div>
-    </div>
+        </Card>
+      </Col>
+    </Row>
   );
 }
