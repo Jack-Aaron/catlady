@@ -51,7 +51,7 @@ function PetFoodForm({ form, setForm }) {
                                 onChange={handleChange}
                                 name="name"
                                 type="text" />
-                            <Form.Label>Pet Food Type: </Form.Label>
+                            <Form.Label className="mt-3">Pet Food Type: </Form.Label>
                             <Form.Control
                                 name="petType"
                                 as="select"
@@ -92,7 +92,7 @@ function PetFoodForm({ form, setForm }) {
                             <Form.Label className="mt-3">Protein: </Form.Label>
                             <Input
                                 onChange={handleChange}
-                                name="proptein"
+                                name="protein"
                                 type="text"
                                 placeholder="(Optional)" />
                             <Form.Label className="mt-3">Fat: </Form.Label>
@@ -127,7 +127,7 @@ function PetFoodForm({ form, setForm }) {
                                 placeholder="(Optional)" />
                         </div>
                         <button
-                            disabled={!(form.name && form.calPer && form.ozPer)}
+                            disabled={!(form.name && form.calPer && form.ozPer && form.petType)}
                             onClick={handleFormSubmit}
                             type="submit"
                             className="btn btn-primary">Submit
