@@ -81,7 +81,7 @@ export const FinalCalculation = ({ currentPet }) => {
                 That is between {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per meal.
       </p>
               <p>
-                In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)}.
+                In a 30 day period you will need between {Math.ceil(packagesPerMonthLow)} and {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
       </p>
             </>
           }
