@@ -5,13 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Container from '../Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import './style.css'
 
 
 function LoginSignupForm(props) {
     return (
         <Container className='pb-3'>
-            <Row className="row justify-content-center pt-3 pb-3">
-                <Col className="col-md-6 col-md-offset-3">
+            <Row className="row justify-content-center pb-5">
+                <Col className="col-md-12 col-md-offset-3">
                     <Card className="card px-4" id="card" style={{
                         borderRadius: "2em",
                         boxShadow: "0px 0px 4px 4px #ccc",
