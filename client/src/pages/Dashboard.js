@@ -7,6 +7,7 @@ import Container from "../components/Container";
 import PetCard from "../components/PetCard";
 import AddBtn from "../components/AddBtn";
 import AddBtnFood from "../components/AddBtnFood";
+import ViewFood from "../components/ViewFood";
 import Cat from '../assets/cat.png';
 import Dog from '../assets/dog.png';
 
@@ -52,6 +53,9 @@ function Dashboard(props) {
           </Col>
           <Col>
             <AddBtnFood />
+          </Col>
+          <Col>
+            <ViewFood />
           </Col>
         </Row>
       </Container>

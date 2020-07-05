@@ -1,0 +1,12 @@
+h2 {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.petfoods {
+   padding-top: 2em
+}
+
+th, td {
+    text-align: start;
+}
