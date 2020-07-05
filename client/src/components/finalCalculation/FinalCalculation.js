@@ -91,7 +91,12 @@ export const FinalCalculation = ({ currentPet }) => {
             >
                   <option value="0">Choose...</option>
               {state.results.length > 0
-                ? state.results.map((food, index) => {
+                ? state.results
+                .filter((food) => {
+                  //Remove petfood that do not match the current petType
+                  return food.petType.indexOf(currentPet.petType) >= 0;
+                })
+                .map((food, index) => {
                   return <option key={index} value={food._id}>{food.name}</option>;
                 })
                 : "No Foods Found"}
