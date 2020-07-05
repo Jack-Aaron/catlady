@@ -92,7 +92,8 @@ export default function PetInfoForm({ form, setForm }) {
               <Form.Label>Meals per day: </Form.Label>
               <Form.Control
                 name="mealsPerDay"
-                type="text"
+                type="number"
+                min={1}
                 onChange={handleChange}
               />
               <Form.Text className="text-muted">How many times a day do you feed this pet?</Form.Text>
