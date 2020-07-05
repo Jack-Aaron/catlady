@@ -54,7 +54,7 @@ export const FinalCalculation = ({ currentPet }) => {
 
   const handleOnChange = (event) => {
     const foodId = event.target.value
-
+    
     API.getCurrentFood(foodId)
       .then(res => {
         setSelectedFood(res.data)
