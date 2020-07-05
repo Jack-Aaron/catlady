@@ -47,15 +47,13 @@ function Dashboard(props) {
                 </Col >
               )) : noPets}
         </Row>
-        <Row>
-          <Col>
+        <hr style={{width:"80%"}}/>
+        <Row className="justify-content-around">
+          <Col md={6}>
             <AddBtn />
           </Col>
-          <Col>
+          <Col md={6}>
             <AddBtnFood />
-          </Col>
-          <Col>
-            <ViewFood />
           </Col>
         </Row>
       </Container>
