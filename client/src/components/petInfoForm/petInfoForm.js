@@ -72,7 +72,8 @@ export default function PetInfoForm({ form, setForm }) {
               <Form.Label>Current Weight: </Form.Label>
               <Form.Control
                 name="currentWeight"
-                type="text"
+                type="number"
+                min={1}
                 onChange={handleChange}
               />
               <Form.Text className="text-muted">Please enter in lb</Form.Text>
@@ -81,7 +82,8 @@ export default function PetInfoForm({ form, setForm }) {
               <Form.Label>Ideal Weight: </Form.Label>
               <Form.Control
                 name="idealWeight"
-                type="text"
+                type="number"
+                min={1}
                 onChange={handleChange}
               />
               <Form.Text className="text-muted">Please enter in lb</Form.Text>
@@ -90,7 +92,8 @@ export default function PetInfoForm({ form, setForm }) {
               <Form.Label>Meals per day: </Form.Label>
               <Form.Control
                 name="mealsPerDay"
-                type="text"
+                type="number"
+                min={1}
                 onChange={handleChange}
               />
               <Form.Text className="text-muted">How many times a day do you feed this pet?</Form.Text>
