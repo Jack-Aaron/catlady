@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-import question from "../../assets/questionmark.png"
+import question from "../../assets/questionmark.png";
 import "./style.css";
 
 export default function FinalCalculation({ currentPet }) {
@@ -12,22 +12,31 @@ export default function FinalCalculation({ currentPet }) {
   });
   const [selectedFood, setSelectedFood] = useState([]);
 
+  //Pet Variables
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
   let petType = currentPet.petType;
   let weight = currentPet.currentWeight;
   let idealWeight = currentPet.idealWeight;
+
+  //Food Variables
   let inputFood = selectedFood.name;
   let ozPerPackage = selectedFood.ozPerPackage;
   let caloriesPerPackage = selectedFood.caloriesPerPackage;
+  let caloriesPerOz = caloriesPerPackage / ozPerPackage;
+
+  //General Calculation Variables
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
   let lowEndCalories = 0;
   let highEndCalories = 0;
   let packagesPerMonthLow = 0;
   let packagesPerMonthHigh = 0;
-  let caloriesPerOz = caloriesPerPackage / ozPerPackage;
+
+  //Diet Variables
   let weightlossCal = (weight / 2.2) * 30 + 70;
+  let dietTotal = 0;
+  let  dietMealOz = 0;
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
@@ -35,6 +44,7 @@ export default function FinalCalculation({ currentPet }) {
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
     calculatePackagesPerMonth();
+
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
@@ -47,6 +57,12 @@ export default function FinalCalculation({ currentPet }) {
     packagesPerMonthLow = (lowEndCalories / caloriesPerPackage) * 30;
     packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
+  function dietCalculation(){
+    console.log("test");
+    dietTotal = weightlossCal/caloriesPerOz;
+    dietMealOz = dietTotal / mealNumber;
+  }
+ 
 
   useEffect(() => {
     API.getPetFood().then((food) => {
@@ -73,11 +89,7 @@ export default function FinalCalculation({ currentPet }) {
     </>
   );
 
-  const weightLossNot = (
-    <>
-      <h4>Test</h4>
-    </>
-  );
+  const weightLossNot = <></>;
 
   return (
     <div className="row justify-content-center pt-5">
@@ -113,33 +125,45 @@ export default function FinalCalculation({ currentPet }) {
                 {Math.ceil(packagesPerMonthLow)} and{" "}
                 {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
-              {(idealWeight < weight) ? (
+              {idealWeight < weight ? (
                 weightLossNot
-          ) : (
-              <p>
-                <h4> Weightloss: </h4>
-                For weightloss aim for {parseFloat(weightlossCal).toFixed(2)}{" "}
-                calories per day. {" "}
-                <OverlayTrigger
-                trigger="click"
-                  overlay={
-                    <Popover id={`popover`}>
-                      <Popover.Title as="h3">Why are the calories higher than the low end suggestion?</Popover.Title>
-                      <Popover.Content>
-                      In some cases suggested calories for weightloss maybe higher or lower than the base level suggested low end. 
-                      Pet weightloss should always be a slow process for your pet's saftey. Gradually decreasing your pet's food will prevent complications that could lead to more serious illnesses.
-                      For more information please tallk to your vet before starting a weightloss regimen. 
-                      </Popover.Content>
+              ) : (
+                  <><h4> Weightloss: </h4>
+                <p>
+                  {dietCalculation()}
+                  For weightloss aim for {parseFloat(weightlossCal).toFixed(
+                    2
+                  )}{" "}
+                  calories per day.{" "}
+                  <OverlayTrigger
+                    trigger="click"
+                    overlay={
+                      <Popover id={`popover`}>
+                        <Popover.Title as="h3">
+                          Why are the calories higher than the low end
+                          suggestion?
+                        </Popover.Title>
+                        <Popover.Content>
+                          In some cases suggested calories for weightloss maybe
+                          higher or lower than the base level suggested low end.
+                          Pet weightloss should always be a slow process for
+                          your pet's saftey. Gradually decreasing your pet's
+                          food will prevent complications that could lead to
+                          more serious illnesses. For more information please
+                          tallk to your vet before starting a weightloss
+                          regimen.
+                        </Popover.Content>
                       </Popover>
-                  }
-                >
-                  <img src={question} id = "icon" alt="question"/>
-                </OverlayTrigger>
-              </p>)}
-          
-          
-              </>)}
-            
+                    }
+                  >
+                    <img src={question} id="icon" alt="question" />
+                  </OverlayTrigger>
+                </p>
+                  <p>This is about {parseFloat(dietTotal).toFixed(2)} oz per day and {parseFloat(dietMealOz).toFixed(2)} oz per meal.</p></>
+              )}
+            </>
+          )}
+
           <Form.Group>
             <Form.Control as="select" onChange={handleOnChange}>
               <option value="0">Choose...</option>
