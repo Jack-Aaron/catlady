@@ -20,6 +20,17 @@ export default {
   getCurrentPet: function (petId) {
     return axios.get("/api/user/pets/"+ petId);
   },
+
+
+
+  updateWeight: function (petId, weight) {
+    console.log(petId)
+    console.log(weight)
+    return axios.patch("/api/user/pets/"+ petId, weight);
+  },
+
+
+
   savePet: function (PetData){
     return axios.post("/api/user/pets", PetData);
   },
@@ -32,5 +43,7 @@ export default {
   getCurrentFood: function (foodId) {
     return axios.get("/api/user/petfood/" + foodId);
   },
+  deletePet: function (petId) {
+    return axios.delete('/api/user/pets/' + petId);
+  }
 };
-

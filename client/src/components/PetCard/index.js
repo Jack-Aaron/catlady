@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Link } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import API from "../../utils/API";
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom";
 import './style.css';
 
 const PetCard = (props) => {
@@ -10,14 +10,13 @@ const PetCard = (props) => {
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/petProfile" } };
 
-    function handleClick(event) {
+    const handleClick = (event) => {
         let petId = event.target.name
-
         API.getCurrentPet(petId)
-        .then(res => {
-            props.setCurrentPet(res.data)
-            history.replace(from)
-        })
+            .then(res => {
+                props.setCurrentPet(res.data)
+                history.replace(from)
+            })
     }
 
     return (
@@ -35,12 +34,21 @@ const PetCard = (props) => {
                     maxWidth: '200px'
                 }} />
                 <Card.Body>
-                    <Card.Title>{props.name}</Card.Title>
+                    <Card.Title>{props.name}
+                        <span as={Link}
+                            style={{ float: 'right', color: 'red' }}
+                            onClick={() => {
+                                if (window.confirm('Are you sure you want to remove this Pet?'))
+                                    props.handleDelete(props.id)
+                            }}
+                        >X</span>
+                    </Card.Title>
                     <Card.Subtitle>{props.type}</Card.Subtitle>
                 </Card.Body>
                 <Button
                     name={props.id}
-                    onClick={handleClick}>Select Pet
+                    onClick={handleClick}
+                >Select Pet
                 </Button>
             </Card>
         </div >

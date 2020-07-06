@@ -13,6 +13,16 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findOneUpdate: function (req, res, model) {
+    model
+      .findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { currentWeight: req.body.currentWeight } },
+        { new: true }
+      )
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   findById: function (req, res, model) {
     model
       .findById(req.params.id)

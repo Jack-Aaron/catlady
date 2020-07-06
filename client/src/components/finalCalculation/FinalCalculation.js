@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button'
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import question from "../../assets/questionmark.png";
 import "./style.css";
 import BrowserRouter, {Link} from "react-router-dom";
 
-export default function FinalCalculation({ currentPet }) {
 
+export default function FinalCalculation({ setCurrentPet, currentPet, form, setForm }) {
   const [state, setState] = useState({
     results: [],
   });
@@ -18,7 +21,7 @@ export default function FinalCalculation({ currentPet }) {
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
   let petType = currentPet.petType;
-  let weight = currentPet.currentWeight;
+  let weight = currentPet.currentWeight[currentPet.currentWeight.length - 1];
   let idealWeight = currentPet.idealWeight;
 
   //Food Variables
@@ -85,11 +88,20 @@ export default function FinalCalculation({ currentPet }) {
       .catch((err) => console.log(err));
   };
 
-  const noFood = (
-    <>
-      <h4>Select a Food to See Feeding Recomendation</h4>
-    </>
-  );
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value })
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    API.updateWeight(currentPet._id, form)
+      .then(res => {
+        setCurrentPet(res.data);
+      })
+  }
+
+  const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
 
   const weightLossNot = <></>;
 
@@ -109,23 +121,23 @@ export default function FinalCalculation({ currentPet }) {
           {selectedFood.length === 0 ? (
             noFood
           ) : (
-            <>
-              <p>
-                Using {inputFood} they will need between{" "}
-                {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
+              <>
+                <p>
+                  Using {inputFood} they will need between{" "}
+                  {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
+                  {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
                 maintain their current weight.
               </p>
-              <p>
-                That is between{" "}
-                {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
+                <p>
+                  That is between{" "}
+                  {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
+                  {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
                 meal.
               </p>
-              <p>
-                In a 30 day period you will need between{" "}
-                {Math.ceil(packagesPerMonthLow)} and{" "}
-                {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
+                <p>
+                  In a 30 day period you will need between{" "}
+                  {Math.ceil(packagesPerMonthLow)} and{" "}
+                  {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
               {idealWeight < weight ? (
                 weightLossNot
@@ -165,29 +177,50 @@ export default function FinalCalculation({ currentPet }) {
               )}
             </>
           )}
-
           <Form.Group>
-            <Form.Control as="select" onChange={handleOnChange}>
+            <Form.Control as="select"
+              onChange={handleOnChange}
+            >
               <option value="0">Choose...</option>
               {state.results.length > 0
                 ? state.results
-                    .filter((food) => {
-                      //Remove petfood that do not match the current petType
-                      return food.petType.indexOf(currentPet.petType) >= 0;
-                    })
-                    .map((food, index) => {
-                      return (
-                        <option key={index} value={food._id}>
-                          {food.name}
-                        </option>
-                      );
-                    })
+                  .filter((food) => {
+                    //Remove petfood that do not match the current petType
+                    return food.petType.indexOf(currentPet.petType) >= 0;
+                  })
+                  .map((food, index) => {
+                    return <option key={index} value={food._id}>{food.name}</option>;
+                  })
                 : "No Foods Found"}
             </Form.Control>
           </Form.Group>
           <Form.Text className="text-muted">
       Your food not listed? <Link to = "/petfood">Click here to add it!</Link>
     </Form.Text>
+
+          <p >
+            {name}'s last recorded weight is {weight} lb's.
+      </p>
+          <Form>
+            <Row >
+              <Col md={6}>
+                <Form.Control
+                  onChange={handleChange}
+                  name="currentWeight"
+                  type="text"
+                  className="form-control"
+                  placeholder="Update weight"
+                />
+              </Col>
+              <Col xs={2}>
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="btn btn-primary">Submit
+            </Button>
+              </Col>
+            </Row>
+          </Form>
         </div>
       </div>
     </div>

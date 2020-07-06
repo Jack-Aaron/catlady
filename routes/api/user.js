@@ -14,13 +14,15 @@ router
   .get((req, res) => UserController.findByUserId(req, res, db.Pet))
   .post((req, res) => UserController.create(req, res, db.Pet));
 
-router
-  .route("/pets/:name")
-  .patch((req, res) => UserController.updatePet(req, res, db.Pet));
+// router
+//   .route("/pets/:name")
+//   // .patch((req, res) => UserController.updatePet(req, res, db.Pet));
 
 router
   .route("/pets/:id")
-  .get((req, res) => UserController.findOne(req, res, db.Pet));
+  .get((req, res) => UserController.findOne(req, res, db.Pet))
+  .delete((req, res) => UserController.remove(req, res, db.Pet))
+  .patch((req, res) => UserController.findOneUpdate(req, res, db.Pet));
 
 router
   .route("/petfood")
