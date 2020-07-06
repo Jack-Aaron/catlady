@@ -1,5 +1,11 @@
-.wrapper {
-    min-height: 100%;
-    padding-bottom: 100px;
+@media (orientation: landscape) {
+  .wrapper {
+    min-height: 86vmin;
   }
-  
+}
+
+@media (orientation: portrait) {
+  .wrapper {
+    min-height: 86vmax;
+  }
+}
