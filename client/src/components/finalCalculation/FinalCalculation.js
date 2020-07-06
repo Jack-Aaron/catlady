@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import question from "../../assets/questionmark.png"
+import "./style.css";
 
 export default function FinalCalculation({ currentPet }) {
   const [state, setState] = useState({
@@ -71,6 +73,12 @@ export default function FinalCalculation({ currentPet }) {
     </>
   );
 
+  const weightLossNot = (
+    <>
+      <h4>Test</h4>
+    </>
+  );
+
   return (
     <div className="row justify-content-center pt-5">
       <div className="col-md-6 col-md-offset-3">
@@ -105,26 +113,33 @@ export default function FinalCalculation({ currentPet }) {
                 {Math.ceil(packagesPerMonthLow)} and{" "}
                 {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
+              {(idealWeight < weight) ? (
+                weightLossNot
+          ) : (
               <p>
+                <h4> Weightloss: </h4>
                 For weightloss aim for {parseFloat(weightlossCal).toFixed(2)}{" "}
-                calories per day.
+                calories per day. {" "}
                 <OverlayTrigger
                 trigger="click"
                   overlay={
                     <Popover id={`popover`}>
                       <Popover.Title as="h3">Why are the calories higher than the low end suggestion?</Popover.Title>
                       <Popover.Content>
+                      In some cases suggested calories for weightloss maybe higher or lower than the base level suggested low end. 
                       Pet weightloss should always be a slow process for your pet's saftey. Gradually decreasing your pet's food will prevent complications that could lead to more serious illnesses.
                       For more information please tallk to your vet before starting a weightloss regimen. 
                       </Popover.Content>
                       </Popover>
                   }
                 >
-                  <button>?</button>
+                  <img src={question} id = "icon" alt="question"/>
                 </OverlayTrigger>
-              </p>
-            </>
-          )}
+              </p>)}
+          
+          
+              </>)}
+            
           <Form.Group>
             <Form.Control as="select" onChange={handleOnChange}>
               <option value="0">Choose...</option>

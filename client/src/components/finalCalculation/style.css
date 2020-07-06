@@ -1,0 +1,9 @@
+#icon{
+    height: 20px;
+    width: 20px;
+    border:1px solid grey;    
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+
+}
