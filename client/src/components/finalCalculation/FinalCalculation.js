@@ -5,8 +5,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import question from "../../assets/questionmark.png";
 import "./style.css";
+import BrowserRouter, {Link} from "react-router-dom";
 
 export default function FinalCalculation({ currentPet }) {
+
   const [state, setState] = useState({
     results: [],
   });
@@ -182,8 +184,10 @@ export default function FinalCalculation({ currentPet }) {
                     })
                 : "No Foods Found"}
             </Form.Control>
-            <br />
           </Form.Group>
+          <Form.Text className="text-muted">
+      Your food not listed? <Link to = "/petfood">Click here to add it!</Link>
+    </Form.Text>
         </div>
       </div>
     </div>
