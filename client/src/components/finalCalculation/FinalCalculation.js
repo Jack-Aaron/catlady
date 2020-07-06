@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button'
 
-export const FinalCalculation = ({ currentPet }) => {
+export const FinalCalculation = ({ currentPet, form, setForm }) => {
   const [state, setState] = useState({
     results: [],
   });
@@ -11,7 +14,7 @@ export const FinalCalculation = ({ currentPet }) => {
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
   let petType = currentPet.petType;
-  let weight = currentPet.currentWeight[currentPet.currentWeight.length -1 ];
+  let weight = currentPet.currentWeight[currentPet.currentWeight.length - 1];
   let inputFood = selectedFood.name;
   let ozPerPackage = selectedFood.ozPerPackage;
   let caloriesPerPackage = selectedFood.caloriesPerPackage;
@@ -54,13 +57,23 @@ export const FinalCalculation = ({ currentPet }) => {
 
   const handleOnChange = (event) => {
     const foodId = event.target.value
-    
+
     API.getCurrentFood(foodId)
       .then(res => {
         setSelectedFood(res.data)
       })
       .catch(err => console.log(err))
   };
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+        setForm({ ...form, [name]: value })
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+  }
 
   const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
 
@@ -89,20 +102,44 @@ export const FinalCalculation = ({ currentPet }) => {
             <Form.Control as="select"
               onChange={handleOnChange}
             >
-                  <option value="0">Choose...</option>
+              <option value="0">Choose...</option>
               {state.results.length > 0
                 ? state.results
-                .filter((food) => {
-                  //Remove petfood that do not match the current petType
-                  return food.petType.indexOf(currentPet.petType) >= 0;
-                })
-                .map((food, index) => {
-                  return <option key={index} value={food._id}>{food.name}</option>;
-                })
+                  .filter((food) => {
+                    //Remove petfood that do not match the current petType
+                    return food.petType.indexOf(currentPet.petType) >= 0;
+                  })
+                  .map((food, index) => {
+                    return <option key={index} value={food._id}>{food.name}</option>;
+                  })
                 : "No Foods Found"}
             </Form.Control>
             <br />
           </Form.Group>
+          <p >
+            {name}'s last recorded weight is {weight} lb's.
+      </p>
+          <Form>
+            <Row >
+              <Col md={6}>
+                <Form.Control
+                  onChange={handleChange}
+                  name="currentWeight"
+                  type="text"
+                  className="form-control"
+                  placeholder="Update weight"
+                />
+              </Col>
+              <Col xs={2}>
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="btn btn-primary">Submit
+            </Button>
+              </Col>
+            </Row>
+          </Form>
+
         </div>
       </div>
     </div>

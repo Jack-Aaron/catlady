@@ -134,6 +134,8 @@ const App = (props) => {
               ) : (
                   <FinalCalculation
                     currentPet={currentPet}
+                    form={form}
+                    setForm={setForm}
                   />
                 )
             }
