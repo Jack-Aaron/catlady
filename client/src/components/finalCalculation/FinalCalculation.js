@@ -6,6 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button'
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import question from "../../assets/questionmark.png";
+import "./style.css";
+import BrowserRouter, {Link} from "react-router-dom";
+
 
 export default function FinalCalculation({ setCurrentPet, currentPet, form, setForm }) {
   const [state, setState] = useState({
@@ -13,22 +17,31 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
   });
   const [selectedFood, setSelectedFood] = useState([]);
 
+  //Pet Variables
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
   let petType = currentPet.petType;
   let weight = currentPet.currentWeight[currentPet.currentWeight.length - 1];
   let idealWeight = currentPet.idealWeight;
+
+  //Food Variables
   let inputFood = selectedFood.name;
   let ozPerPackage = selectedFood.ozPerPackage;
   let caloriesPerPackage = selectedFood.caloriesPerPackage;
+  let caloriesPerOz = caloriesPerPackage / ozPerPackage;
+
+  //General Calculation Variables
   let totalHighEndAmount = 0;
   let totalLowEndAmount = 0;
   let lowEndCalories = 0;
   let highEndCalories = 0;
   let packagesPerMonthLow = 0;
   let packagesPerMonthHigh = 0;
-  let caloriesPerOz = caloriesPerPackage / ozPerPackage;
+
+  //Diet Variables
   let weightlossCal = (weight / 2.2) * 30 + 70;
+  let dietTotal = 0;
+  let  dietMealOz = 0;
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
@@ -36,6 +49,7 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
     calculatePackagesPerMonth();
+
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
@@ -48,6 +62,12 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
     packagesPerMonthLow = (lowEndCalories / caloriesPerPackage) * 30;
     packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
+  function dietCalculation(){
+    console.log("test");
+    dietTotal = weightlossCal/caloriesPerOz;
+    dietMealOz = dietTotal / mealNumber;
+  }
+ 
 
   useEffect(() => {
     API.getPetFood().then((food) => {
@@ -83,6 +103,8 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
 
   const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
 
+  const weightLossNot = <></>;
+
   return (
     <div className="row justify-content-center pt-5">
       <div className="col-md-6 col-md-offset-3">
@@ -117,26 +139,44 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
                   {Math.ceil(packagesPerMonthLow)} and{" "}
                   {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
+              {idealWeight < weight ? (
+                weightLossNot
+              ) : (
+                  <><h4> Weightloss: </h4>
                 <p>
-                  For weightloss aim for {parseFloat(weightlossCal).toFixed(2)}{" "}
-                calories per day.
-                <OverlayTrigger
+                  {dietCalculation()}
+                  For weightloss aim for {parseFloat(weightlossCal).toFixed(
+                    2
+                  )}{" "}
+                  calories per day.{" "}
+                  <OverlayTrigger
                     trigger="click"
                     overlay={
                       <Popover id={`popover`}>
-                        <Popover.Title as="h3">Why are the calories higher than the low end suggestion?</Popover.Title>
+                        <Popover.Title as="h3">
+                          Why are the calories higher than the low end
+                          suggestion?
+                        </Popover.Title>
                         <Popover.Content>
-                          Pet weightloss should always be a slow process for your pet's saftey. Gradually decreasing your pet's food will prevent complications that could lead to more serious illnesses.
-                          For more information please tallk to your vet before starting a weightloss regimen.
-                      </Popover.Content>
+                          In some cases suggested calories for weightloss maybe
+                          higher or lower than the base level suggested low end.
+                          Pet weightloss should always be a slow process for
+                          your pet's saftey. Gradually decreasing your pet's
+                          food will prevent complications that could lead to
+                          more serious illnesses. For more information please
+                          tallk to your vet before starting a weightloss
+                          regimen.
+                        </Popover.Content>
                       </Popover>
                     }
                   >
-                    <button>?</button>
+                    <img src={question} id="icon" alt="question" />
                   </OverlayTrigger>
                 </p>
-              </>
-            )}
+                  <p>This is about {parseFloat(dietTotal).toFixed(2)} oz per day and {parseFloat(dietMealOz).toFixed(2)} oz per meal.</p></>
+              )}
+            </>
+          )}
           <Form.Group>
             <Form.Control as="select"
               onChange={handleOnChange}
@@ -153,8 +193,11 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
                   })
                 : "No Foods Found"}
             </Form.Control>
-            <br />
           </Form.Group>
+          <Form.Text className="text-muted">
+      Your food not listed? <Link to = "/petfood">Click here to add it!</Link>
+    </Form.Text>
+
           <p >
             {name}'s last recorded weight is {weight} lb's.
       </p>
@@ -178,7 +221,6 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
               </Col>
             </Row>
           </Form>
-
         </div>
       </div>
     </div>
