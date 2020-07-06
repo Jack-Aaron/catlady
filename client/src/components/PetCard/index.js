@@ -12,12 +12,18 @@ const PetCard = (props) => {
 
     const handleClick = (event) => {
         let petId = event.target.name
-
         API.getCurrentPet(petId)
             .then(res => {
                 props.setCurrentPet(res.data)
                 history.replace(from)
             })
+    }
+
+    const handleDelete = () => {
+       console.log(props.id)
+        API.deletePet(props.id)
+        .then()
+        .catch(err => console.log(err))
     }
 
 
@@ -40,7 +46,7 @@ const PetCard = (props) => {
                     <Card.Title>{props.name}
                         <span as={Link}
                             style={{ float: 'right', color: 'red' }}
-                        // onClick={{ handleDelete }}
+                        onClick={handleDelete}
                         >X</span>
                     </Card.Title>
                     <Card.Subtitle>{props.type}</Card.Subtitle>

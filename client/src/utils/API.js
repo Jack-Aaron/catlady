@@ -32,5 +32,8 @@ export default {
   getCurrentFood: function (foodId) {
     return axios.get("/api/user/petfood/" + foodId);
   },
+  deletePet: function (petId) {
+    return axios.delete('/api/user/pets/' + petId);
+  }
 };
 
