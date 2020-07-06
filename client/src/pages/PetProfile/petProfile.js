@@ -2,10 +2,15 @@ import React from "react";
 import FinalCalculation from "../../components/finalCalculation/FinalCalculation";
 
 
-function PetProfile({currentPet}) {
+function PetProfile({setCurrentPet, currentPet, form, setForm}) {
   return (
     <>
-      <FinalCalculation currentPet={currentPet}/>
+      <FinalCalculation 
+      currentPet={currentPet}
+      setCurrentPet={setCurrentPet}
+      form={form}
+      setForm={setForm}
+      />
     </>
   );
 }

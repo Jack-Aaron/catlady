@@ -20,6 +20,17 @@ export default {
   getCurrentPet: function (petId) {
     return axios.get("/api/user/pets/"+ petId);
   },
+
+
+
+  updateWeight: function (petId, weight) {
+    console.log(petId)
+    console.log(weight)
+    return axios.patch("/api/user/pets/"+ petId, weight);
+  },
+
+
+
   savePet: function (PetData){
     return axios.post("/api/user/pets", PetData);
   },
