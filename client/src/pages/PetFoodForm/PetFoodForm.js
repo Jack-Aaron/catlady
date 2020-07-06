@@ -2,6 +2,11 @@ import React from 'react';
 import { useHistory, useLocation } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from '../../components/Container';
+import Card from 'react-bootstrap/Card';
 import Form from "react-bootstrap/Form";
 
 function PetFoodForm({ form, setForm }) {
@@ -16,7 +21,7 @@ function PetFoodForm({ form, setForm }) {
         setForm({ ...form, [name]: value })
     };
 
-    function handleFormSubmit(event) {
+    function handleFormSubmit(event) { 
         event.preventDefault();
         if (form.name && form.calPer && form.ozPer && form.petType) {
             API.savePetFood({
@@ -40,12 +45,13 @@ function PetFoodForm({ form, setForm }) {
     };
 
     return (
-        <div className="row justify-content-center pt-5">
-            <div className="col-md-6 col-md-offset-3">
-                <div className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
-                    <h2>Enter a Pet Food</h2>
-                    <form className="login">
-                        <div className="form-group">
+        <Container>
+        <Row className="row justify-content-center pt-5">
+            <Col className="col-md-6 col-md-offset-3">
+                <Card className="card p-4" id="card" style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}>
+                    <Card.Body><h2>Enter a Pet Food</h2>
+                    <Form className="login">
+                        <Form.Group className="form-group">
                             <Form.Label>Pet Food Name: </Form.Label>
                             <Input
                                 onChange={handleChange}
@@ -125,17 +131,19 @@ function PetFoodForm({ form, setForm }) {
                                 name="moisture"
                                 type="text"
                                 placeholder="(Optional)" />
-                        </div>
-                        <button
+                        </Form.Group>
+                        <Button
                             disabled={!(form.name && form.calPer && form.ozPer && form.petType)}
                             onClick={handleFormSubmit}
                             type="submit"
                             className="btn btn-primary">Submit
-                    </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </Button>
+                    </Form>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </Row>
+        </Container>
     )
 }
 

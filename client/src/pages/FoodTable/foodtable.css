@@ -2,6 +2,9 @@ h2 {
     text-align: center;
     padding-top: 2em;
 }
+h3 {
+    text-align: center;
+}
 
 .petfoods {
    padding-top: 2em
@@ -9,4 +12,11 @@ h2 {
 
 th, td {
     text-align: start;
+}
+th {
+    background-color: #E5989B;
+}
+tr {
+    border-top: solid;
+    border-top-color: #B5838D;
 }

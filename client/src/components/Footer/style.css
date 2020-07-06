@@ -1,12 +1,22 @@
 .footer {
-  background: #b5838d;
-  color: #ffcdb2;
-  text-align: center;
-  line-height: 4.24em;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  
+  background: #B5838D;
+  color: #FFCDB2;
+  text-align: center;
+}
+
+@media (orientation: landscape) {
+  .footer {
+    height: 10vh;
+    line-height: 10vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .footer {
+    height: 10vh;
+    line-height: 10vh;
+  }
 }
