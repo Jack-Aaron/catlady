@@ -11,7 +11,7 @@ export const FinalCalculation = ({ currentPet }) => {
   let name = currentPet.petName;
   let mealNumber = currentPet.mealsPerDay;
   let petType = currentPet.petType;
-  let weight = currentPet.currentWeight;
+  let weight = currentPet.currentWeight[currentPet.currentWeight.length -1 ];
   let inputFood = selectedFood.name;
   let ozPerPackage = selectedFood.ozPerPackage;
   let caloriesPerPackage = selectedFood.caloriesPerPackage;
