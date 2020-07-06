@@ -1,7 +1,12 @@
 .footer {
-    background: #B5838D;
-    color: #FFCDB2;
-    text-align: center;
-    line-height: 4.24em;
-  }
+  background: #b5838d;
+  color: #ffcdb2;
+  text-align: center;
+  line-height: 4.24em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   
+}
