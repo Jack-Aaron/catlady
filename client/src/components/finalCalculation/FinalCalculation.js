@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 
-export const FinalCalculation = ({ currentPet }) => {
+export default function FinalCalculation ({ currentPet }) {
   const [state, setState] = useState({
     results: [],
   });

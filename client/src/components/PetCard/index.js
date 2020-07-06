@@ -8,7 +8,7 @@ import './style.css';
 const PetCard = (props) => {
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/finalcalculation" } };
+    let { from } = location.state || { from: { pathname: "/petProfile" } };
 
     function handleClick(event) {
         let petId = event.target.name
