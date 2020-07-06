@@ -19,15 +19,6 @@ const PetCard = (props) => {
             })
     }
 
-    const handleDelete = () => {
-       console.log(props.id)
-        API.deletePet(props.id)
-        .then()
-        .catch(err => console.log(err))
-    }
-
-
-
     return (
         <div>
             <Card
@@ -46,7 +37,7 @@ const PetCard = (props) => {
                     <Card.Title>{props.name}
                         <span as={Link}
                             style={{ float: 'right', color: 'red' }}
-                        onClick={handleDelete}
+                        onClick={() => props.handleDelete(props.id)}
                         >X</span>
                     </Card.Title>
                     <Card.Subtitle>{props.type}</Card.Subtitle>

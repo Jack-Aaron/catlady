@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../utils/API";
+import Alert from 'react-bootstrap/Alert'
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Header from "../components/Header";
@@ -13,16 +14,24 @@ import Dog from '../assets/dog.png';
 
 
 function Dashboard(props) {
-  
+
   const [petsState, setPetsState] = useState([]);
-  
 
-  useEffect(() => {
+  useEffect(() => loadPets(), []);
+
+  const loadPets = () => {
     API.getPets().then((res) => {
-      setPetsState(res.data);
+      setPetsState(res.data)
     })
-  }, []);
+      .catch(err => console.log(err))
+  }
 
+  const handleDelete = (petId) => {
+    console.log(petId)
+    API.deletePet(petId)
+      .then(() => setPetsState(petsState.filter((pet) => pet._id !== petId)))
+      .catch(err => console.log(err))
+  }
 
   const noPets = <div> No Pets Found</div>;
 
@@ -43,11 +52,12 @@ function Dashboard(props) {
                     id={pet._id}
                     currentPet={props.currentPet}
                     setCurrentPet={props.setCurrentPet}
+                    handleDelete={handleDelete}
                   />
                 </Col >
               )) : noPets}
         </Row>
-        <hr style={{width:"80%"}}/>
+        <hr style={{ width: "80%" }} />
         <Row className="justify-content-around">
           <Col md={6}>
             <AddBtn />

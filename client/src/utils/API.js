@@ -36,4 +36,3 @@ export default {
     return axios.delete('/api/user/pets/' + petId);
   }
 };
-
