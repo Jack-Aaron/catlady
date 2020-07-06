@@ -19,6 +19,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
 import { FinalCalculation } from "./components/finalCalculation/FinalCalculation";
+import PetProfile from "./pages/PetProfile/petProfile";
 
 const App = (props) => {
   const history = useHistory();
@@ -127,12 +128,12 @@ const App = (props) => {
 
           <Route
             exact
-            path="/finalcalculation"
+            path="/petProfile"
             render={(props) =>
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                  <FinalCalculation
+                  <PetProfile
                     currentPet={currentPet}
                   />
                 )
