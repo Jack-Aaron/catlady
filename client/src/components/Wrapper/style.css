@@ -1,11 +1,13 @@
 @media (orientation: landscape) {
   .wrapper {
     min-height: 86vmin;
+    padding-bottom: 6vh;
   }
 }
 
 @media (orientation: portrait) {
   .wrapper {
     min-height: 86vmax;
+    padding-bottom: 6vh;
   }
 }

@@ -1,5 +1,5 @@
 .footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   background: #B5838D;
@@ -16,7 +16,7 @@
 
 @media (orientation: portrait) {
   .footer {
-    height: 8vh;
-    line-height: 8vh;
+    height: 10vh;
+    line-height: 10vh;
   }
 }
