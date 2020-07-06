@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-export default function FinalCalculation({ currentPet,form,setForm }) {
+export default function FinalCalculation({ setCurrentPet, currentPet, form, setForm }) {
   const [state, setState] = useState({
     results: [],
   });
@@ -70,12 +70,15 @@ export default function FinalCalculation({ currentPet,form,setForm }) {
 
   function handleChange(event) {
     const { name, value } = event.target;
-        setForm({ ...form, [name]: value })
+    setForm({ ...form, [name]: value })
   };
 
   function handleSubmit(event) {
     event.preventDefault()
-
+    API.updateWeight(currentPet._id, form)
+      .then(res => {
+        setCurrentPet(res.data);
+      })
   }
 
   const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
@@ -96,44 +99,44 @@ export default function FinalCalculation({ currentPet,form,setForm }) {
           {selectedFood.length === 0 ? (
             noFood
           ) : (
-            <>
-              <p>
-                Using {inputFood} they will need between{" "}
-                {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
+              <>
+                <p>
+                  Using {inputFood} they will need between{" "}
+                  {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
+                  {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
                 maintain their current weight.
               </p>
-              <p>
-                That is between{" "}
-                {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
+                <p>
+                  That is between{" "}
+                  {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
+                  {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
                 meal.
               </p>
-              <p>
-                In a 30 day period you will need between{" "}
-                {Math.ceil(packagesPerMonthLow)} and{" "}
-                {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
+                <p>
+                  In a 30 day period you will need between{" "}
+                  {Math.ceil(packagesPerMonthLow)} and{" "}
+                  {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
-              <p>
-                For weightloss aim for {parseFloat(weightlossCal).toFixed(2)}{" "}
+                <p>
+                  For weightloss aim for {parseFloat(weightlossCal).toFixed(2)}{" "}
                 calories per day.
                 <OverlayTrigger
-                trigger="click"
-                  overlay={
-                    <Popover id={`popover`}>
-                      <Popover.Title as="h3">Why are the calories higher than the low end suggestion?</Popover.Title>
-                      <Popover.Content>
-                      Pet weightloss should always be a slow process for your pet's saftey. Gradually decreasing your pet's food will prevent complications that could lead to more serious illnesses.
-                      For more information please tallk to your vet before starting a weightloss regimen. 
+                    trigger="click"
+                    overlay={
+                      <Popover id={`popover`}>
+                        <Popover.Title as="h3">Why are the calories higher than the low end suggestion?</Popover.Title>
+                        <Popover.Content>
+                          Pet weightloss should always be a slow process for your pet's saftey. Gradually decreasing your pet's food will prevent complications that could lead to more serious illnesses.
+                          For more information please tallk to your vet before starting a weightloss regimen.
                       </Popover.Content>
                       </Popover>
-                  }
-                >
-                  <button>?</button>
-                </OverlayTrigger>
-              </p>
-            </>
-          )}
+                    }
+                  >
+                    <button>?</button>
+                  </OverlayTrigger>
+                </p>
+              </>
+            )}
           <Form.Group>
             <Form.Control as="select"
               onChange={handleOnChange}

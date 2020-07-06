@@ -135,6 +135,7 @@ const App = (props) => {
               ) : (
                   <PetProfile
                     currentPet={currentPet}
+                    setCurrentPet={setCurrentPet}
                     form={form}
                     setForm={setForm}
                   />
