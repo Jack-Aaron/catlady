@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
-import Jumbrotron from 'react-bootstrap/Jumbotron';
 import API from "../../utils/API";
 import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
 import './Login.css'
@@ -38,8 +37,8 @@ function Login(props) {
     };
 
     return (
-        <>
-            <Jumbotron style={{ backgroundColor: '#FFB4A2' }} fluid>
+        <div className="container-fluid" style={{width:"100%"}}>
+            <Jumbotron style={{ backgroundColor: '#FFB4A2', width:"100%" }} fluid>
                 <h1 style={{
                     textAlign: 'center',
                     color: '#6D6875',
@@ -62,7 +61,7 @@ function Login(props) {
                     {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
                 </LoginSignupForm>
             </Container>
-        </>
+        </div>
     )
 }
 
