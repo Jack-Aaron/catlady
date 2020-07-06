@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import API from "../utils/API";
-import Alert from 'react-bootstrap/Alert'
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Header from "../components/Header";
@@ -27,11 +26,11 @@ function Dashboard(props) {
   }
 
   const handleDelete = (petId) => {
-    console.log(petId)
-    API.deletePet(petId)
-      .then(() => setPetsState(petsState.filter((pet) => pet._id !== petId)))
-      .catch(err => console.log(err))
-  }
+      console.log(petId)
+      API.deletePet(petId)
+        .then(() => setPetsState(petsState.filter((pet) => pet._id !== petId)))
+        .catch(err => console.log(err))
+    }
 
   const noPets = <div> No Pets Found</div>;
 

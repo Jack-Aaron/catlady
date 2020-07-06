@@ -37,7 +37,10 @@ const PetCard = (props) => {
                     <Card.Title>{props.name}
                         <span as={Link}
                             style={{ float: 'right', color: 'red' }}
-                        onClick={() => props.handleDelete(props.id)}
+                            onClick={() => {
+                                if (window.confirm('Are you sure you want to remove this Pet?'))
+                                    props.handleDelete(props.id)
+                            }}
                         >X</span>
                     </Card.Title>
                     <Card.Subtitle>{props.type}</Card.Subtitle>
