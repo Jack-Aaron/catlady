@@ -16,8 +16,7 @@ import FoodTable from "./pages/FoodTable/FoodTable";
 import PetProfile from "./pages/PetProfile/petProfile";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import PetInfoForm from "./components/petInfoForm/petInfoForm";
-import PetProfile from "./pages/PetProfile/petProfile";
+
 
 const App = (props) => {
 

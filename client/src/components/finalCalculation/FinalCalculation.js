@@ -7,11 +7,9 @@ import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card'
 import Col from "react-bootstrap/Col";
 import Image from 'react-bootstrap/Image';
-import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Row from "react-bootstrap/Row";
-import Chart from "../Chart/Chart";
 import question from "../../assets/questionmark.png";
 
 
