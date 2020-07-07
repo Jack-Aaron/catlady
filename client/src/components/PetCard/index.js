@@ -1,15 +1,17 @@
-import React, { Link } from 'react';
+import React, { Link, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 import API from "../../utils/API";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 toast.configure()
 
+
 const PetCard = (props) => {
+    let history = useHistory();
 
     const CustomToast = ({ closeToast }) => {
         return (
@@ -25,10 +27,7 @@ const PetCard = (props) => {
         )
     }
 
-    let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/petProfile" } };
-
+   
     const notify = () => {
         toast.warn(<CustomToast />, {
             position: toast.POSITION.TOP_CENTER,
@@ -41,7 +40,7 @@ const PetCard = (props) => {
         API.getCurrentPet(petId)
             .then(res => {
                 props.setCurrentPet(res.data)
-                history.replace(from)
+                history.push("/petProfile")
             })
     }
 
@@ -54,12 +53,17 @@ const PetCard = (props) => {
                     backgroundColor: '#FFB4A2',
                     border: '3px solid #E5989B',
                     borderRadius: '10px',
-                    filter: 'grayscale(50%)'
+                    filter: 'grayscale(50%)',
+
                 }}>
-                <Card.Img src={props.imgsrc} className='petImg' alt="Card image cap" style={{
-                    maxHeight: '300px',
-                    maxWidth: '200px'
-                }} />
+                <Card.Img
+                    onLoad={props.imageLoaded}
+                    src={props.imgsrc}
+                    className='petImg' alt="Card image cap"
+                    style={{
+                        maxHeight: '300px',
+                        maxWidth: '200px'
+                    }} />
                 <Card.Body>
                     <Card.Title>{props.name}
                         <span as={Link}
