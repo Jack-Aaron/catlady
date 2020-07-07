@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./foodtable.css"
 import API from "../../utils/API"
 import Table from "react-bootstrap/Table";
