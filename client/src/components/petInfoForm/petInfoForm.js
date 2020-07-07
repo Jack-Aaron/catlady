@@ -103,6 +103,7 @@ export default function PetInfoForm({ form, setForm }) {
             <Button
               disabled={!(form.petType && form.petName && form.currentWeight && form.idealWeight)}
               type="button"
+              className="btn btn-secondary"
               onClick={handleFormSubmit}
             > Submit</Button>
 

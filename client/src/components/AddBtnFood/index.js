@@ -25,7 +25,7 @@ const AddBtnFood = () => {
                             <Card.Title>Add a new food!</Card.Title>
 
                             <Button className='AddBtn' block
-                                variant='primary'
+                                className="btn btn-secondary"
                                 onClick={() => history.push("/petfood")}>
                                 Add Food </Button>
 

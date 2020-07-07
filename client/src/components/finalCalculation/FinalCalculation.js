@@ -222,7 +222,7 @@ export default function FinalCalculation({
                   <Button
                     onClick={handleSubmit}
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                   >
                     Submit
                 </Button>
