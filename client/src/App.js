@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  useHistory,
+  Redirect
 } from "react-router-dom";
 import Navigation from "./components/Navbar";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
@@ -16,10 +18,10 @@ import FoodTable from "./pages/FoodTable/FoodTable";
 import PetProfile from "./pages/PetProfile/petProfile";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
+toast.configure()
 const App = () => {
-  const history = useHistory();
+
   //For food form and pet form
   const initalForm = {};
 
@@ -37,7 +39,7 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div className='App'>
         <Navigation setUserData={setUserData} />
         <Wrapper>
           <Route
@@ -118,7 +120,7 @@ const App = () => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                  <FoodTable/>
+                  <FoodTable />
                 )
             }
           />

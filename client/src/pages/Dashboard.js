@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import API from "../utils/API";
+import Button from 'react-bootstrap/Button';
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Header from "../components/Header";
@@ -7,10 +10,8 @@ import Container from "../components/Container";
 import PetCard from "../components/PetCard";
 import AddBtn from "../components/AddBtn";
 import AddBtnFood from "../components/AddBtnFood";
-import ViewFood from "../components/ViewFood";
 import Cat from '../assets/cat.png';
 import Dog from '../assets/dog.png';
-
 
 function Dashboard(props) {
 
@@ -26,11 +27,10 @@ function Dashboard(props) {
   }
 
   const handleDelete = (petId) => {
-      console.log(petId)
-      API.deletePet(petId)
-        .then(() => setPetsState(petsState.filter((pet) => pet._id !== petId)))
-        .catch(err => console.log(err))
-    }
+    API.deletePet(petId)
+      .then(() => setPetsState(petsState.filter((pet) => pet._id !== petId)))
+      .catch(err => console.log(err))
+  }
 
   const noPets = <div> No Pets Found</div>;
 
