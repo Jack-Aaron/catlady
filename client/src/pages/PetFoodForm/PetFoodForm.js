@@ -8,15 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Container from '../../components/Container';
 import Card from 'react-bootstrap/Card';
 import Form from "react-bootstrap/Form";
-import Popover from "react-bootstrap/Popover";
-import Image from "react-bootstrap/Image";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import question from "../../assets/questionmark.png";
 
 function PetFoodForm({ form, setForm }) {
-  let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
 
     let history = useHistory();
 
