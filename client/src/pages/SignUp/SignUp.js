@@ -33,7 +33,7 @@ function SignUp() {
     };
 
     return (
-        <div className="container-fluid" style={{width:"100%"}}>
+        <>
             <Jumbotron style={{ backgroundColor: '#FFB4A2', width:"100%" }} fluid>
                 <h1 style={{
                     textAlign: 'center',
@@ -57,7 +57,7 @@ function SignUp() {
                 {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
             </LoginSignupForm>
             </Container>
-        </div>
+        </>
     )
 }
 

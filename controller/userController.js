@@ -17,7 +17,12 @@ module.exports = {
     model
       .findOneAndUpdate(
         { _id: req.params.id },
-        { $push: { currentWeight: req.body.currentWeight } },
+        {
+          $push: {
+            currentWeight: req.body.currentWeight,
+            day: new Date().toISOString(),
+          },
+        },
         { new: true }
       )
       .then((dbModel) => res.json(dbModel))
