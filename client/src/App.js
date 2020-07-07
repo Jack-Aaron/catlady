@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,8 +20,8 @@ import PetProfile from "./pages/PetProfile/petProfile";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-const App = (props) => {
+toast.configure()
+const App = () => {
 
   //For food form and pet form
   const initalForm = {};
@@ -37,7 +40,7 @@ const App = (props) => {
 
   return (
     <Router>
-      <div>
+      <div className='App'>
         <Navigation setUserData={setUserData} />
         <Wrapper>
           <Route
@@ -118,7 +121,7 @@ const App = (props) => {
               userData.username === "" ? (
                 <Redirect to="/login" />
               ) : (
-                  <FoodTable/>
+                  <FoodTable />
                 )
             }
           />
