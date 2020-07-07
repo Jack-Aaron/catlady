@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Chart from "../Chart/Chart";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import Col from "react-bootstrap/Col";
@@ -8,6 +9,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import question from "../../assets/questionmark.png";
 import "./style.css";
+import BrowserRouter, { Link } from "react-router-dom";
 
 import PetFoodDropdown from "../petFoodDropdown/petFoodDropdown";
 
@@ -112,18 +114,20 @@ export default function FinalCalculation({
   const weightLossNot = "";
 
   return (
-    <div className="row justify-content-center pt-5">
-      <div className="col-md-6 col-md-offset-3">
-        <div
-          className="card p-4"
-          id="card"
-          style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}
-        >
-          <h1>{name}</h1>
-          <p>
-            Your {petType} will need between {lowEndCalories} and{" "}
-            {highEndCalories} calories per day.
+    <>
+      <div className="row justify-content-center pt-5">
+        <div className="col-md-6 col-md-offset-3">
+          <div
+            className="card p-4"
+            id="card"
+            style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}
+          >
+            <h1>{name}</h1>
+            <p>
+              Your {petType} will need between {lowEndCalories} and{" "}
+              {highEndCalories} calories per day.
           </p>
+
           {selectedFood.length === 0 ? (
             noFood
           ) : (
@@ -224,8 +228,12 @@ export default function FinalCalculation({
               </Col>
             </Row>
           </Form>
+
         </div>
       </div>
-    </div>
+
+      <Chart currentPet={currentPet} />
+
+    </>
   );
 }

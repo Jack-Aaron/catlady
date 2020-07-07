@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
-import Jumbrotron from 'react-bootstrap/Jumbotron';
 import API from "../../utils/API";
 import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
 import './Login.css'
@@ -39,30 +38,30 @@ function Login(props) {
 
     return (
         <>
-            <Jumbotron style={{ backgroundColor: '#FFB4A2' }} fluid>
-                <h1 style={{
-                    textAlign: 'center',
-                    color: '#6D6875',
-                    fontFamily: 'Lato'
-                }}>Manage The Diets Of All Your Pets</h1>
-            </Jumbotron>
-            <Container>
-                <LoginSignupForm
-                    formname={"Login Form"}
-                    handleChange={handleChange}
-                    handleFormSubmit={handleFormSubmit}
-                    buttonText={"Login"}
-                    formUser={formObject.username}
-                    formPass={formObject.password}
-                    uValue={formObject.username || ""}
-                    pValue={formObject.password || ""}
-                >
-                    <p>Or Sign Up <a href="/signup">Here</a></p>
-                    {formObject.err === 401 ? <div className="alert-danger">Error: Username or password is incorrect</div> : null}
-                    {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
-                </LoginSignupForm>
-            </Container>
-        </>
+        <Jumbotron style={{ backgroundColor: '#FFB4A2' }} fluid>
+            <h1 style={{
+                textAlign: 'center',
+                color: '#6D6875',
+                fontFamily: 'Lato'
+            }}>Manage The Diets Of All Your Pets</h1>
+        </Jumbotron>
+        <Container>
+            <LoginSignupForm
+                formname={"Login Form"}
+                handleChange={handleChange}
+                handleFormSubmit={handleFormSubmit}
+                buttonText={"Login"}
+                formUser={formObject.username}
+                formPass={formObject.password}
+                uValue={formObject.username || ""}
+                pValue={formObject.password || ""}
+            >
+                <p>Or Sign Up <a href="/signup">Here</a></p>
+                {formObject.err === 401 ? <div className="alert-danger">Error: Username or password is incorrect</div> : null}
+                {formObject.err === 500 ? <div className="alert-danger">Error: Sorry we are currently experiencing issues</div> : null}
+            </LoginSignupForm>
+        </Container>
+    </>
     )
 }
 
