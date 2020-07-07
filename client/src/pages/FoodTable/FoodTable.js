@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./foodtable.css"
 import API from "../../utils/API"
 import Table from "react-bootstrap/Table";
@@ -59,15 +59,21 @@ function FoodTable() {
                                         <th>Protein</th>
                                         <th>Fat</th>
                                         <th>Carbs</th>
+                                        <th>Ash</th>
+                                        <th>Fiber</th>
+                                        <th>Moisture</th>
                                     </tr>
                                     {foodState.map((food) => (
                                         <tr key={food._id}>
                                             <td>{food.name}</td>
                                             <td>{food.petType} Food</td>
                                             <td>{food.ingredients}</td>
-                                            <td>{food.protein}</td>
-                                            <td>{food.fat}</td>
-                                            <td>{food.carbs}</td>
+                                            <td>{food.protein}%</td>
+                                            <td>{food.fat}%</td>
+                                            <td>{food.carbs}%</td>
+                                            <td>{food.ash}%</td>
+                                            <td>{food.fiber}%</td>
+                                            <td>{food.moisture}%</td>
                                         </tr>
 
                                     ))}

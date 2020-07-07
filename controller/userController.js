@@ -28,12 +28,6 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findById: function (req, res, model) {
-    model
-      .findById(req.params.id)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
   findByUserId: function (req, res, model) {
     model
       .find({ userId: req.user._id })
@@ -50,12 +44,6 @@ module.exports = {
     model
       .findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  save: function (req, res, model) {
-    model
-      .save(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

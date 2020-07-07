@@ -7,6 +7,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import "./App.css";
 import Navigation from "./components/Navbar";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
 import Wrapper from "./components/Wrapper";

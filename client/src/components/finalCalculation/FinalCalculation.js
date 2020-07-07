@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
+import "./style.css";
+import Chart from "../Chart/Chart";
+import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card'
 import Col from "react-bootstrap/Col";
 import Image from 'react-bootstrap/Image';
-import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Row from "react-bootstrap/Row";
-import Chart from "../Chart/Chart";
 import question from "../../assets/questionmark.png";
-import "./style.css";
+
 
 import PetFoodDropdown from "../petFoodDropdown/petFoodDropdown";
 
@@ -112,8 +113,6 @@ export default function FinalCalculation({
     </>
   );
 
-  const weightLossNot = "";
-
   return (
     <>
       <Row className="row justify-content-center pt-5">
@@ -185,6 +184,7 @@ export default function FinalCalculation({
                                     </Popover>
                                   }
                                 >
+
                                   <Image src={question} id="icon" alt="question" />
                                 </OverlayTrigger>
                               </>
@@ -232,6 +232,7 @@ export default function FinalCalculation({
           </Card>
         </Col>
       </Row>
+
 
       <Chart currentPet={currentPet} />
 
