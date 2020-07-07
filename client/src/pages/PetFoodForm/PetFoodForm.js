@@ -25,6 +25,7 @@ function PetFoodForm({ form, setForm }) {
         event.preventDefault();
         if (form.name && form.calPer && form.ozPer && form.petType) {
             API.savePetFood({
+                brand:form.brand,
                 name: form.name,
                 petType: form.petType,
                 caloriesPerPackage: form.calPer,
@@ -50,6 +51,11 @@ function PetFoodForm({ form, setForm }) {
                         <Card.Body><h2>Enter a Pet Food</h2>
                             <Form className="login">
                                 <Form.Group className="form-group">
+                                    <Form.Label>Pet Food Brand: </Form.Label>
+                                    <Input
+                                        onChange={handleChange}
+                                        name="brand"
+                                        type="text" />
                                     <Form.Label>Pet Food Name: </Form.Label>
                                     <Input
                                         onChange={handleChange}
