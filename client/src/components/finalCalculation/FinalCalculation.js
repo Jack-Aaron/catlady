@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button'
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import question from "../../assets/questionmark.png";
 import "./style.css";
-import BrowserRouter, {Link} from "react-router-dom";
 
+import PetFoodDropdown from "../petFoodDropdown/petFoodDropdown";
 
-export default function FinalCalculation({ setCurrentPet, currentPet, form, setForm }) {
+export default function FinalCalculation({
+  setCurrentPet,
+  currentPet,
+  form,
+  setForm,
+}) {
   const [state, setState] = useState({
     results: [],
   });
@@ -41,7 +46,7 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
   //Diet Variables
   let weightlossCal = (weight / 2.2) * 30 + 70;
   let dietTotal = 0;
-  let  dietMealOz = 0;
+  let dietMealOz = 0;
 
   if (petType === "Cat") {
     lowEndCalories = weight * 20;
@@ -49,7 +54,6 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
     totalHighEndAmount = highEndCalories / caloriesPerOz;
     calculatePackagesPerMonth();
-
   } else {
     lowEndCalories = weight * 25;
     totalLowEndAmount = lowEndCalories / caloriesPerOz;
@@ -62,12 +66,11 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
     packagesPerMonthLow = (lowEndCalories / caloriesPerPackage) * 30;
     packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
-  function dietCalculation(){
+  function dietCalculation() {
     console.log("test");
-    dietTotal = weightlossCal/caloriesPerOz;
+    dietTotal = weightlossCal / caloriesPerOz;
     dietMealOz = dietTotal / mealNumber;
   }
- 
 
   useEffect(() => {
     API.getPetFood().then((food) => {
@@ -90,20 +93,23 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setForm({ ...form, [name]: value })
-  };
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    API.updateWeight(currentPet._id, form)
-      .then(res => {
-        setCurrentPet(res.data);
-      })
+    setForm({ ...form, [name]: value });
   }
 
-  const noFood = <><h4>Select a Food to See Feeding Recomendation</h4></>
+  function handleSubmit(event) {
+    event.preventDefault();
+    API.updateWeight(currentPet._id, form).then((res) => {
+      setCurrentPet(res.data);
+    });
+  }
 
-  const weightLossNot = <></>;
+  const noFood = (
+    <>
+      <h4>Select a Food to See Feeding Recomendation</h4>
+    </>
+  );
+
+  const weightLossNot = "";
 
   return (
     <div className="row justify-content-center pt-5">
@@ -121,88 +127,83 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
           {selectedFood.length === 0 ? (
             noFood
           ) : (
-              <>
-                <p>
-                  Using {inputFood} they will need between{" "}
-                  {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
-                  {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
+            <>
+              <p>
+                Using {inputFood} they will need between{" "}
+                {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
+                {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
                 maintain their current weight.
               </p>
-                <p>
-                  That is between{" "}
-                  {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
-                  {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
+              <p>
+                That is between{" "}
+                {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
+                {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
                 meal.
               </p>
-                <p>
-                  In a 30 day period you will need between{" "}
-                  {Math.ceil(packagesPerMonthLow)} and{" "}
-                  {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
+              <p>
+                In a 30 day period you will need between{" "}
+                {Math.ceil(packagesPerMonthLow)} and{" "}
+                {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
-              {idealWeight < weight ? (
-                weightLossNot
+              {idealWeight >= weight ? (
+                ""
               ) : (
-                  <><h4> Weightloss: </h4>
-                <p>
-                  {dietCalculation()}
-                  For weightloss aim for {parseFloat(weightlossCal).toFixed(
-                    2
-                  )}{" "}
-                  calories per day.{" "}
-                  <OverlayTrigger
-                    trigger="click"
-                    overlay={
-                      <Popover id={`popover`}>
-                        <Popover.Title as="h3">
-                          Why are the calories higher than the low end
-                          suggestion?
-                        </Popover.Title>
-                        <Popover.Content>
-                          In some cases suggested calories for weightloss maybe
-                          higher or lower than the base level suggested low end.
-                          Pet weightloss should always be a slow process for
-                          your pet's saftey. Gradually decreasing your pet's
-                          food will prevent complications that could lead to
-                          more serious illnesses. For more information please
-                          tallk to your vet before starting a weightloss
-                          regimen.
-                        </Popover.Content>
-                      </Popover>
-                    }
-                  >
-                    <img src={question} id="icon" alt="question" />
-                  </OverlayTrigger>
-                </p>
-                  <p>This is about {parseFloat(dietTotal).toFixed(2)} oz per day and {parseFloat(dietMealOz).toFixed(2)} oz per meal.</p></>
+                <>
+                  <h4> Weightloss: </h4>
+                  <p>
+                    {dietCalculation()}
+                    For weightloss aim for{" "}
+                    {parseFloat(weightlossCal).toFixed(2)} calories per day.{" "}
+                    {weightlossCal < lowEndCalories ? (
+                      ""
+                    ) : (
+                      <>
+                        <OverlayTrigger
+                          trigger="click"
+                          overlay={
+                            <Popover id={`popover`}>
+                              <Popover.Title as="h3">
+                                Why are the calories higher than the low end
+                                suggestion?
+                              </Popover.Title>
+                              <Popover.Content>
+                                In some cases suggested calories for weightloss
+                                maybe higher or lower than the base level
+                                suggested low end. Pet weightloss should always
+                                be a slow process for your pet's saftey.
+                                Gradually decreasing your pet's food will
+                                prevent complications that could lead to more
+                                serious illnesses. For more information please
+                                tallk to your vet before starting a weightloss
+                                regimen.
+                              </Popover.Content>
+                            </Popover>
+                          }
+                        >
+                          <img src={question} id="icon" alt="question" />
+                        </OverlayTrigger>
+                      </>
+                    )}
+                  </p>
+                  <p>
+                    This is about {parseFloat(dietTotal).toFixed(2)} oz per day
+                    and {parseFloat(dietMealOz).toFixed(2)} oz per meal.
+                  </p>
+                </>
               )}
             </>
           )}
-          <Form.Group>
-            <Form.Control as="select"
-              onChange={handleOnChange}
-            >
-              <option value="0">Choose...</option>
-              {state.results.length > 0
-                ? state.results
-                  .filter((food) => {
-                    //Remove petfood that do not match the current petType
-                    return food.petType.indexOf(currentPet.petType) >= 0;
-                  })
-                  .map((food, index) => {
-                    return <option key={index} value={food._id}>{food.name}</option>;
-                  })
-                : "No Foods Found"}
-            </Form.Control>
-          </Form.Group>
-          <Form.Text className="text-muted">
-      Your food not listed? <Link to = "/petfood">Click here to add it!</Link>
-    </Form.Text>
+          <PetFoodDropdown
+            results={state.results}
+            currentPet={currentPet}
+            handleOnChange={handleOnChange}
+          />
 
-          <p >
+          <p>
             {name}'s last recorded weight is {weight} lb's.
-      </p>
+          </p>
           <Form>
-            <Row >
+            <Row>
               <Col md={6}>
                 <Form.Control
                   onChange={handleChange}
@@ -216,8 +217,10 @@ export default function FinalCalculation({ setCurrentPet, currentPet, form, setF
                 <Button
                   onClick={handleSubmit}
                   type="submit"
-                  className="btn btn-primary">Submit
-            </Button>
+                  className="btn btn-primary"
+                >
+                  Submit
+                </Button>
               </Col>
             </Row>
           </Form>
