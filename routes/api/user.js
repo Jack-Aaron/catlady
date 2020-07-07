@@ -3,7 +3,7 @@ const UserController = require("../../controller/userController");
 const db = require("../../models");
 const passport = require("../../config/passport");
 
-// Matches with "/api/user/"
+// All routes prefixed with "/api/user/"
 router
   .route("/")
   .get((req, res) => UserController.findAll(req, res, db.User))
@@ -13,10 +13,6 @@ router
   .route("/pets")
   .get((req, res) => UserController.findByUserId(req, res, db.Pet))
   .post((req, res) => UserController.create(req, res, db.Pet));
-
-// router
-//   .route("/pets/:name")
-//   // .patch((req, res) => UserController.updatePet(req, res, db.Pet));
 
 router
   .route("/pets/:id")
@@ -33,16 +29,16 @@ router
   .route("/petfood/:id")
   .get((req, res) => UserController.findOne(req, res, db.PetFood));
 
+// Routes created to handle login
 router
   .route("/login")
   .post(passport.authenticate("local-login"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       username: req.user.username,
       _id: req.user.id,
     });
   });
-
+// Route to log user out
 router.route("/logout").get((req, res) => {
   req.logout();
   res.json({});
@@ -58,7 +54,6 @@ router.route("/currentuser").get((req, res) => {
     });
   } else {
     // Otherwise send back the user's email and id
-    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       username: req.user.username,
       id: req.user._id,
