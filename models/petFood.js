@@ -6,8 +6,6 @@ PetFoodSchema = new Schema({
   petType: { type: String, required: true },
   caloriesPerPackage: { type: Number, required: true },
   ozPerPackage: { type: Number, required: true },
-  ingredientsRating: { type: Number },
-  nutritionRating: { type: Number },
   ingredients: { type: String },
   protein: { type: Number },
   fat: { type: Number },

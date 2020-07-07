@@ -128,107 +128,107 @@ export default function FinalCalculation({
               {highEndCalories} calories per day.
           </p>
 
-          {selectedFood.length === 0 ? (
-            noFood
-          ) : (
-            <>
-              <p>
-                Using {inputFood} they will need between{" "}
-                {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
+            {selectedFood.length === 0 ? (
+              noFood
+            ) : (
+                <>
+                  <p>
+                    Using {inputFood} they will need between{" "}
+                    {parseFloat(totalLowEndAmount).toFixed(2)} and{" "}
+                    {parseFloat(totalHighEndAmount).toFixed(2)} oz per day to
                 maintain their current weight.
               </p>
-              <p>
-                That is between{" "}
-                {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
-                {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
+                  <p>
+                    That is between{" "}
+                    {parseFloat(totalLowEndAmount / mealNumber).toFixed(2)} and{" "}
+                    {parseFloat(totalHighEndAmount / mealNumber).toFixed(2)} oz per
                 meal.
               </p>
-              <p>
-                In a 30 day period you will need between{" "}
-                {Math.ceil(packagesPerMonthLow)} and{" "}
-                {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
+                  <p>
+                    In a 30 day period you will need between{" "}
+                    {Math.ceil(packagesPerMonthLow)} and{" "}
+                    {Math.ceil(packagesPerMonthHigh)} packages of {inputFood}.
               </p>
-              {idealWeight >= weight ? (
-                ""
-              ) : (
-                <>
-                  <h4> Weightloss: </h4>
-                  <p>
-                    {dietCalculation()}
-                    For weightloss aim for{" "}
-                    {parseFloat(weightlossCal).toFixed(2)} calories per day.{" "}
-                    {weightlossCal < lowEndCalories ? (
-                      ""
-                    ) : (
+                  {idealWeight >= weight ? (
+                    ""
+                  ) : (
                       <>
-                        <OverlayTrigger
-                          trigger="click"
-                          overlay={
-                            <Popover id={`popover`}>
-                              <Popover.Title as="h3">
-                                Why are the calories higher than the low end
-                                suggestion?
+                        <h4> Weightloss: </h4>
+                        <p>
+                          {dietCalculation()}
+                    For weightloss aim for{" "}
+                          {parseFloat(weightlossCal).toFixed(2)} calories per day.{" "}
+                          {weightlossCal < lowEndCalories ? (
+                            ""
+                          ) : (
+                              <>
+                                <OverlayTrigger
+                                  trigger="click"
+                                  overlay={
+                                    <Popover id={`popover`}>
+                                      <Popover.Title as="h3">
+                                        Why are the calories higher than the low end
+                                        suggestion?
                               </Popover.Title>
-                              <Popover.Content>
-                                In some cases suggested calories for weightloss
-                                maybe higher or lower than the base level
-                                suggested low end. Pet weightloss should always
-                                be a slow process for your pet's saftey.
-                                Gradually decreasing your pet's food will
-                                prevent complications that could lead to more
-                                serious illnesses. For more information please
-                                tallk to your vet before starting a weightloss
-                                regimen.
+                                      <Popover.Content>
+                                        In some cases suggested calories for weightloss
+                                        maybe higher or lower than the base level
+                                        suggested low end. Pet weightloss should always
+                                        be a slow process for your pet's saftey.
+                                        Gradually decreasing your pet's food will
+                                        prevent complications that could lead to more
+                                        serious illnesses. For more information please
+                                        tallk to your vet before starting a weightloss
+                                        regimen.
                               </Popover.Content>
-                            </Popover>
-                          }
-                        >
-                          <img src={question} id="icon" alt="question" />
-                        </OverlayTrigger>
-                      </>
-                    )}
-                  </p>
-                  <p>
-                    This is about {parseFloat(dietTotal).toFixed(2)} oz per day
+                                    </Popover>
+                                  }
+                                >
+                                  <img src={question} id="icon" alt="question" />
+                                </OverlayTrigger>
+                              </>
+                            )}
+                        </p>
+                        <p>
+                          This is about {parseFloat(dietTotal).toFixed(2)} oz per day
                     and {parseFloat(dietMealOz).toFixed(2)} oz per meal.
                   </p>
+                      </>
+                    )}
                 </>
               )}
-            </>
-          )}
-          <PetFoodDropdown
-            results={state.results}
-            currentPet={currentPet}
-            handleOnChange={handleOnChange}
-          />
+            <PetFoodDropdown
+              results={state.results}
+              currentPet={currentPet}
+              handleOnChange={handleOnChange}
+            />
 
-          <p>
-            {name}'s last recorded weight is {weight} lb's.
+            <p>
+              {name}'s last recorded weight is {weight} lb's.
           </p>
-          <Form>
-            <Row>
-              <Col md={6}>
-                <Form.Control
-                  onChange={handleChange}
-                  name="currentWeight"
-                  type="text"
-                  className="form-control"
-                  placeholder="Update weight"
-                />
-              </Col>
-              <Col xs={2}>
-                <Button
-                  onClick={handleSubmit}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  Submit
+            <Form>
+              <Row>
+                <Col md={6}>
+                  <Form.Control
+                    onChange={handleChange}
+                    name="currentWeight"
+                    type="text"
+                    className="form-control"
+                    placeholder="Update weight"
+                  />
+                </Col>
+                <Col xs={2}>
+                  <Button
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="btn btn-primary"
+                  >
+                    Submit
                 </Button>
-              </Col>
-            </Row>
-          </Form>
-
+                </Col>
+              </Row>
+            </Form>
+          </div>
         </div>
       </div>
 
