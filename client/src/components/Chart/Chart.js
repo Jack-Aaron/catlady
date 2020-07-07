@@ -28,8 +28,8 @@ function Chart( { currentPet } ) {
             {
                 label: "Weight Tracking",
                 data: weight,
-                borderColor:["rgba(229, 152, 155, 1)"],
-                backgroundColor:["rgba(229, 152, 155, 1)"],
+                borderColor:["rgba(229, 152, 155, 0.5)"],
+                backgroundColor:["rgba(229, 152, 155, 0.5)"],
                 pointBackgroundColor: "rgba(229, 152, 155, 1)",
                 pointBorderColor: "rgba(229, 152, 155, 1)",
             }
