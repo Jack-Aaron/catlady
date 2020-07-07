@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Chart from "../Chart/Chart";
-import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Card from 'react-bootstrap/Card'
+import Col from "react-bootstrap/Col";
+import Image from 'react-bootstrap/Image';
+import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import Row from "react-bootstrap/Row";
+import Chart from "../Chart/Chart";
 import question from "../../assets/questionmark.png";
 import "./style.css";
-import BrowserRouter, { Link } from "react-router-dom";
 
 import PetFoodDropdown from "../petFoodDropdown/petFoodDropdown";
 
@@ -17,7 +18,7 @@ export default function FinalCalculation({
   setCurrentPet,
   currentPet,
   form,
-  setForm,
+  setForm
 }) {
   const [state, setState] = useState({
     results: [],
@@ -115,9 +116,9 @@ export default function FinalCalculation({
 
   return (
     <>
-      <div className="row justify-content-center pt-5">
-        <div className="col-md-6 col-md-offset-3">
-          <div
+      <Row className="row justify-content-center pt-5">
+        <Col className="col-md-6 col-md-offset-3">
+          <Card
             className="card p-4"
             id="card"
             style={{ borderRadius: "2em", boxShadow: "0px 0px 4px 4px #ccc" }}
@@ -184,7 +185,8 @@ export default function FinalCalculation({
                                     </Popover>
                                   }
                                 >
-                                  <img src={question} id="icon" alt="question" />
+
+                                  <Image src={question} id="icon" alt="question" />
                                 </OverlayTrigger>
                               </>
                             )}
@@ -228,12 +230,13 @@ export default function FinalCalculation({
                 </Col>
               </Row>
             </Form>
-          </div>
-        </div>
-      </div>
+          </Card>
+        </Col>
+      </Row>
+
 
       <Chart currentPet={currentPet} />
 
     </>
-  );
+  )
 }
