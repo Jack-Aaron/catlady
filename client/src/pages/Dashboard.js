@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import API from "../utils/API";
-import Button from 'react-bootstrap/Button';
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Header from "../components/Header";
@@ -18,6 +15,12 @@ function Dashboard(props) {
   const [petsState, setPetsState] = useState([]);
 
   useEffect(() => loadPets(), []);
+
+  //petImage wait-to-load section
+  const [loading, setLoading] = useState(true);
+  const imageLoaded = () => {
+    setLoading(false);
+  }
 
   const loadPets = () => {
     API.getPets().then((res) => {
@@ -38,7 +41,9 @@ function Dashboard(props) {
     <div>
       <Header />
       <Container>
-        <Row className="justify-content-around">
+        <Row style={{
+          display: loading ? 'none' : 'flex',
+        }} className="justify-content-around">
           {
             petsState.length !== 0 ?
 
@@ -52,6 +57,7 @@ function Dashboard(props) {
                     currentPet={props.currentPet}
                     setCurrentPet={props.setCurrentPet}
                     handleDelete={handleDelete}
+                    imageLoaded={imageLoaded}
                   />
                 </Col >
               )) : noPets}

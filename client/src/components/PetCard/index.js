@@ -1,13 +1,11 @@
-import React, { Link } from 'react';
+import React, { Link, useState } from 'react';
+import { useHistory, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
 import API from "../../utils/API";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { useHistory, useLocation } from "react-router-dom";
-
-toast.configure()
 
 const PetCard = (props) => {
 
@@ -54,12 +52,17 @@ const PetCard = (props) => {
                     backgroundColor: '#FFB4A2',
                     border: '3px solid #E5989B',
                     borderRadius: '10px',
-                    filter: 'grayscale(50%)'
+                    filter: 'grayscale(50%)',
+
                 }}>
-                <Card.Img src={props.imgsrc} className='petImg' alt="Card image cap" style={{
-                    maxHeight: '300px',
-                    maxWidth: '200px'
-                }} />
+                <Card.Img
+                    onLoad={props.imageLoaded}
+                    src={props.imgsrc}
+                    className='petImg' alt="Card image cap"
+                    style={{
+                        maxHeight: '300px',
+                        maxWidth: '200px'
+                    }} />
                 <Card.Body>
                     <Card.Title>{props.name}
                         <span as={Link}
