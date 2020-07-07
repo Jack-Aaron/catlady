@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  useHistory,
+  Redirect
 } from "react-router-dom";
+import "./App.css";
 import Navigation from "./components/Navbar";
 import PetInfoForm from "./components/petInfoForm/petInfoForm";
 import Wrapper from "./components/Wrapper";
@@ -16,10 +16,11 @@ import FoodTable from "./pages/FoodTable/FoodTable";
 import PetProfile from "./pages/PetProfile/petProfile";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import PetInfoForm from "./components/petInfoForm/petInfoForm";
+import PetProfile from "./pages/PetProfile/petProfile";
 
-const App = () => {
-  const history = useHistory();
+const App = (props) => {
+
   //For food form and pet form
   const initalForm = {};
 

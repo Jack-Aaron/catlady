@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "./style.css";
+import Chart from "../Chart/Chart";
+import Form from "react-bootstrap/Form";
 import API from "../../utils/API";
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card'
@@ -10,7 +13,7 @@ import Popover from "react-bootstrap/Popover";
 import Row from "react-bootstrap/Row";
 import Chart from "../Chart/Chart";
 import question from "../../assets/questionmark.png";
-import "./style.css";
+
 
 import PetFoodDropdown from "../petFoodDropdown/petFoodDropdown";
 
@@ -111,8 +114,6 @@ export default function FinalCalculation({
       <h4>Select a Food to See Feeding Recomendation</h4>
     </>
   );
-
-  const weightLossNot = "";
 
   return (
     <>
