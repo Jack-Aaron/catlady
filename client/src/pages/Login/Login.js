@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Login.css'
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import API from "../../utils/API";
 import LoginSignupForm from "../../components/LoginSignupForm/LoginSignupForm";
@@ -10,9 +10,6 @@ function Login(props) {
     const initalForm = { username: "", password: "" }
     const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
-
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -29,7 +26,7 @@ function Login(props) {
                 props.setUserData(res.data);
                 setFormObject(initalForm)
             })
-                .then(res => history.replace(from))
+                .then(res => history.push("/"))
                 .catch(err => {
                     setFormObject({ ...formObject, err: err.response.status })
                 })

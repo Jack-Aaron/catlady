@@ -5,13 +5,11 @@ import Container from '../Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import './style.css';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const ViewFood = () => {
     let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/petfoods"} };
 
     return (
         <div>
@@ -29,7 +27,7 @@ const ViewFood = () => {
 
                             <Button className='AddBtn' block
                                 variant='primary'
-                                onClick={() => history.replace(from)}>
+                                onClick={() => history.push("/petfoods")}>
                                 View Foods List </Button>
 
                         </Card>
