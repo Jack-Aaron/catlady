@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
 import Button from 'react-bootstrap/Button'
@@ -12,9 +12,6 @@ import Form from "react-bootstrap/Form";
 function PetFoodForm({ form, setForm }) {
 
     let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
-
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -38,7 +35,7 @@ function PetFoodForm({ form, setForm }) {
                 fiber: form.fiber,
                 moisture: form.moisture,
             })
-                .then(res => history.replace(from))
+                .then(res => history.push("/"))
                 .catch(err => console.log(err))
         }
     };

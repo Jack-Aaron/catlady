@@ -229,13 +229,10 @@ export default function FinalCalculation({
                 </Col>
               </Row>
             </Form>
+            <Chart currentPet={currentPet} />
           </Card>
         </Col>
       </Row>
-
-
-      <Chart currentPet={currentPet} />
-
     </>
   )
 }

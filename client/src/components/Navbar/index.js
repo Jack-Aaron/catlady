@@ -4,12 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import API from '../../utils/API';
 import './style.css';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 const Navigation = ({ setUserData }) => {
   let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || { from: { pathname: '/login' } };
 
   function logout() {
     API.logout()
@@ -18,7 +16,7 @@ const Navigation = ({ setUserData }) => {
           username: '',
           id: '',
         })
-        history.replace(from)
+        history.push("/login")
       })
   }
 
