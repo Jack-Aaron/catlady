@@ -5,11 +5,12 @@ import './style.css';
 import API from "../../utils/API";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 toast.configure()
 
 const PetCard = (props) => {
+    let history = useHistory();
 
     const CustomToast = ({ closeToast }) => {
         return (
@@ -25,10 +26,7 @@ const PetCard = (props) => {
         )
     }
 
-    let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/petProfile" } };
-
+   
     const notify = () => {
         toast.warn(<CustomToast />, {
             position: toast.POSITION.TOP_CENTER,
@@ -41,7 +39,7 @@ const PetCard = (props) => {
         API.getCurrentPet(petId)
             .then(res => {
                 props.setCurrentPet(res.data)
-                history.replace(from)
+                history.push("/petProfile")
             })
     }
 

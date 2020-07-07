@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './SignUp.css'
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import API from "../../utils/API";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from 'react-bootstrap/Container';
@@ -10,8 +10,6 @@ function SignUp() {
     const initalForm = { username: "", password: "" }
     const [formObject, setFormObject] = useState(initalForm)
     let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/login" } };
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -25,7 +23,7 @@ function SignUp() {
                 username: formObject.username,
                 password: formObject.password
             }).then(setFormObject(initalForm))
-                .then(res => history.replace(from))
+                .then(res => history.push("/login"))
                 .catch(err => {
                     setFormObject({ ...formObject, err: err.response.status })
                 });
