@@ -185,6 +185,7 @@ export default function FinalCalculation({
                                     </Popover>
                                   }
                                 >
+
                                   <Image src={question} id="icon" alt="question" />
                                 </OverlayTrigger>
                               </>
@@ -232,6 +233,7 @@ export default function FinalCalculation({
           </Card>
         </Col>
       </Row>
+
 
       <Chart currentPet={currentPet} />
 
