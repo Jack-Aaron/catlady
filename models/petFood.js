@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 PetFoodSchema = new Schema({
+  brand: { type: String, required: true, index: { unique: true } },
   name: { type: String, required: true, index: { unique: true } },
   petType: { type: String, required: true },
   caloriesPerPackage: { type: Number, required: true },

@@ -53,6 +53,7 @@ function FoodTable() {
                             <Table striped id="petFoods" style={{border:"solid", borderColor:"#B5838D"}}>
                                 <tbody>
                                     <tr>
+                                        <th>Food Brand</th>
                                         <th>Food Name</th>
                                         <th>Food Type</th>
                                         <th>Ingredients</th>
@@ -65,6 +66,7 @@ function FoodTable() {
                                     </tr>
                                     {foodState.map((food) => (
                                         <tr key={food._id}>
+                                            <td>{food.brand}</td>
                                             <td>{food.name}</td>
                                             <td>{food.petType} Food</td>
                                             <td>{food.ingredients}</td>
