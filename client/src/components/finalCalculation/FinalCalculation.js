@@ -19,7 +19,8 @@ export default function FinalCalculation({
   setCurrentPet,
   currentPet,
   form,
-  setForm
+  setForm,
+  initalForm
 }) {
   const [state, setState] = useState({
     results: [],
@@ -71,7 +72,6 @@ export default function FinalCalculation({
     packagesPerMonthHigh = (highEndCalories / caloriesPerPackage) * 30;
   }
   function dietCalculation() {
-    console.log("test");
     dietTotal = weightlossCal / caloriesPerOz;
     dietMealOz = dietTotal / mealNumber;
   }
@@ -104,6 +104,7 @@ export default function FinalCalculation({
     event.preventDefault();
     API.updateWeight(currentPet._id, form).then((res) => {
       setCurrentPet(res.data);
+      setForm(initalForm);
     });
   }
 
@@ -116,7 +117,7 @@ export default function FinalCalculation({
   return (
     <>
       <Row className="row justify-content-center pt-5">
-        <Col className="col-md-6 col-md-offset-3">
+        <Col className="col-10 col-lg-8 col-md-offset-3">
           <Card
             className="card p-4"
             id="card"
@@ -213,16 +214,16 @@ export default function FinalCalculation({
                   <Form.Control
                     onChange={handleChange}
                     name="currentWeight"
-                    type="text"
-                    className="form-control"
+                    className="form-control mt-2"
                     placeholder="Update weight"
+                    value={form.currentWeight|| ''}
                   />
                 </Col>
                 <Col xs={2}>
                   <Button
                     onClick={handleSubmit}
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-primary mt-2 "
                   >
                     Submit
                 </Button>

@@ -20,3 +20,8 @@ tr {
     border-top: solid;
     border-top-color: #B5838D;
 }
+
+input {
+    width: 50%;
+    padding-bottom: 2em
+}
