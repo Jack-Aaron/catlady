@@ -93,13 +93,13 @@ function FoodTable() {
                                                 <td>{food.brand}</td>
                                                 <td>{food.name}</td>
                                                 <td>{food.petType} Food</td>
-                                                <td>{food.ingredients}</td>
-                                                <td>{food.protein}%</td>
-                                                <td>{food.fat}%</td>
-                                                <td>{food.carbs}%</td>
-                                                <td>{food.ash}%</td>
-                                                <td>{food.fiber}%</td>
-                                                <td>{food.moisture}%</td>
+                                                <td>{food.ingredients ? food.ingredients + "%" : "n/a" }</td>
+                                                <td>{food.protein ? food.protein + "%" : "n/a"} </td>
+                                                <td>{food.fat ? food.fat + "%" : "n/a"}</td>
+                                                <td>{food.carbs ? food.carbs + "%" : "n/a"}</td>
+                                                <td>{food.ash ? food.ash + "%" : "n/a"}</td>
+                                                <td>{food.fiber ? food.fiber + "%" : "n/a"}</td>
+                                                <td>{food.moisture ? food.moisture + "%" : "n/a"}</td>
                                             </tr>
 
                                         ))}

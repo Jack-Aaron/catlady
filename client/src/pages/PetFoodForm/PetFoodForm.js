@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from "react-router-dom"
 import API from '../../utils/API';
 import { Input } from '../../components/Form/Form';
@@ -9,8 +9,8 @@ import Container from '../../components/Container';
 import Card from 'react-bootstrap/Card';
 import Form from "react-bootstrap/Form";
 
-function PetFoodForm({ form, setForm }) {
-
+function PetFoodForm({ form, setForm, initalForm }) {
+    const [err, setErr] = useState({})
     let history = useHistory();
 
     function handleChange(event) {
@@ -20,7 +20,7 @@ function PetFoodForm({ form, setForm }) {
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        if (form.name && form.calPer && form.ozPer && form.petType) {
+        if (form.brand && form.name && form.calPer && form.ozPer && form.petType) {
             API.savePetFood({
                 brand:form.brand,
                 name: form.name,
@@ -35,8 +35,14 @@ function PetFoodForm({ form, setForm }) {
                 fiber: form.fiber,
                 moisture: form.moisture,
             })
-                .then(res => history.push("/"))
-                .catch(err => console.log(err))
+                .then(res => {
+                    setForm(initalForm)
+                    history.push("/")
+            })
+                .catch(err => {
+                    setErr({err: err.response.status})
+                    setForm(initalForm)
+                });
         }
     };
 
@@ -52,16 +58,19 @@ function PetFoodForm({ form, setForm }) {
                                     <Input
                                         onChange={handleChange}
                                         name="brand"
-                                        type="text" />
+                                        type="text"
+                                        value={form.brand || ""} />
                                     <Form.Label>Pet Food Name: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="name"
-                                        type="text" />
+                                        type="text" 
+                                        value={form.name || ""}/>
                                     <Form.Label className="mt-3">Pet Food Type: </Form.Label>
                                     <Form.Control
                                         name="petType"
                                         as="select"
+                                        value={form.petType || ""}
                                         onChange={handleChange}>
                                         <option> </option>
                                         <option>Cat</option>
@@ -71,62 +80,72 @@ function PetFoodForm({ form, setForm }) {
                                     <Input
                                         onChange={handleChange}
                                         name="calPer"
-                                        type="text" />
+                                        type="text" 
+                                        value={form.calPer || ""}/>
                                     <Form.Label className="mt-3">Oz Per Package: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="ozPer"
-                                        type="text" />
+                                        type="text" 
+                                        value={form.ozPer || ""}/>
                                     <Form.Label className="mt-3">Ingredients: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="ingredients"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)" 
+                                        value={form.ingredients || ""}/>
                                     <Form.Label className="mt-3">Protein: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="protein"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)" 
+                                        value={form.protein || ""}/>
                                     <Form.Label className="mt-3">Fat: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="fat"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)" 
+                                        value={form.fat || ""}/>
                                     <Form.Label className="mt-3">Carbs: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="carbs"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)"
+                                        value={form.carbs || ""} />
                                     <Form.Label className="mt-3">Ash: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="ash"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)"
+                                        value={form.ash || ""} />
                                     <Form.Label className="mt-3">Fiber: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="fiber"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)"
+                                        value={form.fiber || ""} />
                                     <Form.Label className="mt-3">Moisture: </Form.Label>
                                     <Input
                                         onChange={handleChange}
                                         name="moisture"
                                         type="text"
-                                        placeholder="(Optional)" />
+                                        placeholder="(Optional)" 
+                                        value={form.moisture || ""}/>
                                 </Form.Group>
                                 <Button
-                                    disabled={!(form.name && form.calPer && form.ozPer && form.petType)}
+                                    disabled={!(form.brand && form.name && form.calPer && form.ozPer && form.petType)}
                                     onClick={handleFormSubmit}
                                     type="submit"
                                     className="btn btn-secondary">Submit
                                 </Button>
                             </Form>
+                            {err.err === 422 ? <div className="alert-danger">Error: Food Name Already Exists</div> : null}
                         </Card.Body>
                     </Card>
                 </Col>

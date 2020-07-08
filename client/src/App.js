@@ -109,6 +109,7 @@ const App = () => {
                   <PetFoodForm
                     form={form}
                     setForm={setForm}
+                    initalForm={initalForm}
                   />
                 )
             }
