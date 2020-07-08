@@ -13,9 +13,7 @@ function FoodTable() {
     const [foodState, setFoodState] = useState([]);
     const [search, setSearch] = useState("");
 
-    
-
-    let filteredFoods = foodState.filter(food => JSON.stringify(food).includes(search))
+    let filteredFoods = foodState.filter(food => JSON.stringify(food).toLowerCase().includes(search))
 
     function handleChange(event) {
         const foodType = (event.target.value)
@@ -25,7 +23,6 @@ function FoodTable() {
             const selectedFoodType = allFood.filter(food => food.petType === foodType)
             setFoodState(selectedFoodType);
         });
-
     }
 
     function handleSearch(event) {
