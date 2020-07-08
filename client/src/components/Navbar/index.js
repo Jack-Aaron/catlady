@@ -6,7 +6,7 @@ import API from '../../utils/API';
 import './style.css';
 import { useHistory} from 'react-router-dom';
 
-const Navigation = ({ setUserData }) => {
+const Navigation = ({ userData, setUserData }) => {
   let history = useHistory();
 
   function logout() {
@@ -53,6 +53,7 @@ const Navigation = ({ setUserData }) => {
           >
             Food List
           </Nav.Link>
+          {userData.username === "" ?
           <Nav.Link
             as={Link}
             to="/signup"
@@ -61,9 +62,10 @@ const Navigation = ({ setUserData }) => {
                 ? 'nav-link active'
                 : 'nav-link'
             }
-          >
+          > 
             Sign Up
           </Nav.Link>
+          : null }
           <Nav.Link
             onClick={logout}
             className='ml-auto'>

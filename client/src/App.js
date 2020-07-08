@@ -41,7 +41,7 @@ const App = () => {
   return (
     <Router>
       <div className='App'>
-        <Navigation setUserData={setUserData} />
+        <Navigation setUserData={setUserData} userData={userData}/>
         <Wrapper>
           <Route
             exact
@@ -138,6 +138,7 @@ const App = () => {
                     setCurrentPet={setCurrentPet}
                     form={form}
                     setForm={setForm}
+                    initalForm={initalForm}
                   />
                 )
             }

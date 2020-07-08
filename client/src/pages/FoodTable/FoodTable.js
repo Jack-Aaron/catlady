@@ -8,8 +8,14 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
 
+
 function FoodTable() {
     const [foodState, setFoodState] = useState([]);
+    const [search, setSearch] = useState("");
+
+    
+
+    let filteredFoods = foodState.filter(food => JSON.stringify(food).includes(search))
 
     function handleChange(event) {
         const foodType = (event.target.value)
@@ -22,6 +28,11 @@ function FoodTable() {
 
     }
 
+    function handleSearch(event) {
+        const { value } = event.target;
+        setSearch(value)
+    }
+
     const noFoods = <h3> Choose A Pet Food Type From The Dropdown</h3>;
 
     return (
@@ -32,7 +43,7 @@ function FoodTable() {
                 </Col>
             </Row>
             <Row className="justify-content-center mt-3">
-                <Col lg={3}>
+                <Col lg={4}>
                     <Form.Group>
                         <Form.Control as="select"
                             onChange={handleChange}
@@ -45,46 +56,63 @@ function FoodTable() {
                     </Form.Group>
                 </Col>
             </Row>
-            <Row>
-                <Col>
 
-                    {
-                        foodState.length !== 0 ?
-                            <Table striped id="petFoods" style={{border:"solid", borderColor:"#B5838D"}}>
-                                <tbody>
-                                    <tr>
-                                        <th>Food Brand</th>
-                                        <th>Food Name</th>
-                                        <th>Food Type</th>
-                                        <th>Ingredients</th>
-                                        <th>Protein</th>
-                                        <th>Fat</th>
-                                        <th>Carbs</th>
-                                        <th>Ash</th>
-                                        <th>Fiber</th>
-                                        <th>Moisture</th>
-                                    </tr>
-                                    {foodState.map((food) => (
-                                        <tr key={food._id}>
-                                            <td>{food.brand}</td>
-                                            <td>{food.name}</td>
-                                            <td>{food.petType} Food</td>
-                                            <td>{food.ingredients}</td>
-                                            <td>{food.protein}%</td>
-                                            <td>{food.fat}%</td>
-                                            <td>{food.carbs}%</td>
-                                            <td>{food.ash}%</td>
-                                            <td>{food.fiber}%</td>
-                                            <td>{food.moisture}%</td>
+            {
+                foodState.length !== 0 ?
+                    <>
+                        <Row className="justify-content-center">
+                            <Col lg={4}>
+                                <Form.Group>
+                                    <Form.Control 
+                                    type="text"
+                                    name="search"
+                                    placeholder={"Search Foods"}
+                                    onChange={handleSearch}
+                                    >
+                                    </Form.Control>
+                                    <br />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Table striped id="petFoods" style={{ border: "solid", borderColor: "#B5838D" }}>
+                                    <tbody>
+                                        <tr>
+                                            <th>Food Brand</th>
+                                            <th>Food Name</th>
+                                            <th>Food Type</th>
+                                            <th>Ingredients</th>
+                                            <th>Protein</th>
+                                            <th>Fat</th>
+                                            <th>Carbs</th>
+                                            <th>Ash</th>
+                                            <th>Fiber</th>
+                                            <th>Moisture</th>
                                         </tr>
+                                        {filteredFoods.map((food) => (
+                                            <tr key={food._id}>
+                                                <td>{food.brand}</td>
+                                                <td>{food.name}</td>
+                                                <td>{food.petType} Food</td>
+                                                <td>{food.ingredients}</td>
+                                                <td>{food.protein}%</td>
+                                                <td>{food.fat}%</td>
+                                                <td>{food.carbs}%</td>
+                                                <td>{food.ash}%</td>
+                                                <td>{food.fiber}%</td>
+                                                <td>{food.moisture}%</td>
+                                            </tr>
 
-                                    ))}
-                                </tbody>
-                            </Table>
-                            : noFoods}
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                    </> : noFoods
+            }
 
-                </Col>
-            </Row>
         </Container>
 
     )
