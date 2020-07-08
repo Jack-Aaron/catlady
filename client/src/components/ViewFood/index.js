@@ -26,7 +26,7 @@ const ViewFood = () => {
                             <Card.Title>See Food Information!</Card.Title>
 
                             <Button className='AddBtn' block
-                                variant='primary'
+                                className="btn btn-secondary"
                                 onClick={() => history.push("/petfoods")}>
                                 View Foods List </Button>
 

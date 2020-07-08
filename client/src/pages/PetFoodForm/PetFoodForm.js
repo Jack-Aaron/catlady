@@ -124,7 +124,7 @@ function PetFoodForm({ form, setForm }) {
                                     disabled={!(form.name && form.calPer && form.ozPer && form.petType)}
                                     onClick={handleFormSubmit}
                                     type="submit"
-                                    className="btn btn-primary">Submit
+                                    className="btn btn-secondary">Submit
                                 </Button>
                             </Form>
                         </Card.Body>

@@ -75,6 +75,7 @@ const PetCard = (props) => {
                 </Card.Body>
                 <Button
                     name={props.id}
+                    className="btn btn-secondary"
                     onClick={handleClick}
                 >Select Pet
                 </Button>

@@ -45,7 +45,7 @@ function LoginSignupForm(props) {
                                     disabled={!(props.formUser && props.formPass)}
                                     onClick={props.handleFormSubmit}
                                     type="submit"
-                                    className="btn btn-primary">{props.buttonText}
+                                    className="btn btn-secondary">{props.buttonText}
                                 </Button>
                                 <Form.Group className='pt-2'>
                                 {props.children}
