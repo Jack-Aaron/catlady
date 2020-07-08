@@ -223,11 +223,7 @@ export default function FinalCalculation({
                   <Button
                     onClick={handleSubmit}
                     type="submit"
-<<<<<<< HEAD
-                    className="btn btn-primary mt-2 "
-=======
                     className="btn btn-secondary"
->>>>>>> master
                   >
                     Submit
                 </Button>
