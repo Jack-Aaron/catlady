@@ -22,7 +22,7 @@ export default function PetFoodDropdown({
                 .map((food, index) => {
                   return (
                     <option key={index} value={food._id}>
-                      {food.name}
+                      {food.brand + " " + food.name}
                     </option>
                   );
                 })

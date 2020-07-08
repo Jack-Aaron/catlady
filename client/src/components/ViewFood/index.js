@@ -8,11 +8,12 @@ import './style.css';
 import { useHistory } from "react-router-dom";
 
 
-const AddBtn = () => {
+const ViewFood = () => {
     let history = useHistory();
 
     return (
         <div>
+            <hr />
             <Container>
                 <Row className='justify-content-center text-center'>
                     <Col>
@@ -22,12 +23,12 @@ const AddBtn = () => {
                             margin: '0 auto',
                             marginTop: '3em'
                         }} body>
-                            <Card.Title>Start caring for a new friend!</Card.Title>
+                            <Card.Title>See Food Information!</Card.Title>
 
                             <Button className='AddBtn' block
                                 className="btn btn-secondary"
-                                onClick={() => history.push("/newPet")}>
-                                Add Pet </Button>
+                                onClick={() => history.push("/petfoods")}>
+                                View Foods List </Button>
 
                         </Card>
                     </Col>
@@ -38,5 +39,5 @@ const AddBtn = () => {
 }
 
 
-export default AddBtn;
+export default ViewFood;
 
