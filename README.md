@@ -18,6 +18,12 @@ For the health of our pets, it is important to keep track of what they eat. Main
 ## Searching through the Pet Foods
 ![foodlist-demo](foodlist-demo.gif?raw=true)
 
+### Development Process
+
+The UI/UX was devised envisioning a user who may have multiple pets all requiring different diets. We decided then that the dashboard would first show all the different pets a user has in order to best select pet foods to match each pets' individual needs. The focus was on first allowing users to create a "pet" with minimal information required, and keeping the pets separate from the pet foods, so that the user has full autonomy in mixing and matching the most appropriate pet foods for each pet at any time.
+
+We chose to use a NoSQL database due to the varied data ascribed to each pet to stay in line with the goal of the application of making custom diets for different pets.
+
 ### Technologies Used
 * HTML/CSS
 * Javascript ES6
